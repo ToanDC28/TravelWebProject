@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TravelWebProject\\TravelWebProject\\TravelWebProject.repo\\TravelWebProject.repo.csproj": {}
+    "D:\\TravelWebProject\\TravelWebProject.repo\\TravelWebProject.repo.csproj": {}
   },
   "projects": {
-    "D:\\TravelWebProject\\TravelWebProject\\TravelWebProject.repo\\TravelWebProject.repo.csproj": {
+    "D:\\TravelWebProject\\TravelWebProject.repo\\TravelWebProject.repo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TravelWebProject\\TravelWebProject\\TravelWebProject.repo\\TravelWebProject.repo.csproj",
+        "projectUniqueName": "D:\\TravelWebProject\\TravelWebProject.repo\\TravelWebProject.repo.csproj",
         "projectName": "TravelWebProject.repo",
-        "projectPath": "D:\\TravelWebProject\\TravelWebProject\\TravelWebProject.repo\\TravelWebProject.repo.csproj",
+        "projectPath": "D:\\TravelWebProject\\TravelWebProject.repo\\TravelWebProject.repo.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\TravelWebProject\\TravelWebProject\\TravelWebProject.repo\\obj\\",
+        "outputPath": "D:\\TravelWebProject\\TravelWebProject.repo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",

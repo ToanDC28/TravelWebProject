@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TravelWebProject\\TravelWebProject\\TravelWebProject.service\\TravelWebProject.service.csproj",
+      "projectUniqueName": "D:\\TravelWebProject\\TravelWebProject.service\\TravelWebProject.service.csproj",
       "projectName": "TravelWebProject.service",
-      "projectPath": "D:\\TravelWebProject\\TravelWebProject\\TravelWebProject.service\\TravelWebProject.service.csproj",
+      "projectPath": "D:\\TravelWebProject\\TravelWebProject.service\\TravelWebProject.service.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\TravelWebProject\\TravelWebProject\\TravelWebProject.service\\obj\\",
+      "outputPath": "D:\\TravelWebProject\\TravelWebProject.service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",

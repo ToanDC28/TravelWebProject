@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TravelWebProject\\TravelWebProject\\BusinessObject\\BusinessObject.csproj": {}
+    "D:\\TravelWebProject\\BusinessObject\\BusinessObject.csproj": {}
   },
   "projects": {
-    "D:\\TravelWebProject\\TravelWebProject\\BusinessObject\\BusinessObject.csproj": {
+    "D:\\TravelWebProject\\BusinessObject\\BusinessObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TravelWebProject\\TravelWebProject\\BusinessObject\\BusinessObject.csproj",
+        "projectUniqueName": "D:\\TravelWebProject\\BusinessObject\\BusinessObject.csproj",
         "projectName": "BusinessObject",
-        "projectPath": "D:\\TravelWebProject\\TravelWebProject\\BusinessObject\\BusinessObject.csproj",
+        "projectPath": "D:\\TravelWebProject\\BusinessObject\\BusinessObject.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\TravelWebProject\\TravelWebProject\\BusinessObject\\obj\\",
+        "outputPath": "D:\\TravelWebProject\\BusinessObject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",

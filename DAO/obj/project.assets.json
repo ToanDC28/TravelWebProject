@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TravelWebProject\\TravelWebProject\\DAO\\DAO.csproj",
+      "projectUniqueName": "D:\\TravelWebProject\\DAO\\DAO.csproj",
       "projectName": "DAO",
-      "projectPath": "D:\\TravelWebProject\\TravelWebProject\\DAO\\DAO.csproj",
+      "projectPath": "D:\\TravelWebProject\\DAO\\DAO.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\TravelWebProject\\TravelWebProject\\DAO\\obj\\",
+      "outputPath": "D:\\TravelWebProject\\DAO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
