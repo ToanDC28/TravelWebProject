@@ -1,0 +1,178 @@
+@page
+@model TravelWebProject.web.Pages.Register
+@{
+    ViewData["Title"] = "Register";
+}
+@Html.AntiForgeryToken()
+<main>
+        <div class="pt-50"></div>
+
+        <!-- sign-in area start -->
+        <section class="bd-sign-area section-space">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-5">
+                        <div class="sign-form-wrapper text-center">
+                            <h4 class="title mb-30">Sign Up your account</h4>
+                            <form method="Post">
+                                <div class="row gy-24 align-items-center justify-content-between">
+                                    <div class="col-12">
+                                        <div class="form-input-box">
+                                            <div class="form-input-title">
+                                                <label for="Name">Name<span>*</span></label>
+                                            </div>
+                                            <div class="form-input">
+                                                <input name="Name" id="Name" type="text" required="" placeholder="Full Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-input-box">
+                                            <div class="form-input-title">
+                                                <label for="Username">Username<span>*</span></label>
+                                            </div>
+                                            <div class="form-input">
+                                                <input name="Username" id="Username" type="text" required="" placeholder="Username">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-input-box">
+                                            <div class="form-input-title">
+                                                <label for="email">Email Address<span>*</span></label>
+                                            </div>
+                                            <div class="form-input">
+                                                <input name="email" id="email" type="email" required="" placeholder="Email Address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-input-box">
+                                            <div class="form-input-title">
+                                                <label for="phoneNumber">Phone Number<span>*</span></label>
+                                            </div>
+                                            <div class="form-input">
+                                                <input name="PhoneNumber" id="phoneNumber" type="text" required="" placeholder="Your Phone Number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-input-box">
+                                            <div class="form-input-title">
+                                                <label for="password">Password<span>*</span></label>
+                                            </div>
+                                            <div class="form-input">
+                                                <input name="Password" id="password" type="password" required="" placeholder="Min. 8 character">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="from-input-box">
+                                            <div class="form-input-title">
+                                                <label for="passwordRepeat">Confirm Password<span>*</span></label>
+                                            </div>
+                                            <div class="form-input">
+                                                <input name="PasswordRepeat" id="passwordRepeat" type="password" required="" placeholder="Confirm Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sign-btn mt-20">
+                                    <button type="submit" class="bd-primary-btn btn-style is-bg radius-60">
+                                        <span class="bd-primary-btn-text">Sign Up</span>
+                                        <span class="bd-primary-btn-circle"></span>
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="sign-meta-divider-wrapper">
+                                <div class="sign-meta-divider-line left-line"></div>
+                                <span class="sign-meta-divider-title">or</span>
+                                <div class="sign-meta-divider-line right-line"></div>
+                            </div>
+                            <div class="sign-up-wrapper mt-30 mb-20">
+                                <div class="social-menu d-flex justify-content-center text-center">
+                                    <ul>
+                                        <li><a class="facebook" href="https://facebook.com/" target="blank"><i class="icon-facebook"></i></a></li>
+                                        <li><a class="twitter" href="https://twitter.com/" target="blank"><i class="icon-twitter-x"></i></a></li>
+                                        <li><a class="instagram" href="https://www.instagram.com/" target="blank"><i class="icon-instagram"></i></a></li>
+                                        <li><a class="linkedin" href="https://www.linkedin.com/" target="blank"><i class="icon-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sign-up-label text-center">
+                                Already have an account?<a href="sign-in.html" class="sign-link"> Sign In</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- sign-in area end -->
+
+    </main>
+<script>
+$(document).ready(function () {
+    $('form').submit(function (event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to submit your form",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Gửi thông tin đăng ký đến server bằng AJAX
+                $.ajax({
+                    url: '/Register?handler=RegisterUser',
+                    type: 'POST',
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: "json",
+                    data: $('form').serialize(),
+                    headers: {
+                        "RequestVerificationToken": $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        // Handle response từ server
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Your account has been created successfully!',
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '/SignIn';
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: response.message,
+                                icon: 'error',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An error occurred while creating your account!',
+                            icon: 'error',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            }
+        });
+    });
+});
+</script>

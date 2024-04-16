@@ -1,9 +1,22 @@
-var builder = WebApplication.CreateBuilder(args);
+using Serilog;
+using TravelWebProject.repo.Users;
+using TravelWebProject.service.Users;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Host.ConfigureLogging((context, logging) =>
+{
+    logging.ClearProviders();
+    logging.AddSerilog(logger: new LoggerConfiguration()
+        .ReadFrom.Configuration(context.Configuration)
+        .Enrich.FromLogContext()
+        .WriteTo.Console()
+        .CreateLogger());
+});
 // Add services to the container.
 builder.Services.AddRazorPages();
-
 builder.Services.AddSession();
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IUserService, UserService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -16,9 +29,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
-
 app.UseAuthorization();
 app.UseSession();
 app.MapRazorPages();
