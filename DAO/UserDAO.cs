@@ -43,5 +43,14 @@ namespace DAO
                 throw new Exception("Error in UserDAO.RegisterUser", e);
             }
         }
+
+        public User? Authenticate(string email, string password)
+        {
+            try {
+                return context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+            } catch(Exception e) {
+                throw new Exception("Error in UserDAO.Authenticate", e);
+            }
+        }
     }
 }

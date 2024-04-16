@@ -4,12 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessObject.Models;
 
-namespace TravelWebProject.repo.Users
+namespace TravelWebProject.service.Authentication
 {
-    public interface IUserRepo
+    public interface ICustomAuthenticationService
     {
-        public User? GetUser(string username);
-        public bool RegisterUser(User user);
         User? Authenticate(string email, string password);
     }
 }

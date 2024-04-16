@@ -8,5 +8,7 @@ namespace TravelWebProject.repo.Users
         public User? GetUser(string username) => UserDAO.Instance.GetUser(username);
 
         public bool RegisterUser(User user) => UserDAO.Instance.RegisterUser(user);
+
+        User? IUserRepo.Authenticate(string email, string password) => UserDAO.Instance.Authenticate(email, password);
     }
 }

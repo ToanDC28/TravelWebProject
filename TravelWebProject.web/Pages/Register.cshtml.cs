@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using BusinessObject.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -24,8 +26,14 @@ namespace TravelWebProject.web.Pages
             _userService = userService;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Index");
+            }
+
+            return Page();
         }
 
 
@@ -51,13 +59,20 @@ namespace TravelWebProject.web.Pages
                     return new JsonResult(new { success = false, message = "User with this email already exists." });
                 }
 
+                byte[] salt = new byte[128 / 8];
+
                 var new_user = new User
                 {
                     FullName = formData.Name,
                     Username = formData.Username,
                     Email = formData.Email,
                     Phone = formData.PhoneNumber,
-                    Password = formData.Password
+                    Password = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                        password: formData.Password,
+                        salt: salt,
+                        prf: KeyDerivationPrf.HMACSHA1,
+                        iterationCount: 10000,
+                        numBytesRequested: 256 / 8)),
                 };
                 var result = _userService.RegisterUser(new_user);
                 if (result)
