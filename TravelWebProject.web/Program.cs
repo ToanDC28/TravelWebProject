@@ -1,10 +1,25 @@
+using dotenv.net;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using Serilog.Extensions.Logging;
 using TravelWebProject.repo.Users;
 using TravelWebProject.service.Authentication;
+using TravelWebProject.service.Bank;
 using TravelWebProject.service.Users;
-
+using TravelWebProject.web;
+DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] {".env"}));
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentVariables();
+// var bankService = new BankService(new HttpClient(), new Logger<BankService>(new SerilogLoggerFactory()));
+// var task = Task.Run(async () =>
+// {
+//     while (true)
+//     {
+//         await bankService.LoginAsync("0356855236", "Anhvinh123!");
+//         await Task.Delay(5000);
+//     }
+// });
 builder.Host.ConfigureLogging((context, logging) =>
 {
     logging.ClearProviders();
@@ -36,6 +51,8 @@ builder.Services.AddSession();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICustomAuthenticationService, CustomAuthenticationService>();
+builder.Services.AddHttpClient<BankService>();
+builder.Services.AddHostedService<PeriodicLoginBackgroundService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
