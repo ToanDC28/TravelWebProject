@@ -24,10 +24,10 @@ namespace DAO
             }
         }
 
-        public User? GetUser(string username)
+        public User? GetUser(string email)
         {
             try {
-                return context.Users.SingleOrDefault(u => u.Username == username);
+                return context.Users.SingleOrDefault(u => u.Email == email);
             } catch(Exception e) {
                 throw new Exception("Error in UserDAO.GetUser", e);
             }

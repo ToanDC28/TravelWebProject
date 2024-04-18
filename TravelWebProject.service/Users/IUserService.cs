@@ -8,7 +8,7 @@ namespace TravelWebProject.service.Users
 {
     public interface IUserService
     {
-        public User? GetUser(string username);
+        public User? GetUser(string email);
         public bool RegisterUser(User user);
     }
 }

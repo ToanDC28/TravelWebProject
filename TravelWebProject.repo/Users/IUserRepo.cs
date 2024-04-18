@@ -8,7 +8,7 @@ namespace TravelWebProject.repo.Users
 {
     public interface IUserRepo
     {
-        public User? GetUser(string username);
+        public User? GetUser(string email);
         public bool RegisterUser(User user);
         User? Authenticate(string email, string password);
     }

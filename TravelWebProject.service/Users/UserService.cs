@@ -11,11 +11,11 @@ namespace TravelWebProject.service.Users
             this.userRepo = userRepo;
         }
 
-        public User? GetUser(string username)
+        public User? GetUser(string email)
         {
             try
             {
-                return userRepo.GetUser(username);
+                return userRepo.GetUser(email);
             }
             catch(Exception e)
             {

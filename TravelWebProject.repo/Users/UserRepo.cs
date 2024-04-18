@@ -5,7 +5,7 @@ namespace TravelWebProject.repo.Users
 {
     public class UserRepo : IUserRepo
     {
-        public User? GetUser(string username) => UserDAO.Instance.GetUser(username);
+        public User? GetUser(string email) => UserDAO.Instance.GetUser(email);
 
         public bool RegisterUser(User user) => UserDAO.Instance.RegisterUser(user);
 
