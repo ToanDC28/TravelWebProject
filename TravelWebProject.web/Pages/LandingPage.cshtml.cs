@@ -14,6 +14,9 @@ namespace TravelWebProject.web.Pages
     {
         private readonly ILogger<LandingPage> _logger;
 
+        public string whereTo {  get; set; }
+        public string date {  get; set; }
+        public string tourType {  get; set; }
         public LandingPage(ILogger<LandingPage> logger)
         {
             _logger = logger;

@@ -60,7 +60,7 @@
                                                     <div class="banner-search-item banner-select">
                                                         <p class="b2 mb-0 fw-5">Where to</p>
                                                         <div class="banner-search-select">
-                                                            <select name="location" id="location">
+                                                            <select name="location" asp-for="whereTo" id="location">
                                                                 <option>Search location</option>
                                                                 <option>Australia</option>
                                                                 <option>Portugal</option>
@@ -77,7 +77,7 @@
                                                     <div class="banner-search-item">
                                                         <p class="b2 mb-0 fw-5">Duration</p>
                                                         <div class="banner-form-input">
-                                                            <input class="form-control" id="selectingMultipleDates"
+                                                            <input asp-for="date" class="form-control" id="selectingMultipleDates"
                                                                    type="text" placeholder="Select Your date"
                                                                    readonly="readonly">
                                                         </div>
@@ -90,8 +90,8 @@
                                                     <div class="banner-search-item banner-select">
                                                         <p class="b2 mb-0 fw-5">Tour Types</p>
                                                         <div class="banner-search-select">
-                                                            <select>
-                                                                <option>All Tours</option>
+                                                            <select asp-for="tourType">
+                                                                <option selected>All Tours</option>
                                                                 <option>Australia</option>
                                                                 <option>Portugal</option>
                                                                 <option>Maldives</option>
