@@ -1,0 +1,68 @@
+@page
+@model TravelWebProject.web.Pages.SignIn
+@{
+    ViewData["Title"] = "SignIn";
+}
+
+<main>
+        <div class="pt-50"></div>
+        <!-- sign-in area start -->
+        <section class="bd-sign-area section-space">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-5">
+                        <div class="sign-form-wrapper text-center">
+                            <h4 class="title mb-30">Welcome back</h4>
+                            <form class="form" method="post">
+                                <div class="input-box mb-15">
+                                    <input type="email" asp-for="Email" class="input" required="" placeholder="Email Address">
+                                </div>
+                                <div class="input-box mb-20">
+                                    <input type="password" asp-for="Password" class="input" required="" placeholder="Type Password Here">
+                                </div>
+                                <div class="sign-meta d-flex justify-content-between mb-20">
+                                    <div class="sign-remember">
+                                        <label class="footer-form-check-label signing-page cursor">
+                                            <input type="checkbox">
+                                            <svg viewBox="0 0 64 64" height="2em" width="2em">
+                                                <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
+                                            </svg> Remember me
+                                        </label>
+                                    </div>
+                                    <div class="sign-forgot">
+                                        <a href="forgot.html" class="sign-link">Forgot Password?</a>
+                                    </div>
+                                </div>
+                                <div class="sign-btn">
+                                    <button type="submit" class="bd-primary-btn btn-style is-bg radius-60">
+                                        <span class="bd-primary-btn-text">Log in</span>
+                                        <span class="bd-primary-btn-circle"></span>
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="sign-meta-divider-wrapper">
+                                <div class="sign-meta-divider-line left-line"></div>
+                                <span class="sign-meta-divider-title">or</span>
+                                <div class="sign-meta-divider-line right-line"></div>
+                            </div>
+                            <div class="sign-in-wrapper mt-30 mb-20">
+                                <div class="social-menu d-flex justify-content-center text-center">
+                                    <ul>
+                                        <li><a class="facebook" href="https://facebook.com/" target="blank"><i class="icon-facebook"></i></a></li>
+                                        <li><a class="twitter" href="https://twitter.com/" target="blank"><i class="icon-twitter-x"></i></a></li>
+                                        <li><a class="instagram" href="https://www.instagram.com/" target="blank"><i class="icon-instagram"></i></a></li>
+                                        <li><a class="linkedin" href="https://www.linkedin.com/" target="blank"><i class="icon-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sign-up-label text-center">
+                                Don't have an account?<a href="sign-up.html" class="sign-link"> Sign up</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- sign-in area end -->
+
+    </main>

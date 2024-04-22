@@ -1,51 +1,574 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+
+<!-- Mirrored from html.bdevs.net/tourigo-prv/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Apr 2024 13:35:35 GMT -->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TravelWebProject.web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/TravelWebProject.web.styles.css" asp-append-version="true" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Welcome To Tourigo || Tour & Travel HTML Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.svg">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/animate.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/flatpickr.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/chosen.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/aos.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/nouislider.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/magnific-popup.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/fontawesome-pro.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/icomoon.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/spacing.css">
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css
+" rel="stylesheet">
 </head>
+
+
+
 <body>
+
+    <!-- preloader start -->
+    <div id="preloader">
+        <div class="bd-three-bounce">
+            <div class="bd-child bd-bounce1"></div>
+            <div class="bd-child bd-bounce2"></div>
+            <div class="bd-child bd-bounce3"></div>
+        </div>
+    </div>
+    <!-- preloader end -->
+
+    <!-- Header area start -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="header-area header-style header-style-two header-transparent" id="header-sticky">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">TravelWebProject.web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="header-inner">
+                    <div class="header-logo">
+                        <a href="index.html"><img src="assets/images/logo/logo-black.svg" alt="Logo"></a>
+                    </div>
+                    <div class="header-menu">
+                        <nav class="main-menu main-menu-two" id="mobile-menu" style="display: block;">
+                            <ul>
+                                <li class="has-mega-menu">
+                                    <a href="index.html">Home</a>
+                                    <ul class="mega-menu home-menu-grid">
+                                        <li>
+                                            <div class="home-menu-item">
+                                                <div class="home-menu-thumb">
+                                                    <img src="assets/images/menu/menu-home-1.jpg" alt="thumb not found">
+                                                    <div class="home-menu-buttons">
+                                                        <a href="home.html" class="bd-primary-btn btn-style">
+                                                            <span class="bd-primary-btn-text">Home One</span>
+                                                            <span class="bd-primary-btn-circle"></span>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="home-menu-item">
+                                                <div class="home-menu-thumb">
+                                                    <img src="assets/images/menu/menu-home-2.jpg" alt="thumb not found">
+                                                    <div class="home-menu-buttons">
+                                                        <a href="home-two.html" class="bd-primary-btn btn-style">
+                                                            <span class="bd-primary-btn-text">Home Two</span>
+                                                            <span class="bd-primary-btn-circle"></span>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="home-menu-item">
+                                                <div class="home-menu-thumb">
+                                                    <img src="assets/images/menu/menu-home-3.jpg" alt="thumb not found">
+                                                    <div class="home-menu-buttons">
+                                                        <a href="home-three.html" class="bd-primary-btn btn-style">
+                                                            <span class="bd-primary-btn-text">Home Three</span>
+                                                            <span class="bd-primary-btn-circle"></span>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="home-menu-item">
+                                                <div class="home-menu-thumb">
+                                                    <img src="assets/images/menu/menu-home-4.jpg" alt="thumb not found">
+                                                    <div class="home-menu-buttons">
+                                                        <a href="home-four.html" class="bd-primary-btn btn-style">
+                                                            <span class="bd-primary-btn-text">Home Four</span>
+                                                            <span class="bd-primary-btn-circle"></span>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="home-menu-item">
+                                                <div class="home-menu-thumb">
+                                                    <img src="assets/images/menu/menu-home-5.jpg" alt="thumb not found">
+                                                    <div class="home-menu-buttons">
+                                                        <a href="home-five.html" class="bd-primary-btn btn-style">
+                                                            <span class="bd-primary-btn-text">Home Five</span>
+                                                            <span class="bd-primary-btn-circle"></span>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="javascript:void(0)">Tour</a>
+                                    <ul class="submenu">
+                                        <li class="menu-item-has-children has-arrow">
+                                            <a href="javascript:void(0)">Tour Listing</a>
+                                            <ul class="submenu">
+                                                <li><a href="tour-listing.html">Tour Listing Search</a></li>
+                                                <li><a href="tour-listing-two.html">Tour Listing Search 2</a></li>
+                                                <li><a href="tour-listing-three.html">Tour Listing Sidebar</a></li>
+                                                <li><a href="tour-listing-four.html">Tour Listing Full width</a></li>
+                                                <li><a href="tour-listing-five.html">Tour Listing Video</a></li>
+                                                <li><a href="tour-listing-six.html">Tour Listing Banner</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children has-arrow">
+                                            <a href="javascript:void(0)">Tour Grid</a>
+                                            <ul class="submenu">
+                                                <li><a href="tour-grid.html">No Sidebar</a></li>
+                                                <li><a href="tour-grid-right.html">Right Sidebar</a></li>
+                                                <li><a href="tour-grid-left.html">Left Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children has-arrow">
+                                            <a href="javascript:void(0)">Tour Details</a>
+                                            <ul class="submenu">
+                                                <li><a href="tour-details.html">No Sidebar</a></li>
+                                                <li><a href="tour-details-right.html">Right Sidebar</a></li>
+                                                <li><a href="tour-details-left.html">Left Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="javascript:void(0)">Destination</a>
+                                    <ul class="submenu">
+                                        <li class="menu-item-has-children has-arrow">
+                                            <a href="javascript:void(0)">Destination Grid</a>
+                                            <ul class="submenu">
+                                                <li><a href="destinations-grid.html">No Sidebar</a></li>
+                                                <li><a href="destinations-grid-right.html">Right Sidebar</a></li>
+                                                <li><a href="destinations-grid-left.html">Left Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children has-arrow">
+                                            <a href="javascript:void(0)">Destination Details</a>
+                                            <ul class="submenu">
+                                                <li><a href="destinations-details.html">No Sidebar</a></li>
+                                                <li><a href="destinations-details-right.html">Right Sidebar</a></li>
+                                                <li><a href="destinations-details-left.html">Left Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- page menu -->
+                                <li class="has-mega-menu">
+                                    <a href="javascript:void(0)">Pages</a>
+                                    <ul class="mega-menu mega-grid-4">
+                                        <li>
+                                            <a href="javasript:void(0);" class="title">Page Layout 1</a>
+                                            <ul>
+                                                <li><a href="about.html">About Us</a></li>
+                                                <li><a href="booking.html">Booking Form</a></li>
+                                                <li><a href="pricing.html">Pricing</a></li>
+                                                <li><a href="faq.html">Faq</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="javasript:void(0);" class="title">Page Layout 2</a>
+                                            <ul>
+                                                <li><a href="team.html">Team</a></li>
+                                                <li><a href="team-details.html">Team Details</a></li>
+                                                <li><a href="error-page.html">Error Page</a></li>
+                                                <li><a href="privacy-policy.html">Privacy &amp; Policy</a></li>
+                                                <li><a href="terms-conditions.html">Terms and Conditions</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="javasript:void(0);" class="title">Page Layout 3</a>
+                                            <ul>
+                                                <li><a href="sign-in.html">Login</a></li>
+                                                <li><a href="sign-up.html">Register</a></li>
+                                                <li><a href="forgot.html">Forgot Password</a></li>
+                                                <li><a href="otp.html">OTP</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="javasript:void(0);" class="title">Page Layout 4</a>
+                                            <ul>
+                                                <li><a href="shop.html">Shop</a></li>
+                                                <li><a href="shop-v2.html">Shop V2</a></li>
+                                                <li><a href="shop-details.html">Shop Details</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="cart.html">Cart</a></li>
+                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="order.html">Order Confirm</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- elements menu -->
+                                <li class="has-mega-menu">
+                                    <a href="javascript:void(0)">Elements</a>
+                                    <ul class="mega-menu mega-grid-4">
+                                        <li>
+                                            <a href="javasript:void(0);" class="title">elements Layout 1</a>
+                                            <ul>
+                                                <li><a href="style-guide.html">Style Guide</a></li>
+                                                <li><a href="elements-accordion.html">Accordion</a></li>
+                                                <li><a href="elements-about.html">About Us</a></li>
+                                                <li><a href="elements-advancetab.html">Advance Tab</a></li>
+                                                <li><a href="elements-blog.html">Blog</a></li>
+                                                <li><a href="elements-brand.html">Brand</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="javasript:void(0);" class="title">elements Layout 2</a>
+                                            <ul>
+                                                <li><a href="elements-breadcrumb.html">Breadcrumb</a></li>
+                                                <li><a href="elements-button.html">Button</a></li>
+                                                <li><a href="elements-cta.html">Call To Action</a></li>
+                                                <li><a href="elements-counter.html">Counter</a></li>
+                                                <li><a href="elements-destinations.html">Destinations</a></li>
+                                                <li><a href="elements-form.html">Form</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="javasript:void(0);" class="title">elements Layout 3</a>
+                                            <ul>
+                                                <li><a href="elements-footer.html">Footer Style</a></li>
+                                                <li><a href="elements-card.html">Image Card</a></li>
+                                                <li><a href="elements-icomoon.html">Icomoon Fonts Icon</a></li>
+                                                <li><a href="elements-our-offers.html">Offers</a></li>
+                                                <li><a href="elements-pricing.html">Pricing</a></li>
+                                                <li><a href="elements-social.html">Social Share</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="javasript:void(0);" class="title">elements Layout 4</a>
+                                            <ul>
+                                                <li><a href="elements-team.html">Team</a></li>
+                                                <li><a href="elements-testimonial.html">Testimonial</a></li>
+                                                <li><a href="elements-tour.html">Tour</a></li>
+                                                <li><a href="elements-why-chose.html">Why Chose Us</a></li>
+                                                <li><a href="#">More Coming</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="javascript:void(0)">Blog</a>
+                                    <ul class="submenu last-children">
+                                        <li class="menu-item-has-children has-arrow">
+                                            <a href="javascript:void(0)">Blog List</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog-list.html">No Sidebar</a></li>
+                                                <li><a href="blog-list-right.html">Right Sidebar</a></li>
+                                                <li><a href="blog-list-left.html">Left Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children has-arrow">
+                                            <a href="javascript:void(0)">Blog Grid</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog-grid.html">Blog Grid</a></li>
+                                                <li><a href="blog-grid-right.html">Blog Grid Right</a></li>
+                                                <li><a href="blog-grid-left.html">Blog Grid Left</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children has-arrow">
+                                            <a href="javascript:void(0)">Blog Details</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog-details.html">No Sidebar</a></li>
+                                                <li><a href="blog-details-right.html">Right sidebar</a></li>
+                                                <li><a href="blog-details-left.html">Left sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header-right">
+                        <div class="header-action d-flex align-items-center">
+                            <div class="header-btn-wrap">
+                                <div class="d-none d-sm-inline-flex h-gap-55">
+                                    <div class="header-currency-item header-currency">
+                                        <span class="header-currency-toggle" id="header-currency-toggle">USD</span>
+                                        <ul>
+                                            <li>
+                                                <a href="#">KWD</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">GBP</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">EUR</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="d-flex h-gap-55">
+                                    <div class="">
+                                        <a class="bd-btn btn-style text-btn" href="contact.html">Help</a>
+                                        <a class="bd-btn btn-style text-btn" asp-page="/register">Sign up</a>
+                                        <a class="bd-btn btn-style text-btn" asp-page="/SignIn">Sign in</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-hamburger">
+                                <div class="sidebar-toggle">
+                                    <a class="bar-icon" href="javascript:void(0)">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- for wp -->
+                            <div class="header-hamburger ml-20 d-none">
+                                <button type="button" class="hamburger-btn offcanvas-open-btn">
+                                    <span>01</span>
+                                    <span>01</span>
+                                    <span>01</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <!-- Header area end -->
 
-    <footer class="border-top footer text-muted">
+    <!-- Offcanvas area start -->
+    <div class="fix">
+        <div class="offcanvas-area">
+            <div class="offcanvas-wrapper">
+                <div class="offcanvas-content">
+                    <div class="offcanvas-top d-flex justify-content-between align-items-center mb-25">
+                        <div class="offcanvas-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/logo-black.svg" alt="logo not found">
+                            </a>
+                        </div>
+                        <div class="offcanvas-close">
+                            <button class="offcanvas-close-icon animation--flip">
+                                <span class="offcanvas-m-lines">
+                                    <span class="offcanvas-m-line line--1"></span><span
+                                        class="offcanvas-m-line line--2"></span><span
+                                        class="offcanvas-m-line line--3"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="offcanvas-search mb-0">
+                        <form action="#">
+                            <input type="text" name="offcanvasSearch" placeholder="Search here">
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                    <div class="mobile-menu fix mb-25"></div>
+                    <div class="offcanvas-about d-none d-lg-block mb-25">
+                        <h4 class="offcanvas-title-meta">About Tourigo</h4>
+                        <p>Explore stunning destinations and create immersive travel experiences that inspire wanderlust
+                            and
+                            captivate your audience from the start.</p>
+                    </div>
+                    <div class="offcanvas-contact mb-25">
+                        <h4 class="offcanvas-title-meta">Contact Info</h4>
+                        <ul>
+                            <li class="d-flex align-items-center gap-10">
+                                <div class="offcanvas-contact-icon">
+                                    <a target="_blank" href="#">
+                                        <i class="fal fa-map-marker-alt"></i></a>
+                                </div>
+                                <div class="offcanvas-contact-text">
+                                    <a target="_blank" href="#">1426 Center StreetBend, 97702, California, USA</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center gap-10">
+                                <div class="offcanvas-contact-icon">
+                                    <a href="tel:+415864872899"><i class="far fa-phone"></i></a>
+                                </div>
+                                <div class="offcanvas-contact-text">
+                                    <a href="tel:+415864872899">+415-864-8728-99</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center gap-10">
+                                <div class="offcanvas-contact-icon">
+                                    <a href="https://html.bdevs.net/cdn-cgi/l/email-protection#b0c3c5c0c0dfc2c4f0c4dfc5c2d9d7df9ed3dfdd"><i class="fal fa-envelope"></i></a>
+                                </div>
+                                <div class="offcanvas-contact-text">
+                                    <a href="https://html.bdevs.net/cdn-cgi/l/email-protection#63101613130c111723170c16110a040c4d000c0e"><span class="__cf_email__" data-cfemail="7a090f0a0a15080e3a0e150f08131d1554191517">[email&#160;protected]</span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="offcanvas-btn mb-25">
+                        <h4 class="offcanvas-title-meta">Account</h4>
+                        <div class="header-btn-wrap gap-10">
+                            <a class="bd-btn btn-style text-btn" href="login.html">Log In</a>
+                            <a class="bd-btn btn-style text-btn" href="contact.html">Get Started</a>
+                        </div>
+                    </div>
+                    <div class="offcanvas-social">
+                        <h4 class="offcanvas-title-meta">Subscribe & Follow</h4>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay-white"></div>
+    <!-- Offcanvas area start -->
+
+    <!-- search popup area start here  -->
+    <div class="bd-search-popup-area">
         <div class="container">
-            &copy; 2024 - TravelWebProject.web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-12">
+                    <div class="bd-search-popup">
+                        <div class="bd-search-form">
+                            <form action="#">
+                                <div class="bd-search-input">
+                                    <input type="search" name="search" placeholder="Type here to serach ...">
+                                    <div class="bd-search-submit">
+                                        <button type="submit"><i class="fa-regular fa-magnifying-glass"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="bd-search-close">
+                                <div class="bd-search-close-btn">
+                                    <button><i class="fa-thin fa-close"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- search popup overlay  -->
+    <div class="bd-search-overlay"></div>
+    <!-- search popup area end here  -->
+
+    <!-- Body main wrapper start -->
+    @RenderBody()
+    <!-- Body main wrapper end -->
+
+    <!-- Footer area start -->
+    <footer class="bd-footer-area theme-bg-secondary fix">
+        <div class="section-space">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-5 col-xl-5 col-lg-6">
+                        <div class="footer-inner text-center">
+                            <div class="demo-footer-text">
+                                <h2 class="mb-15 white-text">Start Build Your Website With Tourigo</h2>
+                            </div>
+                            <p class="footer-demo-description">Purchase Tourigo today and start to creating your
+                                beautiful tour
+                                and travel
+                                website.</p>
+                            <div class="">
+                                <a href="https://themeforest.net/item/tourigo-tour-travel-html5-template/51357906?s_rank=1"
+                                    class="bd-primary-btn btn-style has-arrow is-bg radius-60">
+                                    <span class="bd-primary-btn-arrow arrow-right"><i
+                                            class="fa-regular fa-arrow-right"></i></span>
+                                    <span class="bd-primary-btn-text">Purchase Now</span>
+                                    <span class="bd-primary-btn-circle"></span>
+                                    <span class="bd-primary-btn-arrow arrow-left"><i
+                                            class="fa-regular fa-arrow-right"></i></span>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright-area border-two">
+            <div class="container">
+                <div class="row gy-24 align-items-center justify-content-center">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                        <div class="footer-copyright has-white underline-two text-center">
+                            <p>Copyright 2024 <a href="https://themeforest.net/user/bdevs" target="_blank">Tourigo</a>
+                                . All
+                                Right Reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+    <!-- Footer area end -->
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- back to top -->
+    <!-- Backtotop start -->
+    <div class="backtotop-wrap cursor-pointer">
+        <svg class="backtotop-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- Backtotop end -->
 
-    @await RenderSectionAsync("Scripts", required: false)
+    <!-- JS here -->
+    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="~/assets/js/vendor/jquery-3.7.1.min.js"></script>
+    <script src="~/assets/js/plugins/waypoints.min.js"></script>
+    <script src="~/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/plugins/meanmenu.min.js"></script>
+    <script src="~/assets/js/plugins/swiper.min.js"></script>
+    <script src="~/assets/js/plugins/wow.js"></script>
+    <script src="~/assets/js/plugins/aos.js"></script>
+    <script src="~/assets/js/vendor/magnific-popup.min.js"></script>
+    <script src="~/assets/js/vendor/isotope.pkgd.min.js"></script>
+    <script src="~/assets/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/js/vendor/purecounter.js"></script>
+    <script src="~/assets/js/plugins/nouislider.min.js"></script>
+    <script src="~/assets/js/plugins/nice-select.min.js"></script>
+    <script src="~/assets/js/plugins/cleave.min.js"></script>
+    <script src="~/assets/js/plugins/ScrollTrigger.min.js"></script>
+    <script src="~/assets/js/plugins/SplitText.min.js"></script>
+    <script src="~/assets/js/plugins/gsap.min.js"></script>
+    <script src="~/assets/js/plugins/flatpickr.js"></script>
+    <script src="~/assets/js/vendor/ajax-form.js"></script>
+    <script src="~/assets/js/main.js"></script>
 </body>
+
+
+<!-- Mirrored from html.bdevs.net/tourigo-prv/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Apr 2024 13:35:46 GMT -->
 </html>
