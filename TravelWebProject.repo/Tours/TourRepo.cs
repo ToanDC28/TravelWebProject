@@ -10,8 +10,8 @@ namespace TravelWebProject.repo.Tours
 {
     public class TourRepo : ITourRepo
     {
-        public List<Tour> GetAllTours()=> TourDAO.Instance.GetAllTours();
-        public Tour GetTourById(int tourId) => TourDAO.Instance.GetTourById(tourId);
+        public List<Tour> GetAllTours() => TourDAO.Instance.GetAllTours();
+        public Tour GetTourById(int id) => TourDAO.Instance.GetTourById(id);
         public void AddTour(Tour tour) => TourDAO.Instance.AddTour(tour);
         public void UpdateTour(Tour tour) => TourDAO.Instance.UpdateTour(tour);
         public void DeleteTour(int tourId) => TourDAO.Instance.DeleteTour(tourId);
