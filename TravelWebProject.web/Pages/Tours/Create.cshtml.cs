@@ -51,10 +51,10 @@ namespace TravelWebProject.web.Pages.Tours
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || Tour == null)
+            /*if (!ModelState.IsValid || Tour == null)
             {
                 return Page();
-            }
+            }*/
 
             _tourService.AddTour(Tour);
 
