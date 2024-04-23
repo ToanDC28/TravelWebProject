@@ -39,11 +39,11 @@
                         <div class="tour-wrapper style-one">
                             <div class="p-relative">
                                 <div class="tour-thumb image-overly">
-                                    <a href="tour-details.html">
-                                        <img src="~/assets/images/tour/@Model.Tour[i].Destinate.Image + .png"
+                                    <a asp-page="./Tour" asp-route-id="@Model.Tour[i].TourId">
+                                        <img src="~/assets/images/tour/@Model.Tour[i].Destinate.Image"
                                              alt="image">
                                     </a>
-                                </div>
+								</div>
                                 <div class="tour-meta d-flex align-items-center justify-content-between">
                                     <button class="tour-favorite tour-like">
                                         <i class="icon-heart"></i>
@@ -59,30 +59,29 @@
                                 </div>
                             </div>
                             <div class="tour-content">
-                                <div class="tour-rating d-flex align-items-center gap-10 mb-10">
+@*                                <div class="tour-rating d-flex align-items-center gap-10 mb-10">
                                     <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
+                                       @for(int j = 0; j < int.Parse(Model.Tour[i].TotalRating); j++)
+										{
+                                            <i class="fa-solid fa-star"></i>
+										}
                                     </div>
                                     <div class="tour-rating-text">
-                                        <span>4.8 (320 Ratings)</span>
+                                        <span>@Model.Tour[i].TotalRating</span>
                                     </div>
-                                </div>
+                                </div>*@
                                 <h5 class="tour-title fw-5 underline mb-5">
                                     <a href="tour-details.html">
                                         @Model.Tour[i].Description
                                     </a>
                                 </h5>
-                                <span class="tour-price b3">$189,25</span>
+                                <span class="tour-price b3">@Model.Tour[i].TotalCost</span>
                                 <div class="tour-divider"></div>
 
                                 <div class="tour-meta d-flex align-items-center justify-content-between">
                                     <div class="time d-flex align-items-center gap--5">
                                         <i class="icon-heart"></i>
-                                        <span> @Model.Tour[i].Duration Ngay</span>
+                                        <span> @Model.Tour[i].Duration Days</span>
                                     </div>
                                     <div class="tour-btn">
                                         <a class="bd-text-btn style-two" href="booking.html">
@@ -97,7 +96,7 @@
                             </div>
                         </div>
                     </div>
-				})
+				}
             </div>
             <div class="pagination-wrapper d-flex justify-content-center">
                 <div class="basic-pagination">

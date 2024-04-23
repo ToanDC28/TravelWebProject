@@ -51,14 +51,21 @@ namespace TravelWebProject.web.Pages.Tours
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || Tour == null)
-            {
-                return Page();
-            }
+           // Duration: 04-16 to 04-26 split by "to" and convert to DateTime
+            string[] dates = Tour.Duration.Split(" to ");
+            Tour.StartDate = DateTime.Parse(dates[0]);
+            Tour.EndDate = DateTime.Parse(dates[1]);
+            //Update Duration to be the difference between StartDate and EndDate
+            Tour.Duration = (Tour.EndDate - Tour.StartDate).Days.ToString();
+        //    if (!ModelState.IsValid || Tour == null)
+        //     {
+        //         return Page();
+        //     }
+            
 
             _tourService.AddTour(Tour);
 
-            return RedirectToPage("./Tour");
+            return RedirectToPage("./Index");
         }
     }
 }

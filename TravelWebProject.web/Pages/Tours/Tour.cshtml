@@ -2,6 +2,7 @@
 @model TravelWebProject.web.Pages.Tours.TourModel
 @{
     ViewData["Title"] = "TourPage";
+    int index = 1;
 }
 <div class="main-area fix">
     <div class="offcanvas-area">
@@ -147,7 +148,9 @@
     <!-- tour-details area start -->
     <section class="bd-tour-details-area section-space">
         <div class="container">
+
             <div class="row gy-24 justify-content-center">
+                
                 <div class="col-xxl-8 col-xl-8 col-lg-10">
                     <div class="tour-details-wrapper">
                         <div class="tour-details mb-25">
@@ -155,46 +158,41 @@
                                 <div class="swiper details-slide-activation">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
-                                            <img src="~/assets/images/tour/tour-img-9.png" alt="image">
+                                            <img src="~/assets/images/tour/@Model.Tour.Destinate.Image" alt="image">
                                         </div>
-                                        <div class="swiper-slide">
-                                            <img src="~/assets/images/tour/tour-img-10.png" alt="image">
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="~/assets/images/tour/tour-img-11.png" alt="image">
-                                        </div>
+                                        
                                     </div>
                                 </div>
-                                <div class="details-slide-navigation btn-navigation">
+                               <!--<div class="details-slide-navigation btn-navigation">
                                     <button class="tourigo-navigation-prev">
                                         <i class="fa-regular fa-angle-left"></i>
                                     </button>
                                     <button class="tourigo-navigation-next">
                                         <i class="fa-regular fa-angle-right"></i>
                                     </button>
-                                </div>
+                                 </div>-->
                             </div>
                             <div class="tour-details-content">
                                 <div class="tour-details-badge d-flex gap--5 mb-10">
-                                    <span class="bd-badge warning fw-5">Featured</span>
-                                    <span class="bd-badge danger fw-5">15% Off</span>
+                                    <!--<span class="bd-badge warning fw-5">Featured</span>
+                                    <span class="bd-badge danger fw-5">15% Off</span>-->
+                                    
                                 </div>
                                 <h3 class="tour-details-title mb-15">
-                                    Ultimate Adventure Exploring Nature's
-                                    Wonders
+                                   @Model.Tour.TourName
                                 </h3>
                                 <div class="tour-details-meta d-flex flex-wrap gap-10 align-items-center justify-content-between mb-20">
                                     <div class="tour-details-price">
-                                        <h4 class="price-title">$189,25<span>/Per Person</span></h4>
+                                        <h4 class="price-title">$@Model.Tour.TotalCost<span>/Per Person</span></h4>
                                     </div>
                                     <div class="tour-details-meta-right d-flex flex-wrap gap-10 align-items-center justify-content-between">
                                         <div class="rating-badge border-badge">
                                             <span>
-                                                <i class="icon-star"></i>4.4
+                                                <i class="icon-star"></i>@Model.Tour.TotalRating
                                             </span>
                                         </div>
                                         <div class="theme-social">
-                                            <a href="#"><i class="icon-facebook"></i></a>
+                                            <a href="https://www.facebook.com/nguyen.nguyenhiep.1042"><i class="icon-facebook"></i></a>
                                             <a href="#"><i class="icon-twitter-x"></i></a>
                                             <a href="#"><i class="icon-linkedin"></i></a>
                                             <a href="#"><i class="icon-youtube"></i></a>
@@ -209,8 +207,7 @@
                                         <div class="tour-details-destination-info-title">
                                             <p class="tour-details-destination-info-top mb-0">Duration</p>
                                             <span class="tour-details-destination-info-bottom small">
-                                                3 Days 2
-                                                Night
+                                                @Model.Tour.Duration
                                             </span>
                                         </div>
                                     </div>
@@ -221,7 +218,7 @@
                                         <div class="tour-details-destination-info-title">
                                             <p class="tour-details-destination-info-top mb-0">Min Age</p>
                                             <span class="tour-details-destination-info-bottom small">
-                                                10
+                                                @Model.Tour.MinAge
                                                 Years+
                                             </span>
                                         </div>
@@ -230,13 +227,12 @@
                                         <div class="search-icon-bg is-big">
                                             <span><i class="fa-sharp fa-light fa-moped"></i></span>
                                         </div>
-                                        <div class="tour-details-destination-info-title">
+@*                                        <div class="tour-details-destination-info-title">
                                             <p class="tour-details-destination-info-top mb-0">Tour Type</p>
                                             <span class="tour-details-destination-info-bottom small">
-                                                Adventure,
-                                                Foodie
+                                                @Model.Tour.Transport.Mode
                                             </span>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="tour-details-destination-info">
                                         <div class="search-icon-bg is-big">
@@ -245,35 +241,22 @@
                                         <div class="tour-details-destination-info-title">
                                             <p class="tour-details-destination-info-top mb-0">Location</p>
                                             <span class="tour-details-destination-info-bottom">
-                                                Brasov,
-                                                Romania
+                                                @Model.Tour.Destinate.Name
                                             </span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <p class="mb-15">
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa
-                                    mi.
-                                    Aliquam in
-                                    hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula
-                                    consectetur,
-                                    ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet aug
-                                    Vestibulum auctor
-                                    ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at
-                                    maximus
-                                    ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales. We are a
-                                    team of
-                                    the dedicated patent professionals, united commitment toour excellence patent
-                                    protection.
+                                   @Model.Tour.Description
                                 </p>
-                                <p class="mb-20">
+                                <!--<p class="mb-20">
                                     Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa
                                     mi.
                                     Aliquam hendrerit
                                     urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur,
                                     ultrices Maecenas
-                                </p>
+                                </p>-->
 
                                 <div class="tour-details-list-wrap mb-35">
                                     <h4 class="mb-20">Include/ Exclude</h4>
@@ -302,7 +285,16 @@
                                                     <span class="list-icon success">
                                                         <i class="fa-solid fa-check"></i>
                                                     </span>
-                                                    Activities
+@*                                                    @if (Model.Tour != null)
+                                                    {
+                                                        <ul>
+                                                            @foreach (var itinerary in Model.Tour.Itineraries)
+                                                            {
+                                                                <li>@itinerary.Activity</li>
+                                                            }
+                                                        </ul>
+                                                    }*@
+                                                    Itinerary
                                                 </li>
                                                 <li>
                                                     <span class="list-icon success">
@@ -353,97 +345,35 @@
                                     <h4 class="mb-20">Tour Plan</h4>
                                     <div class="accordion-wrapper faq-style-3">
                                         <div class="accordion" id="accordionExampleThree">
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="headingNine">
-                                                    <button class="accordion-button" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseNine"
-                                                            aria-expanded="true" aria-controls="collapseNine">
-                                                        <span>Day 01:</span> Arrival and Exploration
-                                                    </button>
-                                                </h6>
-                                                <div id="collapseNine" class="accordion-collapse collapse show"
-                                                     aria-labelledby="headingNine"
-                                                     data-bs-parent="#accordionExampleThree">
-                                                    <div class="accordion-body">
-                                                        Arrive at your destination and
-                                                        check into your accommodation. Lorem ipsum dolor sit
-                                                        amet consectetur adipiscing elit Ut et massa mi. Aliquam
-                                                        hendrerit urna. Pellentesque sit amet sapien fringilla,
-                                                        mattis ligula consectetur, ultrices Maecenas. We are a
-                                                        team of the dedicated patent professionals.
-                                                        <div class="accordion-body-list">
-                                                            <ul>
-                                                                <li>Morning: Arrival and Check-in</li>
-                                                                <li>Afternoon: City Tour or Landmarks Visit</li>
-                                                                <li>Evening: Local Cuisine Experience</li>
-                                                            </ul>
+                                            @foreach(var item in Model.Tour.TourPlans)
+                                            {
+                                               
+                                                <div class="accordion-item">
+                                                    <h6 class="accordion-header" id="headingNine">
+                                                        <button class="accordion-button" type="button"
+                                                                data-bs-toggle="collapse" data-bs-target="#collapseNine"
+                                                                aria-expanded="true" aria-controls="collapseNine">
+                                                            <span>Day @index:</span> 
+                                                            @item.Name
+                                                        </button>
+                                                    </h6>
+                                                    <div id="collapseNine" class="accordion-collapse collapse show"
+                                                         aria-labelledby="headingNine"
+                                                         data-bs-parent="#accordionExampleThree">
+                                                        <div class="accordion-body">
+                                                            @item.Description
+                                                            @*<div class="accordion-body-list">
+                                                                <ul>
+                                                                    <li>Morning: Arrival and Check-in</li>
+                                                                    <li>Afternoon: City Tour or Landmarks Visit</li>
+                                                                    <li>Evening: Local Cuisine Experience</li>
+                                                                </ul>
+                                                            </div>*@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="headingTen">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseTen"
-                                                            aria-expanded="false" aria-controls="collapseTen">
-                                                        <span>Day 02:</span> Adventure and Activities
-                                                    </button>
-                                                </h6>
-                                                <div id="collapseTen" class="accordion-collapse collapse"
-                                                     aria-labelledby="headingTen"
-                                                     data-bs-parent="#accordionExampleThree">
-                                                    <div class="accordion-body">
-                                                        Arrive at your destination and
-                                                        check into your accommodation. Lorem ipsum dolor sit
-                                                        amet consectetur adipiscing elit Ut et massa mi. Aliquam
-                                                        hendrerit urna. Pellentesque sit amet sapien fringilla,
-                                                        mattis ligula consectetur, ultrices Maecenas. We are a
-                                                        team of the dedicated patent professionals.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="headingEleven">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseEleven"
-                                                            aria-expanded="false" aria-controls="collapseEleven">
-                                                        <span>Day 03:</span> Day Trip or Excursion
-                                                    </button>
-                                                </h6>
-                                                <div id="collapseEleven" class="accordion-collapse collapse"
-                                                     aria-labelledby="headingEleven"
-                                                     data-bs-parent="#accordionExampleThree">
-                                                    <div class="accordion-body">
-                                                        Arrive at your destination and
-                                                        check into your accommodation. Lorem ipsum dolor sit
-                                                        amet consectetur adipiscing elit Ut et massa mi. Aliquam
-                                                        hendrerit urna. Pellentesque sit amet sapien fringilla,
-                                                        mattis ligula consectetur, ultrices Maecenas. We are a
-                                                        team of the dedicated patent professionals.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="headingTwelve">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseTwelve"
-                                                            aria-expanded="false" aria-controls="collapseTwelve">
-                                                        <span>Day 04:</span> Culmination and Departure
-                                                    </button>
-                                                </h6>
-                                                <div id="collapseTwelve" class="accordion-collapse collapse"
-                                                     aria-labelledby="headingTwelve"
-                                                     data-bs-parent="#accordionExampleThree">
-                                                    <div class="accordion-body">
-                                                        Arrive at your destination and
-                                                        check into your accommodation. Lorem ipsum dolor sit
-                                                        amet consectetur adipiscing elit Ut et massa mi. Aliquam
-                                                        hendrerit urna. Pellentesque sit amet sapien fringilla,
-                                                        mattis ligula consectetur, ultrices Maecenas. We are a
-                                                        team of the dedicated patent professionals.
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                index++;
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -483,12 +413,13 @@
                                 <div class="tour-details-related-tour mb-35">
                                     <h4 class="mb-20">Related Tour</h4>
                                     <div class="row gy-24">
+
                                         <div class="col-xxl-6 col-xl-6 col-md-6">
                                             <div class="tour-wrapper style-one">
                                                 <div class="p-relative">
                                                     <div class="tour-thumb image-overly">
                                                         <a href="tour-details.html">
-                                                            <img src="~/assets/images/tour/tour-img-11.png"
+                                                            <img src="~/assets/images/tour/@Model.Tour.Destinate.Image"
                                                                  alt="image">
                                                         </a>
                                                     </div>
@@ -547,6 +478,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col-xxl-6 col-xl-6 col-md-6">
                                             <div class="tour-wrapper style-one">
                                                 <div class="p-relative">
