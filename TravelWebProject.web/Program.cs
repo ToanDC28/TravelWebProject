@@ -7,6 +7,8 @@ using TravelWebProject.repo.Users;
 using TravelWebProject.service.Authentication;
 using TravelWebProject.service.Bank;
 using TravelWebProject.service.DestinationServices;
+using TravelWebProject.service.RegionService;
+using TravelWebProject.service.RegionServices;
 using TravelWebProject.service.TourPlanServices;
 using TravelWebProject.service.TourServices;
 using TravelWebProject.service.TransportServices;
@@ -51,6 +53,7 @@ builder.Services.AddScoped<ICustomAuthenticationService, CustomAuthenticationSer
 builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ITourPlanService, TourPlanService>();
 builder.Services.AddScoped<ITransportService, TransportService>();
+builder.Services.AddScoped<IRegionService, RegionService>();
 builder.Services.AddHttpClient<BankService>();
 builder.Services.AddHostedService<PeriodicLoginBackgroundService>();
 var app = builder.Build();
