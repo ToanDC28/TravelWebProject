@@ -20,7 +20,6 @@ namespace BusinessObject.Models
         public virtual DbSet<Booking> Bookings { get; set; } = null!;
         public virtual DbSet<Destination> Destinations { get; set; } = null!;
         public virtual DbSet<Itinerary> Itineraries { get; set; } = null!;
-        public virtual DbSet<ItineraryDetail> ItineraryDetails { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Region> Regions { get; set; } = null!;
         public virtual DbSet<Review> Reviews { get; set; } = null!;
@@ -124,27 +123,6 @@ namespace BusinessObject.Models
                     .HasConstraintName("FK__Itinerari__Trans__4BAC3F29");
             });
 
-            modelBuilder.Entity<ItineraryDetail>(entity =>
-            {
-                entity.Property(e => e.ItineraryDetailId).HasColumnName("ItineraryDetailID");
-
-                entity.Property(e => e.DestinationId).HasColumnName("DestinationID");
-
-                entity.Property(e => e.TourId).HasColumnName("TourID");
-
-                entity.Property(e => e.TransportationMode).HasMaxLength(100);
-
-                entity.HasOne(d => d.Destination)
-                    .WithMany(p => p.ItineraryDetails)
-                    .HasForeignKey(d => d.DestinationId)
-                    .HasConstraintName("FK__Itinerary__Desti__4F7CD00D");
-
-                entity.HasOne(d => d.Tour)
-                    .WithMany(p => p.ItineraryDetails)
-                    .HasForeignKey(d => d.TourId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Itinerary__TourI__4E88ABD4");
-            });
 
             modelBuilder.Entity<Payment>(entity =>
             {
