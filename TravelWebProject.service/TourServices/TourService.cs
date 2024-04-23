@@ -5,15 +5,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelWebProject.repo.Tours;
+using TravelWebProject.repo.Users;
 
 namespace TravelWebProject.service.TourServices
 {
     public class TourService : ITourService
     {
-        public List<Tour> GetAllTours() => TourDAO.Instance.GetAllTours();
-        public Tour GetTourById(int tourId) => TourDAO.Instance.GetTourById(tourId);
-        public void AddTour(Tour tour) => TourDAO.Instance.AddTour(tour);
-        public void UpdateTour(Tour tour) => TourDAO.Instance.UpdateTour(tour);
-        public void DeleteTour(int tourId) => TourDAO.Instance.DeleteTour(tourId);
+        private readonly ITourRepo tourRepo;
+        public TourService()
+        {
+            this.tourRepo = new TourRepo();
+        }
+        public List<Tour> GetAllTours()
+        {
+            return tourRepo.GetAllTours();
+        }
+        public Tour GetTourById(int tourId)
+        {
+            return tourRepo.GetTourById(tourId);
+        }
+        public void AddTour(Tour tour)
+        {
+            tourRepo.AddTour(tour);
+        }
+        public void UpdateTour(Tour tour)
+        {
+            tourRepo.UpdateTour(tour);
+        }
+        public void DeleteTour(int tourId)
+        {
+            tourRepo.DeleteTour(tourId);
+        }
     }
 }
