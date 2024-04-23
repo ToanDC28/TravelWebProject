@@ -5,86 +5,124 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<main>
+    <!-- breadcrumb area start -->
+    <section class="bd-breadcrumb-area p-relative fix">
+        <!-- breadcrumb background image -->
+        <div class="bd-breadcrumb-bg" data-background="~/assets/images/bg/breadcrumb-bg.png"></div>
+        <div class="bd-breadcrumb-wrapper p-relative">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+                        <div class="bd-breadcrumb d-flex align-items-center justify-content-center">
+                            <div class="bd-breadcrumb-content text-center">
+                                <h1 class="bd-breadcrumb-title">Tour Grid</h1>
+                                <div class="bd-breadcrumb-list">
+                                    <span><a href="index.html"><i class="icon-home"></i>Tourigo</a></span>
+                                    <span>Tour Grid</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb area end -->
+    <!-- tour-grid area start -->
+    <section class="bd-tour-grid-area section-space">
+        <div class="container">
+            <div class="row gy-24">
+                @for(var i = 0; i < Model.Tour.Count; i++)
+				{
+                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                        <div class="tour-wrapper style-one">
+                            <div class="p-relative">
+                                <div class="tour-thumb image-overly">
+                                    <a href="tour-details.html">
+                                        <img src="~/assets/images/tour/@Model.Tour[i].Destinate.Image + .png"
+                                             alt="image">
+                                    </a>
+                                </div>
+                                <div class="tour-meta d-flex align-items-center justify-content-between">
+                                    <button class="tour-favorite tour-like">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <div class="tour-location">
+                                        <span>
+                                            <a href="tour-details.html">
+                                                <i class="fa-regular fa-location-dot"></i>
+                                                @Model.Tour[i].Destinate.Name
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tour-content">
+                                <div class="tour-rating d-flex align-items-center gap-10 mb-10">
+                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="tour-rating-text">
+                                        <span>4.8 (320 Ratings)</span>
+                                    </div>
+                                </div>
+                                <h5 class="tour-title fw-5 underline mb-5">
+                                    <a href="tour-details.html">
+                                        @Model.Tour[i].Description
+                                    </a>
+                                </h5>
+                                <span class="tour-price b3">$189,25</span>
+                                <div class="tour-divider"></div>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].TourName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].Duration)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].TotalRating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].TotalCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].MinAge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].Destinate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tour[0].Transport)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Tour) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TourName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalRating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MinAge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destinate.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Transport.TransportationModeId)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.TourId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.TourId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.TourId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                                <div class="tour-meta d-flex align-items-center justify-content-between">
+                                    <div class="time d-flex align-items-center gap--5">
+                                        <i class="icon-heart"></i>
+                                        <span> @Model.Tour[i].Duration Ngay</span>
+                                    </div>
+                                    <div class="tour-btn">
+                                        <a class="bd-text-btn style-two" href="booking.html">
+                                            Book Now
+                                            <span class="icon__box">
+                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
+                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				})
+            </div>
+            <div class="pagination-wrapper d-flex justify-content-center">
+                <div class="basic-pagination">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a class="current">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa-light fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- tour-grid area end -->
+
+</main>

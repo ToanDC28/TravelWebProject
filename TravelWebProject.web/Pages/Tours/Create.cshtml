@@ -3,7 +3,9 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_Layout";
 }
+
 
 <h1>Create</h1>
 
@@ -73,5 +75,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="myscript.js"></script>
 }

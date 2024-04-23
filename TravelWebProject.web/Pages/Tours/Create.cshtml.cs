@@ -6,22 +6,41 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BusinessObject.Models;
+using TravelWebProject.repo.TourPlans;
+using TravelWebProject.service.TourPlanServices;
+using TravelWebProject.service.TourServices;
+using TravelWebProject.service.DestinationServices;
+using TravelWebProject.service.TransportServices;
 
 namespace TravelWebProject.web.Pages.Tours
 {
     public class CreateModel : PageModel
     {
-        private readonly BusinessObject.Models.TravelWebContext _context;
+        private readonly ITourService _tourService;
+        private readonly IDestinationService _destinationService;
+        private readonly ITransportService _transportService;
 
-        public CreateModel(BusinessObject.Models.TravelWebContext context)
+        public CreateModel()
         {
-            _context = context;
+            _tourService = new TourService();
+            _destinationService = new DestinationService();
+            _transportService = new TransportService();
         }
 
         public IActionResult OnGet()
         {
-        ViewData["DestinateId"] = new SelectList(_context.Destinations, "DestinationId", "Country");
-        ViewData["TransportId"] = new SelectList(_context.TransportationModes, "TransportationModeId", "TransportationModeId");
+/*            if (HttpContext.Session.GetString("role") == null)
+            {
+                return RedirectToPage("/CustomerPage/Login");
+
+            }
+            string role = HttpContext.Session.GetString("role");
+            if (!role.Equals("admin"))
+            {
+                return RedirectToPage("/CustomerPage/Login");
+            }*/
+        ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
+        ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "TransportationModeId");
             return Page();
         }
 
@@ -32,15 +51,14 @@ namespace TravelWebProject.web.Pages.Tours
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Tours == null || Tour == null)
+            if (!ModelState.IsValid || Tour == null)
             {
                 return Page();
             }
 
-            _context.Tours.Add(Tour);
-            await _context.SaveChangesAsync();
+            _tourService.AddTour(Tour);
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Tour");
         }
     }
 }
