@@ -62,6 +62,10 @@ namespace TravelWebProject.web.Pages.Tours
         //         return Page();
         //     }
             
+            /*if (!ModelState.IsValid || Tour == null)
+            {
+                return Page();
+            }*/
 
             _tourService.AddTour(Tour);
 

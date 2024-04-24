@@ -8,7 +8,6 @@ namespace BusinessObject.Models
         public Destination()
         {
             Itineraries = new HashSet<Itinerary>();
-            ItineraryDetails = new HashSet<ItineraryDetail>();
             Tours = new HashSet<Tour>();
         }
 
@@ -21,7 +20,6 @@ namespace BusinessObject.Models
 
         public virtual Region Region { get; set; } = null!;
         public virtual ICollection<Itinerary> Itineraries { get; set; }
-        public virtual ICollection<ItineraryDetail> ItineraryDetails { get; set; }
         public virtual ICollection<Tour> Tours { get; set; }
     }
 }

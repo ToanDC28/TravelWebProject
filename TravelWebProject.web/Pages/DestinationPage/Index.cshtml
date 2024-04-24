@@ -2,3 +2,58 @@
 @model TravelWebProject.web.Pages.DestinationPage.IndexModel
 @{
 }
+<main>
+    <!-- breadcrumb area start -->
+    <section class="bd-breadcrumb-area p-relative fix">
+        <!-- breadcrumb background image -->
+        <div class="bd-breadcrumb-bg" data-background="~/assets/images/bg/breadcrumb-bg.png"></div>
+        <div class="bd-breadcrumb-wrapper p-relative">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+                        <div class="bd-breadcrumb d-flex align-items-center justify-content-center">
+                            <div class="bd-breadcrumb-content text-center">
+                                <h1 class="bd-breadcrumb-title">Destinations</h1>
+                                <div class="bd-breadcrumb-list">
+                                    <span><a asp-page="/LandingPage"><i class="icon-home"></i>Tourigo</a></span>
+                                    <span>Destinations</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb area end -->
+    <!-- blog-grid area start -->
+    <div class="bd-tour-grid-area section-space">
+        <div class="container">
+            <div class="row">
+                @foreach(var item in Model.Destinations)
+                {
+                    <div class="col-xl-4 col-lg-4 col-md-4">
+                        <div class="trip-wrapper trip-style-one p-relative">
+                            <div class="trip-thumb image-overly">
+                                <a href="-details-right.html">
+                                    <img src="~/assets/images/tour/@item.Image"
+                                         alt="image">
+                                </a>
+                            </div>
+                            <div class="trip-tag">
+                                <div class="trip-number">
+                                    <span><a href="destinations-details-right.html">@item.Tours.Count() Tour</a></span>
+                                </div>
+                                <div class="trip-location">
+                                    <span><a href="destinations-details-right.html">@item.Name</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- blog-grid area end -->
+
+</main>

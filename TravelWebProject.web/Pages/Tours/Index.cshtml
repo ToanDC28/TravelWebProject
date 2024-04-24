@@ -16,9 +16,9 @@
                     <div class="col-xl-10">
                         <div class="bd-breadcrumb d-flex align-items-center justify-content-center">
                             <div class="bd-breadcrumb-content text-center">
-                                <h1 class="bd-breadcrumb-title">Tour Grid</h1>
+                                <h1 class="bd-breadcrumb-title">Tour Information</h1>
                                 <div class="bd-breadcrumb-list">
-                                    <span><a href="index.html"><i class="icon-home"></i>Tourigo</a></span>
+                                    <span><a asp-page="/LandingPage"><i class="icon-home"></i>Home</a></span>
                                     <span>Tour Grid</span>
                                 </div>
                             </div>
@@ -40,6 +40,7 @@
                             <div class="p-relative">
                                 <div class="tour-thumb image-overly">
                                     <a asp-page="./Tour" asp-route-id="@Model.Tour[i].TourId">
+                                    <a href="tour-details.html">
                                         <img src="~/assets/images/tour/@Model.Tour[i].Destinate.Image"
                                              alt="image">
                                     </a>
@@ -59,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="tour-content">
-@*                                <div class="tour-rating d-flex align-items-center gap-10 mb-10">
+                                <div class="tour-rating d-flex align-items-center gap-10 mb-10">
                                     <div class="tour-rating-icon fs-14 d-flex rating-color">
                                        @for(int j = 0; j < int.Parse(Model.Tour[i].TotalRating); j++)
 										{
