@@ -60,12 +60,8 @@
                                                     <div class="banner-search-item banner-select">
                                                         <p class="b2 mb-0 fw-5">Where to</p>
                                                         <div class="banner-search-select">
-                                                            <select name="location" asp-for="whereTo" id="location">
-                                                                <option>Search location</option>
-                                                                <option>Australia</option>
-                                                                <option>Portugal</option>
-                                                                <option>Maldives</option>
-                                                                <option>India</option>
+                                                            <select name="location" asp-for="whereTo" id="location" asp-items="ViewBag.Name">
+                                                                
                                                             </select>
                                                         </div>
                                                     </div>
@@ -90,19 +86,14 @@
                                                     <div class="banner-search-item banner-select">
                                                         <p class="b2 mb-0 fw-5">Tour Types</p>
                                                         <div class="banner-search-select">
-                                                            <select asp-for="tourType">
-                                                                <option selected>All Tours</option>
-                                                                <option>Australia</option>
-                                                                <option>Portugal</option>
-                                                                <option>Maldives</option>
-                                                                <option>India</option>
+                                                            <select asp-for="tourType" asp-items="ViewBag.TransportationModeId">
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                                 <div class="banner-search-button">
-                                                    <button type="submit" class="banner-btn banner-square-btn bd-btn btn-style radius-10"><span>
+                                                    <button type="submit" formmethod="post" class="banner-btn banner-square-btn bd-btn btn-style radius-10"><span>
                                                             <i class="fa-regular fa-magnifying-glass"></i></span> Search
                                                     </button>
                                                 </div>
@@ -161,20 +152,23 @@
                     </div>
                 </div>
                 <div class="row gy-24">
+                @foreach(var item in Model.Destinations)
+                {
                     <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
                         <div class="activity-wrapper activity-style">
                             <div class="activity-thumb image-overly">
-                                <a href="destinations-details-right.html"><img src="~/assets/images/activity/activity-img-1.png" alt="image"></a>
+                                <a href="destinations-details-right.html"><img src="~/assets/images/tour/@item.Image" alt="image"></a>
                             </div>
-                            <div class="activity-meta">
+                            @* <div class="activity-meta">
                                 <span><i class="icon-star"></i> 4.4</span>
-                            </div>
+                            </div> *@
                             <div class="activity-content-wrap">
                                 <div class="activity-content d-flex align-items-center justify-content-between">
                                     <div class="activity-title-wrap">
-                                        <h5 class="underline"><a href="destinations-details-right.html">City Tours</a>
+                                        <h5 class="underline">
+                                            <a href="destinations-details-right.html">@item.Name</a>
                                         </h5>
-                                        <p>100+ Tours</p>
+                                        <p>@item.Tours.Count() Tours</p>
                                     </div>
                                     <div class="activity-btn">
                                         <a class="bd-icon-btn" href="destinations-details-right.html"><i class="fa-light fa-angle-right"></i></a>
@@ -183,72 +177,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                        <div class="activity-wrapper activity-style">
-                            <div class="activity-thumb image-overly">
-                                <a href="destinations-details-right.html"><img src="~/assets/images/activity/activity-img-2.png" alt="image"></a>
-                            </div>
-                            <div class="activity-meta">
-                                <span><i class="icon-star"></i> 5.0</span>
-                            </div>
-                            <div class="activity-content-wrap">
-                                <div class="activity-content d-flex align-items-center justify-content-between">
-                                    <div class="activity-title-wrap">
-                                        <h5 class="underline"><a href="destinations-details-right.html">Beach Tours</a>
-                                        </h5>
-                                        <p>100+ Tours</p>
-                                    </div>
-                                    <div class="activity-btn">
-                                        <a class="bd-icon-btn" href="destinations-details-right.html"><i class="fa-light fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                        <div class="activity-wrapper activity-style">
-                            <div class="activity-thumb image-overly">
-                                <a href="destinations-details-right.html"><img src="~/assets/images/activity/activity-img-3.png" alt="image"></a>
-                            </div>
-                            <div class="activity-meta">
-                                <span><i class="icon-star"></i> 4.8</span>
-                            </div>
-                            <div class="activity-content-wrap">
-                                <div class="activity-content d-flex align-items-center justify-content-between">
-                                    <div class="activity-title-wrap">
-                                        <h5 class="underline"><a href="destinations-details-right.html">Wildlife
-                                                Tours</a></h5>
-                                        <p>50+ Tours</p>
-                                    </div>
-                                    <div class="activity-btn">
-                                        <a class="bd-icon-btn" href="destinations-details-right.html"><i class="fa-light fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
-                        <div class="activity-wrapper activity-style">
-                            <div class="activity-thumb image-overly">
-                                <a href="destinations-details-right.html"><img src="~/assets/images/activity/activity-img-4.png" alt="image"></a>
-                            </div>
-                            <div class="activity-meta">
-                                <span><i class="icon-star"></i> 5.0</span>
-                            </div>
-                            <div class="activity-content-wrap">
-                                <div class="activity-content d-flex align-items-center justify-content-between">
-                                    <div class="activity-title-wrap">
-                                        <h5 class="underline"><a href="destinations-details-right.html">Adventure
-                                                Tours</a></h5>
-                                        <p>5+ Tours</p>
-                                    </div>
-                                    <div class="activity-btn">
-                                        <a class="bd-icon-btn" href="destinations-details-right.html"><i class="fa-light fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                }
+
                 </div>
             </div>
         </section>
@@ -374,47 +304,57 @@
                         <div class="tour-slide-wrapper p-relative">
                             <div class="swiper tour__active swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                                 <div class="swiper-wrapper" id="swiper-wrapper-d6d9da1077ba295c3" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                                @foreach(var item in Model.Tours)
+                                {
                                     <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 6" style="width: 306px; margin-right: 24px;">
                                         <div class="tour-wrapper style-one">
                                             <div class="p-relative">
                                                 <div class="tour-thumb image-overly">
-                                                    <a href="tour-details.html"><img src="~/assets/images/tour/tour-img-1.png" alt="image"></a>
+                                                    <a href="tour-details.html"><img src="~/assets/images/tour/@item.Destinate.Image" alt="image"></a>
                                                 </div>
                                                 <div class="tour-meta d-flex align-items-center justify-content-between">
                                                     <button class="tour-favorite tour-like">
                                                         <i class="icon-heart"></i>
                                                     </button>
                                                     <div class="tour-location">
-                                                        <span><a href="tour-details.html"><i class="fa-regular fa-location-dot"></i> Matera,
-                                                                Italy</a></span>
+                                                        <span>
+                                                            <a href="tour-details.html">
+                                                                <i class="fa-regular fa-location-dot"></i> 
+                                                                @item.TourName
+                                                            </a>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="tour-content">
                                                 <div class="tour-rating d-flex flex-wrap align-items-center gap-10 mb-10">
                                                     <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
+                                                        @for (int i = 0; i < int.Parse(item.TotalRating); i++)
+                                                        {
+                                                            <i class="fa-solid fa-star"></i>
+                                                        }
+
                                                     </div>
                                                     <div class="tour-rating-text">
-                                                        <span>4.8 (313 Ratings)</span>
+                                                        <span>@item.TotalRating</span>
                                                     </div>
                                                 </div>
-                                                <h5 class="tour-title fw-5 underline mb-5"><a href="tour-details.html">Island Hopping in the Caribbean: Sun &amp;
-                                                        Sea</a></h5>
+                                                <h5 class="tour-title fw-5 underline mb-5">
+                                                    <a href="tour-details.html">
+                                                        @item.Description
+                                                    </a>
+                                                </h5>
                                                 <span class="tour-price b3">$1925.00</span>
                                                 <div class="tour-divider"></div>
 
                                                 <div class="tour-meta d-flex align-items-center justify-content-between">
                                                     <div class="time d-flex align-items-center gap--5">
                                                         <i class="icon-heart"></i>
-                                                        <span>5 days</span>
+                                                        <span>@item.Duration days</span>
                                                     </div>
                                                     <div class="tour-btn">
-                                                        <a class="bd-text-btn style-two" href="booking.html">Book Now
+                                                        <a class="bd-text-btn style-two" href="booking.html">
+                                                            Book Now
                                                             <span class="icon__box">
                                                                 <i class="fa-regular fa-arrow-right-long icon__first"></i>
                                                                 <i class="fa-regular fa-arrow-right-long icon__second"></i>
@@ -425,262 +365,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="width: 306px; margin-right: 24px;">
-                                        <div class="tour-wrapper style-one">
-                                            <div class="p-relative">
-                                                <div class="tour-thumb image-overly">
-                                                    <a href="tour-details.html"><img src="~/assets/images/tour/tour-img-2.png" alt="image"></a>
-                                                </div>
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <button class="tour-favorite tour-like">
-                                                        <i class="icon-heart"></i>
-                                                    </button>
-                                                    <div class="tour-location">
-                                                        <span><a href="tour-details.html"><i class="fa-regular fa-location-dot"></i> Paris,
-                                                                France</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tour-content">
-                                                <div class="tour-rating d-flex flex-wrap align-items-center gap-10 mb-10">
-                                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <div class="tour-rating-text">
-                                                        <span>5 (313 Ratings)</span>
-                                                    </div>
-                                                </div>
-                                                <h5 class="tour-title fw-5 underline mb-5"><a href="tour-details.html">Tropical Paradise Retreat: Sun, Sand,
-                                                        Serenity</a></h5>
-                                                <span class="tour-price b3">$1825.00</span>
-                                                <div class="tour-divider"></div>
-
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <div class="time d-flex align-items-center gap--5">
-                                                        <i class="icon-heart"></i>
-                                                        <span>3 days</span>
-                                                    </div>
-                                                    <div class="tour-btn">
-                                                        <a class="bd-text-btn style-two" href="booking.html">Book Now
-                                                            <span class="icon__box">
-                                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
-                                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="3 / 6" style="width: 306px; margin-right: 24px;">
-                                        <div class="tour-wrapper style-one">
-                                            <div class="p-relative">
-                                                <div class="tour-thumb image-overly">
-                                                    <a href="tour-details.html"><img src="~/assets/images/tour/tour-img-3.png" alt="image"></a>
-                                                </div>
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <button class="tour-favorite tour-like">
-                                                        <i class="icon-heart"></i>
-                                                    </button>
-                                                    <div class="tour-location">
-                                                        <span><a href="tour-details.html"><i class="fa-regular fa-location-dot"></i> London,
-                                                                UK</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tour-content">
-                                                <div class="tour-rating d-flex flex-wrap align-items-center gap-10 mb-10">
-                                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <div class="tour-rating-text">
-                                                        <span>4.8 (96 Ratings)</span>
-                                                    </div>
-                                                </div>
-                                                <h5 class="tour-title fw-5 underline mb-5"><a href="tour-details.html">Safari Expedition: Wildlife Encounters
-                                                        in Africa</a></h5>
-                                                <span class="tour-price b3">$1892.00</span>
-                                                <div class="tour-divider"></div>
-
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <div class="time d-flex align-items-center gap--5">
-                                                        <i class="icon-heart"></i>
-                                                        <span>10 days</span>
-                                                    </div>
-                                                    <div class="tour-btn">
-                                                        <a class="bd-text-btn style-two" href="booking.html">Book Now
-                                                            <span class="icon__box">
-                                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
-                                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="4 / 6" style="width: 306px; margin-right: 24px;">
-                                        <div class="tour-wrapper style-one">
-                                            <div class="p-relative">
-                                                <div class="tour-thumb image-overly">
-                                                    <a href="tour-details.html"><img src="~/assets/images/tour/tour-img-4.png" alt="image"></a>
-                                                </div>
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <button class="tour-favorite tour-like">
-                                                        <i class="icon-heart"></i>
-                                                    </button>
-                                                    <div class="tour-location">
-                                                        <span><a href="tour-details.html"><i class="fa-regular fa-location-dot"></i> Lisbon,
-                                                                Portugal</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tour-content">
-                                                <div class="tour-rating d-flex flex-wrap align-items-center gap-10 mb-10">
-                                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <div class="tour-rating-text">
-                                                        <span>4.6 (20 Ratings)</span>
-                                                    </div>
-                                                </div>
-                                                <h5 class="tour-title fw-5 underline mb-5"><a href="tour-details.html">Asian Discovery: Temples, Traditions,
-                                                        Tastings</a></h5>
-                                                <span class="tour-price b3">$2112.00</span>
-                                                <div class="tour-divider"></div>
-
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <div class="time d-flex align-items-center gap--5">
-                                                        <i class="icon-heart"></i>
-                                                        <span>15 days</span>
-                                                    </div>
-                                                    <div class="tour-btn">
-                                                        <a class="bd-text-btn style-two" href="booking.html">Book Now
-                                                            <span class="icon__box">
-                                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
-                                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="5 / 6" style="width: 306px; margin-right: 24px;">
-                                        <div class="tour-wrapper style-one">
-                                            <div class="p-relative">
-                                                <div class="tour-thumb image-overly">
-                                                    <a href="tour-details.html"><img src="~/assets/images/tour/tour-img-5.png" alt="image"></a>
-                                                </div>
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <button class="tour-favorite tour-like">
-                                                        <i class="icon-heart"></i>
-                                                    </button>
-                                                    <div class="tour-location">
-                                                        <span><a href="tour-details.html"><i class="fa-regular fa-location-dot"></i> Istanbul,
-                                                                Turkey</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tour-content">
-                                                <div class="tour-rating d-flex flex-wrap align-items-center gap-10 mb-10">
-                                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <div class="tour-rating-text">
-                                                        <span>5 (420 Ratings)</span>
-                                                    </div>
-                                                </div>
-                                                <h5 class="tour-title fw-5 underline mb-5"><a href="tour-details.html">Northern Lights Escape: Arctic Wonders
-                                                        Await</a></h5>
-                                                <span class="tour-price b3">$1395.00</span>
-                                                <div class="tour-divider"></div>
-
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <div class="time d-flex align-items-center gap--5">
-                                                        <i class="icon-heart"></i>
-                                                        <span>10 days</span>
-                                                    </div>
-                                                    <div class="tour-btn">
-                                                        <a class="bd-text-btn style-two" href="booking.html">Book Now
-                                                            <span class="icon__box">
-                                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
-                                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="6 / 6" style="width: 306px; margin-right: 24px;">
-                                        <div class="tour-wrapper style-one">
-                                            <div class="p-relative">
-                                                <div class="tour-thumb image-overly">
-                                                    <a href="tour-details.html"><img src="~/assets/images/tour/tour-img-6.png" alt="image"></a>
-                                                </div>
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <button class="tour-favorite tour-like">
-                                                        <i class="icon-heart"></i>
-                                                    </button>
-                                                    <div class="tour-location">
-                                                        <span><a href="tour-details.html"><i class="fa-regular fa-location-dot"></i> Matera,
-                                                                Italy</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tour-content">
-                                                <div class="tour-rating d-flex flex-wrap align-items-center gap-10 mb-10">
-                                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <div class="tour-rating-text">
-                                                        <span>4.8 (120 Ratings)</span>
-                                                    </div>
-                                                </div>
-                                                <h5 class="tour-title fw-5 underline mb-5"><a href="tour-details.html">Mystical Journey Through Ancient
-                                                        Civilizations</a></h5>
-                                                <span class="tour-price b3">$3521.00</span>
-                                                <div class="tour-divider"></div>
-
-                                                <div class="tour-meta d-flex align-items-center justify-content-between">
-                                                    <div class="time d-flex align-items-center gap--5">
-                                                        <i class="icon-heart"></i>
-                                                        <span>5 days</span>
-                                                    </div>
-                                                    <div class="tour-btn">
-                                                        <a class="bd-text-btn style-two" href="booking.html">Book Now
-                                                            <span class="icon__box">
-                                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
-                                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
+                            </div>
                                 <div class="slider-pagination-wrapper">
                                     <div class="slider-pagination bd-pagination mt-50 justify-content-center swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
                                 </div>
@@ -938,7 +624,7 @@
                                 <li>Destination Knowledge</li>
                                 <li>Hassle-Free Planning</li>
                                 <li>24/7 Support</li>
-                                <li>Customer Satisfaction Guaranteed</li>
+                                <li>Customer Satisour tourfaction Guaranteed</li>
                             </ul>
                         </div>
                     </div>
