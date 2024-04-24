@@ -40,7 +40,6 @@
                             <div class="p-relative">
                                 <div class="tour-thumb image-overly">
                                     <a asp-page="./Tour" asp-route-id="@Model.Tour[i].TourId">
-                                    <a href="tour-details.html">
                                         <img src="~/assets/images/tour/@Model.Tour[i].Destinate.Image"
                                              alt="image">
                                     </a>
@@ -70,7 +69,7 @@
                                     <div class="tour-rating-text">
                                         <span>@Model.Tour[i].TotalRating</span>
                                     </div>
-                                </div>*@
+                                </div
                                 <h5 class="tour-title fw-5 underline mb-5">
                                     <a href="tour-details.html">
                                         @Model.Tour[i].Description
