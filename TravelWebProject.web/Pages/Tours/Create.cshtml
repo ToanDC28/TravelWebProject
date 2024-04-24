@@ -5,75 +5,170 @@
     ViewData["Title"] = "Create";
     Layout = "_Layout";
 }
+<style>
+    /* Điều chỉnh khoảng cách giữa nhãn và form control */
+    .form-group.row {
+        margin-bottom: 20px; /* Khoảng cách dưới của mỗi dòng trong form */
+    }
+
+    /* Điều chỉnh kích thước của nhãn (label) */
+    .col-form-label-lg {
+        font-size: 100%; /* Cỡ chữ lớn hơn gấp 3 lần */
+    }
+
+    /* Điều chỉnh kích thước của form control (select) */
+    .form-control-lg {
+        font-size: 100%; /* Cỡ chữ lớn hơn gấp 3 lần */
+        height: 6em; /* Chiều cao lớn hơn gấp 3 lần */
+    }
+
+    /* Điều chỉnh kích thước của nhãn (label) */
+    label[for="TransportId"] {
+        font-size: 100%; /* Cỡ chữ lớn hơn gấp 3 lần */
+    }
+
+    /* Điều chỉnh kích thước của form control (select) */
+    /* Điều chỉnh kích thước của nhãn (label) */
+    .col-form-label {
+        font-size: 100%; /* Cỡ chữ lớn hơn gấp 3 lần */
+    }
+
+    /* Điều chỉnh kích thước của form control (select) */
+    .form-control {
+        font-size: 100%; /* Cỡ chữ lớn hơn gấp 3 lần */
+        height: 6em; /* Chiều cao lớn hơn gấp 3 lần */
+    }
+    }
+</style>
+<main>
+    <div class="style-guide__area section-space">
+        <div class="container">
+            <div class="row g-6">
+                <div class="col-xl-3 col-lg-2">
+
+                </div>
+                <div class="col-xl-8 col-lg-8">
+                    <div class="guide__widget-box">
+                        <div id="formElements" class="elements__area">
+                            <div class="wrapper">
+                                <h4 class="style__guide-title mb-20 justify-content-center">Create a New Tour</h4>
+                                <form method="post" class="border rounded p-3 text-center">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-input-wrapper">
+                                        <div class="row gy-24 mb-3">
+                                            <div class="col-lg-12 text-center">
+                                                <div class="form-input-box">
+                                                    <div class="form-input-title">
+                                                        <label for="TourName">Tour Name<span>*</span></label>
+                                                    </div>
+                                                    <div class="form-input">
+                                                        <input asp-for="Tour.TourName" placeholder="Enter tour name" />
+                                                        <span asp-validation-for="Tour.TourName"
+                                                            class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 text-center">
+                                                <div class="row gy-24">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-3">
+                                                            <label for="DestinateId" class="col-form-label col-form-label-lg">Destination</label>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <select asp-for="Tour.DestinateId" class="form-control form-control-lg" asp-items="ViewBag.DestinateId">
+                                                                <option value="">Select destination</option>
+                                                                <!-- Add destination options dynamically here -->
+                                                            </select>
+                                                            <span asp-validation-for="Tour.DestinateId" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-<h1>Create</h1>
+                                            <div class="col-lg-12 text-center">
+                                                <div class="form-input-box">
+                                                    <div class="form-input-title">
+                                                        <label for="Description">Description<span>*</span></label>
+                                                    </div>
+                                                    <div class="form-input">
+                                                        <textarea asp-for="Tour.Description"
+                                                            placeholder="Enter description"></textarea>
+                                                        <span asp-validation-for="Tour.Description"
+                                                            class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-input">
+                                                    <div class="form-input-title">
+                                                        <label for="StartDate">Duration<span>*</span></label>
+                                                    </div>
+                                                    <div class="banner-form-input">
+                                                        <input asp-for="Tour.Duration" class="form-control"
+                                                            id="selectingMultipleDates" type="text"
+                                                            placeholder="Select Your date" readonly="readonly">
+                                                        <span asp-validation-for="Tour.Duration"
+                                                            class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-input">
+                                                    <div class="form-input-title">
+                                                        <label for="TotalCost">Total Cost<span>*</span></label>
+                                                    </div>
+                                                    <div class="form-input">
+                                                        <input asp-for="Tour.TotalCost"
+                                                            placeholder="Enter total cost" />
+                                                        <span asp-validation-for="Tour.TotalCost"
+                                                            class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-input">
+                                                    <div class="form-input-title">
+                                                        <label for="MinAge">Minimum Age<span>*</span></label>
+                                                    </div>
+                                                    <div class="form-input">
+                                                        <input asp-for="Tour.MinAge" placeholder="Enter minimum age" />
+                                                        <span asp-validation-for="Tour.MinAge"
+                                                            class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-input">
+                                                    <div class="form-group row">
+                                                        <label for="TransportId" class="col-sm-3 col-form-label">Transportation Mode</label>
+                                                        <div class="col-sm-9">
+                                                            <select asp-for="Tour.TransportId" class="form-control" asp-items="ViewBag.TransportId">
+                                                                <option value="">Select transportation mode</option>
+                                                                <!-- Add transportation options dynamically here -->
+                                                            </select>
+                                                            <span asp-validation-for="Tour.TransportId" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-<h4>Tour</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Tour.TourName" class="control-label"></label>
-                <input asp-for="Tour.TourName" class="form-control" />
-                <span asp-validation-for="Tour.TourName" class="text-danger"></span>
+
+                                        <div class="form-input
+                                            text-center">
+                                            <button type="submit"
+                                                class="bd-gradient-btn btn-style radius-60">Create</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Tour.DestinateId" class="control-label"></label>
-                <select asp-for="Tour.DestinateId" class ="form-control" asp-items="ViewBag.DestinateId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tour.Description" class="control-label"></label>
-                <input asp-for="Tour.Description" class="form-control" />
-                <span asp-validation-for="Tour.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tour.StartDate" class="control-label"></label>
-                <input asp-for="Tour.StartDate" class="form-control" />
-                <span asp-validation-for="Tour.StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tour.EndDate" class="control-label"></label>
-                <input asp-for="Tour.EndDate" class="form-control" />
-                <span asp-validation-for="Tour.EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tour.Duration" class="control-label"></label>
-                <input asp-for="Tour.Duration" class="form-control" />
-                <span asp-validation-for="Tour.Duration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tour.TotalRating" class="control-label"></label>
-                <input asp-for="Tour.TotalRating" class="form-control" />
-                <span asp-validation-for="Tour.TotalRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tour.TotalCost" class="control-label"></label>
-                <input asp-for="Tour.TotalCost" class="form-control" />
-                <span asp-validation-for="Tour.TotalCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tour.MinAge" class="control-label"></label>
-                <input asp-for="Tour.MinAge" class="form-control" />
-                <span asp-validation-for="Tour.MinAge" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tour.TransportId" class="control-label"></label>
-                <select asp-for="Tour.TransportId" class ="form-control" asp-items="ViewBag.TransportId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
+</main>
 @section Scripts {
     <script src="myscript.js"></script>
 }

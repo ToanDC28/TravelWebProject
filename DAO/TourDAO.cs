@@ -35,7 +35,7 @@ namespace DAO
         {
             try
             {
-                return _context.Tours.Include("Destinate").Include("Transport").ToList();
+                return _context.Tours.Include("Destinate").Include("Transport").Include("Itineraries").Include("TourPlans").ToList();
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace DAO
         {
             try
             {
-                return _context.Tours.Include("Destinate").Include("Transport").FirstOrDefault(t => t.TourId == tourId);
+                return _context.Tours.Include("Destinate").Include("Transport").Include("Itineraries").Include("TourPlans").FirstOrDefault(t => t.TourId == tourId);
             }
             catch (Exception ex)
             {
