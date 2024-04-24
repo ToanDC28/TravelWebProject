@@ -15,5 +15,6 @@ namespace TravelWebProject.repo.Tours
         public void AddTour(Tour tour) => TourDAO.Instance.AddTour(tour);
         public void UpdateTour(Tour tour) => TourDAO.Instance.UpdateTour(tour);
         public void DeleteTour(int tourId) => TourDAO.Instance.DeleteTour(tourId);
+        public List<Tour> GetTourByDestinationId(int destinationId) => TourDAO.Instance.GetTourByDestinationId(destinationId);
     }
 }

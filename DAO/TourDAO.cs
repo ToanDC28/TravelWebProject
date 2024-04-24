@@ -106,5 +106,18 @@ namespace DAO
                 throw;
             }
         }
+        // find tour by destinationId
+        public List<Tour> GetTourByDestinationId(int destinationId)
+        {
+            try
+            {
+                return _context.Tours.Include("Destinate").Include("Transport").Include("Itineraries").Include("TourPlans").Where(t => t.DestinateId == destinationId).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving tours with destination ID {destinationId}: {ex.Message}");
+                throw;
+            }
+        }
     }
 }

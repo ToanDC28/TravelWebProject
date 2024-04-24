@@ -15,6 +15,7 @@ namespace TravelWebProject.web.Pages.Tours
         }
 
         public Tour Tour { get; set; }
+        public List<Tour> Tours { get; set; } 
         //list tour
 
 
@@ -26,8 +27,10 @@ namespace TravelWebProject.web.Pages.Tours
             }*/
 
             // G?i service ?? l?y thông tin tour theo TourId
+           
             Tour = _itourservice.GetTourById(id.Value);
-
+            Tours = _itourservice.GetTourByDestinationId(Tour.DestinateId);
+            Tours.Remove(Tour);
             if (Tour == null)
             {
                 return NotFound();
