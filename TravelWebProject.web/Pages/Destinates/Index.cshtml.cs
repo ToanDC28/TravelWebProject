@@ -6,27 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.Models;
+using TravelWebProject.service.TourServices;
+using TravelWebProject.service.DestinationServices;
 
 namespace TravelWebProject.web.Pages.Destinates
 {
     public class IndexModel : PageModel
     {
-        private readonly BusinessObject.Models.TravelWebContext _context;
+        private readonly IDestinationService _idesservice;
 
-        public IndexModel(BusinessObject.Models.TravelWebContext context)
+        public IndexModel()
         {
-            _context = context;
+            _idesservice = new  DestinationService();
         }
 
         public IList<Destination> Destination { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public ActionResult OnGetAsync()
         {
-            if (_context.Destinations != null)
-            {
-                Destination = await _context.Destinations
-                .Include(d => d.Region).ToListAsync();
-            }
+            Destination = _idesservice.GetDestinations();
+            return Page();
+            
         }
     }
 }
