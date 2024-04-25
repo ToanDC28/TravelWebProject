@@ -36,7 +36,7 @@ namespace TravelWebProject.web.Pages
         {
             if (User.Identity.IsAuthenticated)
             { 
-                return RedirectToPage("/SignIn");
+                return RedirectToPage("/LandingPage");
             }
 
             return Page();
@@ -57,10 +57,7 @@ namespace TravelWebProject.web.Pages
             {
                 var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.FullName),
-                new Claim(ClaimTypes.Role, user.Role.Name),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString())
+                new Claim(ClaimTypes.Name, user.UserId.ToString())
             };
                 var claimsIdentity = new ClaimsIdentity(
             claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -76,7 +73,7 @@ namespace TravelWebProject.web.Pages
             authProperties);
                 //Ghi log đăng nhập thành công
                 _logger.LogInformation("User {Email} logged in at {Time}.", Email, DateTime.UtcNow);
-                return RedirectToPage("/LandingPage");
+                return RedirectToPage("/Index");
             } else {
                 //Ghi log lỗi
                 _logger.LogError("User {Email} failed to log in at {Time}.", Email, DateTime.UtcNow);

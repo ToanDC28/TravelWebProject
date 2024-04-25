@@ -45,7 +45,7 @@ namespace TravelWebProject.web.Pages.BookingPage
             var user = HttpContext.User;
             if (user.Identity.IsAuthenticated)
             {
-                var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+                var userIdClaim = user.FindFirst(ClaimTypes.Name);
                 if (userIdClaim != null)
                 {
                     // Lấy giá trị UserId
@@ -78,9 +78,6 @@ namespace TravelWebProject.web.Pages.BookingPage
             booking.TourId = tour.TourId;
             booking.Status = "";
             booking.amountOfPeople = amountOfPeople;
-
-            booking.Status = "ACTIVE";
-            booking.AmountOfPeople = amountOfPeople;
             booking.TotalAmount = Tour.TotalCost * amountOfPeople;
             booking.RemainingAmount = booking.TotalAmount;
             booking.BookingDate = DateTime.Now;
