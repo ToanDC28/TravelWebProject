@@ -29,7 +29,7 @@ namespace TravelWebProject.web.Pages.BookingPage
             var user = HttpContext.User;
             if (user.Identity.IsAuthenticated)
             {
-                var userIdClaim = user.FindFirst(ClaimTypes.Name);
+                var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
                 int userId;
                 if (int.TryParse(userIdClaim.Value, out userId))
                 {
