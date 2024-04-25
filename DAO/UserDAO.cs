@@ -1,4 +1,5 @@
 ﻿using BusinessObject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAO
 {
@@ -47,7 +48,7 @@ namespace DAO
         public User? Authenticate(string email, string password)
         {
             try {
-                return context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+                return context.Users.Include("Role").SingleOrDefault(u => u.Email == email && u.Password == password);
             } catch(Exception e) {
                 throw new Exception("Error in UserDAO.Authenticate", e);
             }

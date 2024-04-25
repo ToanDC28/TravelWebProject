@@ -12,13 +12,13 @@ namespace BusinessObject.Models
         }
 
         public int DestinationId { get; set; }
-        public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public string Country { get; set; } = null!;
-        public string Image { get; set; } = null!;
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Country { get; set; }
+        public string Image { get; set; }
         public int RegionId { get; set; }
 
-        public virtual Region Region { get; set; } = null!;
+        public virtual Region Region { get; set; }
         public virtual ICollection<Itinerary> Itineraries { get; set; }
         public virtual ICollection<Tour> Tours { get; set; }
     }

@@ -12,8 +12,8 @@ namespace BusinessObject.Models
         }
 
         public int TransportationModeId { get; set; }
-        public string? Mode { get; set; }
-        public string? Description { get; set; }
+        public string Mode { get; set; }
+        public string Description { get; set; }
 
         public virtual ICollection<Itinerary> Itineraries { get; set; }
         public virtual ICollection<Tour> Tours { get; set; }

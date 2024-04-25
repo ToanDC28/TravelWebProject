@@ -17,16 +17,17 @@ namespace BusinessObject.Models
         {
         }
 
-        public virtual DbSet<Booking> Bookings { get; set; } = null!;
-        public virtual DbSet<Destination> Destinations { get; set; } = null!;
-        public virtual DbSet<Itinerary> Itineraries { get; set; } = null!;
-        public virtual DbSet<Payment> Payments { get; set; } = null!;
-        public virtual DbSet<Region> Regions { get; set; } = null!;
-        public virtual DbSet<Review> Reviews { get; set; } = null!;
-        public virtual DbSet<Tour> Tours { get; set; } = null!;
-        public virtual DbSet<TourPlan> TourPlans { get; set; } = null!;
-        public virtual DbSet<TransportationMode> TransportationModes { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<Destination> Destinations { get; set; }
+        public virtual DbSet<Itinerary> Itineraries { get; set; }
+        public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Tour> Tours { get; set; }
+        public virtual DbSet<TourPlan> TourPlans { get; set; }
+        public virtual DbSet<TransactionInfo> TransactionInfos { get; set; }
+        public virtual DbSet<TransportationMode> TransportationModes { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,18 +36,24 @@ namespace BusinessObject.Models
                 optionsBuilder.UseSqlServer(GetConnectionString());
             }
         }
-        private string GetConnectionString()
+
+        public string GetConnectionString()
         {
+            //Configuration builder
             var builder = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json");
-                return builder.Build().GetConnectionString("DefaultConnection");
+                .AddJsonFile("appsettings.json")
+                .Build();
+            return builder.GetConnectionString("DefaultConnection");
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Booking>(entity =>
             {
                 entity.Property(e => e.BookingId).HasColumnName("BookingID");
+
+                entity.Property(e => e.AmountOfPeople).HasColumnName("amountOfPeople");
 
                 entity.Property(e => e.BookingDate).HasColumnType("datetime");
 
@@ -56,8 +63,6 @@ namespace BusinessObject.Models
 
                 entity.Property(e => e.RemainingAmount).HasColumnType("money");
 
-                entity.Property(e => e.RemainingAmount).HasColumnType("money");
-                entity.Property(e => e.amountOfPeople).HasColumnType("int");
                 entity.Property(e => e.Status).HasMaxLength(50);
 
                 entity.Property(e => e.TotalAmount).HasColumnType("money");
@@ -74,21 +79,26 @@ namespace BusinessObject.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Bookings)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Bookings__UserID__3B75D760");
+                    .HasConstraintName("FK_Bookings_Users");
             });
 
             modelBuilder.Entity<Destination>(entity =>
             {
                 entity.Property(e => e.DestinationId).HasColumnName("DestinationID");
 
-                entity.Property(e => e.Country).HasMaxLength(100);
+                entity.Property(e => e.Country)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Description).IsRequired();
 
                 entity.Property(e => e.Image)
-                    .HasMaxLength(10)
-                    .HasColumnName("image")
-                    .IsFixedLength();
+                    .IsRequired()
+                    .HasColumnName("image");
 
-                entity.Property(e => e.Name).HasMaxLength(255);
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.RegionId).HasColumnName("regionID");
 
@@ -122,24 +132,7 @@ namespace BusinessObject.Models
                 entity.HasOne(d => d.TransportationMode)
                     .WithMany(p => p.Itineraries)
                     .HasForeignKey(d => d.TransportationModeId)
-                    .HasConstraintName("FK__Itinerari__Trans__4BAC3F29");
-            });
-
-
-            modelBuilder.Entity<Payment>(entity =>
-            {
-                entity.Property(e => e.PaymentId).HasColumnName("PaymentID");
-
-                entity.Property(e => e.Amount).HasColumnType("money");
-
-                entity.Property(e => e.BookingId).HasColumnName("BookingID");
-
-                entity.Property(e => e.PaymentType).HasMaxLength(50);
-
-                entity.HasOne(d => d.Booking)
-                    .WithMany(p => p.Payments)
-                    .HasForeignKey(d => d.BookingId)
-                    .HasConstraintName("FK__Payments__Bookin__3F466844");
+                    .HasConstraintName("FK__Itinerari__Trans__4E88ABD4");
             });
 
             modelBuilder.Entity<Region>(entity =>
@@ -176,13 +169,29 @@ namespace BusinessObject.Models
                     .HasConstraintName("FK__Reviews__UserID__4316F928");
             });
 
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.ToTable("Role");
+
+                entity.Property(e => e.RoleId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("RoleID");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(10);
+            });
+
             modelBuilder.Entity<Tour>(entity =>
             {
                 entity.Property(e => e.TourId).HasColumnName("TourID");
 
+                entity.Property(e => e.Description).IsRequired();
+
                 entity.Property(e => e.DestinateId).HasColumnName("DestinateID");
 
                 entity.Property(e => e.Duration)
+                    .IsRequired()
                     .HasMaxLength(10)
                     .HasColumnName("duration")
                     .IsFixedLength();
@@ -199,7 +208,9 @@ namespace BusinessObject.Models
                     .HasMaxLength(10)
                     .IsFixedLength();
 
-                entity.Property(e => e.TourName).HasMaxLength(255);
+                entity.Property(e => e.TourName)
+                    .IsRequired()
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.TransportId).HasColumnName("transportID");
 
@@ -221,9 +232,7 @@ namespace BusinessObject.Models
 
                 entity.ToTable("TourPlan");
 
-                entity.Property(e => e.PlanId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("planID");
+                entity.Property(e => e.PlanId).HasColumnName("planID");
 
                 entity.Property(e => e.Description).HasColumnType("text");
 
@@ -237,6 +246,50 @@ namespace BusinessObject.Models
                     .WithMany(p => p.TourPlans)
                     .HasForeignKey(d => d.TourId)
                     .HasConstraintName("FK_TourPlan_Tours");
+            });
+
+            modelBuilder.Entity<TransactionInfo>(entity =>
+            {
+                entity.HasKey(e => e.InforId);
+
+                entity.Property(e => e.InforId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("InforID");
+
+                entity.Property(e => e.Amount).HasColumnName("amount");
+
+                entity.Property(e => e.ArrangementId).HasColumnName("arrangementId");
+
+                entity.Property(e => e.BookingDate).HasColumnName("bookingDate");
+
+                entity.Property(e => e.BookingId).HasColumnName("BookingID");
+
+                entity.Property(e => e.Category).HasColumnName("category");
+
+                entity.Property(e => e.CreditDebitIndicator).HasColumnName("creditDebitIndicator");
+
+                entity.Property(e => e.CreditorBankNameEn).HasColumnName("creditorBankNameEn");
+
+                entity.Property(e => e.CreditorBankNameVn).HasColumnName("creditorBankNameVn");
+
+                entity.Property(e => e.Currency).HasColumnName("currency");
+
+                entity.Property(e => e.Description).HasColumnName("description");
+
+                entity.Property(e => e.OfsAcctName).HasColumnName("ofsAcctName");
+
+                entity.Property(e => e.OfsAcctNo).HasColumnName("ofsAcctNo");
+
+                entity.Property(e => e.Reference).HasColumnName("reference");
+
+                entity.Property(e => e.RunningBalance).HasColumnName("runningBalance");
+
+                entity.Property(e => e.ValueDate).HasColumnName("valueDate");
+
+                entity.HasOne(d => d.Booking)
+                    .WithMany(p => p.TransactionInfos)
+                    .HasForeignKey(d => d.BookingId)
+                    .HasConstraintName("FK_TransactionInfos_Bookings");
             });
 
             modelBuilder.Entity<TransportationMode>(entity =>
@@ -253,32 +306,40 @@ namespace BusinessObject.Models
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
-                entity.Property(e => e.FullName).HasMaxLength(50)
-                    .HasColumnName("FullName")
-                    .IsFixedLength();
-
-                entity.Property(e => e.Avatar)
-                    .HasMaxLength(10)
-                    .HasColumnName("avatar")
-                    .IsFixedLength();
+                entity.Property(e => e.Address);
 
                 entity.Property(e => e.Birthday)
                     .HasMaxLength(10)
                     .HasColumnName("birthday")
                     .IsFixedLength();
 
-                entity.Property(e => e.Email).HasMaxLength(255);
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(255);
 
-                entity.Property(e => e.Gender)
-                    .HasMaxLength(10)
-                    .HasColumnName("gender")
-                    .IsFixedLength();
+                entity.Property(e => e.FullName)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
-                entity.Property(e => e.Password).HasMaxLength(255);
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(255);
 
-                entity.Property(e => e.Phone).HasMaxLength(15);
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(15);
 
-                entity.Property(e => e.Username).HasMaxLength(255);
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Users_Role");
             });
 
             OnModelCreatingPartial(modelBuilder);
