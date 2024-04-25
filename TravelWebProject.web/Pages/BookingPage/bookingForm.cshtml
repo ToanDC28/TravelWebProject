@@ -1,0 +1,145 @@
+﻿@page
+@model TravelWebProject.web.Pages.BookingPage.bookingFormModel
+@{
+}
+
+
+<main>
+    <!-- breadcrumb area start -->
+    <section class="bd-breadcrumb-area p-relative fix">
+        <!-- breadcrumb background image -->
+        <div class="bd-breadcrumb-bg" data-background="assets/images/bg/breadcrumb-bg.png"></div>
+        <div class="bd-breadcrumb-wrapper p-relative">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+                        <div class="bd-breadcrumb d-flex align-items-center justify-content-center">
+                            <div class="bd-breadcrumb-content text-center">
+                                <h1 class="bd-breadcrumb-title">Booking Form</h1>
+                                <div class="bd-breadcrumb-list">
+                                    <span><a href="index.html"><i class="icon-home"></i>Tourigo</a></span>
+                                    <span>Booking Form</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb area end -->
+    <!-- booking-form area start -->
+    <section class="bd-booking-form-area section-space">
+        <div class="container">
+            <div class="row gy-24 justify-content-between">
+                <div class="col-xxl-8 col-xl-8 col-lg-8">
+                    <form method="post">
+                        <div class="booking-form">
+                            <div class="booking-form-wrapper mb-35">
+                                <div class="booking-form-step mb-10">Step 1 of 2</div>
+                                <h4 class="booking-form-title mb-15">Island Hopping in the Caribbean: Sun & Sea</h4>
+                                <div class="booking-form-input-wrapper">
+                                    <div class="booking-form-input-box">
+                                        <div class="booking-form-input-title">
+                                            <label asp-for="Booking.User.Username">Name<span>*</span></label>
+                                        </div>
+                                        <div class="booking-form-input">
+                                            <input asp-for="Booking.User.Username" required placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="booking-form-input-box">
+                                        <div class="booking-form-input-title">
+                                            <label asp-for="Booking.User.Email">Email address<span>*</span></label>
+                                        </div>
+                                        <div class="booking-form-input">
+                                            <input asp-for="Booking.User.Email" type="email" required placeholder="Email address">
+                                        </div>
+                                    </div>
+                                    <div class="booking-form-input-box">
+                                        <div class="booking-form-input-title">
+                                            <label asp-for="Booking.User.Phone">Mobile Number<span>*</span></label>
+                                        </div>
+                                        <div class="booking-form-input">
+                                            <input asp-for="Booking.User.Phone" required placeholder="Mobile Number">
+                                        </div>
+                                    </div>
+                                    <div class="booking-form-input-box">
+                                        <div class="booking-form-input-title">
+                                            <label asp-for="Booking.Tour.Duration">PEOPLE<span>*</span></label>
+                                        </div>
+                                        <div class="booking-form-input">
+                                            <input asp-for="Booking.Tour.Duration" type="number" required placeholder="Number PEOPLE" min="1" max="100">
+                                        </div>
+                                    </div>
+                                    <div class="booking-form-info mt-25">
+                                    </div>
+                                </div>
+                                <div class="booking-form-policy mb-25">
+                                    <h5 class="booking-form-title mb-15">Cancellation policy</h5>
+                                    <p class="mb-10">
+                                        "By clicking 'Payment details' and finalizing your booking, you
+                                        are agreeing to the <a class="theme-text" href="terms-conditions.html">Terms and Conditions</a> set forth by tourigo.com and the privacy policy of Viator."
+                                    </p>
+                                    <span>
+                                        <a class="theme-text" href="privacy-policy.html">Privacy Statement</a>
+                                    </span>
+
+                                </div>
+                                <div class="booking-form-btn">
+                                    <button type="submit" class="bd-primary-btn btn-style is-bg radius-60">
+                                        <span class="bd-primary-btn-text">Complete booking</span>
+                                        <span class="bd-primary-btn-circle"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4">
+                    <aside class="booking-sidebar-wrapper sidebar-sticky">
+                        <div class="booking-sidebar-widget-wrapper mb-30">
+                            <div class="booking-sidebar-widget-thumb mb-15">
+                                <img src="assets/images/tour/tour-img-1.png" alt="images">
+                            </div>
+                            <div class="booking-sidebar-widget-content">
+                                <h6 class="booking-item-title small underline mb-5">
+                                    @Model.Booking.Tour.TourName
+                                </h6>
+                                <span class="booking-item-date">
+                                    <a href="blog-details.html">
+                                        <span><i class="icon-cleander-check"></i></span> Mar
+                                        18,
+                                        2024
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="booking-sidebar-widget-wrapper">
+                            <div class="booking-sidebar-price-wrapper">
+
+                                <div class="booking-sidebar-price-content">
+
+                                    <div class="booking-sidebar-price-item d-flex flex-wrap justify-content-between">
+                                        <div class="booking-sidebar-price-item-title">amount </div>
+                                        <div class="booking-sidebar-price-item-amount">$@Model.Booking.Tour.TotalCost</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- booking-form area end -->
+
+   
+</main>
+
+
+<!-- Mirrored from html.bdevs.net/tourigo-prv/booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Apr 2024 13:37:01 GMT -->
+
+
+
