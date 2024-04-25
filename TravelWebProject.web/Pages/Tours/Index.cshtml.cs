@@ -15,7 +15,7 @@ namespace TravelWebProject.web.Pages.Tours
     {
         private readonly ITourService _itourservice;
         private readonly IDestinationService _idesservice;
-
+            
         public IndexModel()
         {
             _itourservice = new TourService();

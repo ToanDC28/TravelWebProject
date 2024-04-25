@@ -14,6 +14,7 @@ namespace TravelWebProject.repo.TourPlans
         public void DeleteTourPlan(int planId);
         public void UpdateTourPlan(TourPlan tourPlan);
         public void CreateTourPlan(TourPlan tourPlan);
+        public List<TourPlan> GetTourPlansByTourId(int tourId);
 
     }
 }

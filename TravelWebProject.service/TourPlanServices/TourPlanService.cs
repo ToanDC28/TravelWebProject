@@ -35,5 +35,9 @@ namespace TravelWebProject.service.TourPlanServices
         {
             _tourPlanService.CreateTourPlan(tourPlan);
         }
+        public List<TourPlan> GetTourPlansByTourId(int tourId)
+        {
+            return _tourPlanService.GetTourPlansByTourId(tourId);
+        }
     }
 }

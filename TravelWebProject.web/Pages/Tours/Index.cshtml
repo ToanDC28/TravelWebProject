@@ -83,8 +83,20 @@
                                     </div>
                                     <div class="tour-btn">
                                         @* Delete *@
-                                        <a href="javascript:void(0);" onclick="deleteTour(@Model.Tour[i].TourId)" class="bd-text-btn style-two">
+                                        <a asp-page="./Delete" asp-route-id="@Model.Tour[i].TourId" class="bd-text-btn style-two">
                                             Delete
+                                            <span class="icon__box">
+                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
+                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                    <!--switch to /PlanTours/Details page-->
+                                    <div class="tour-btn">
+                                        @* Delete *@
+                                        <a asp-page="/PlanTours/Create" asp-route-id="@Model.Tour[i].TourId" class="bd-text-btn style-two">
+                                            TP
                                             <span class="icon__box">
                                                 <i class="fa-regular fa-arrow-right-long icon__first"></i>
                                                 <i class="fa-regular fa-arrow-right-long icon__second"></i>

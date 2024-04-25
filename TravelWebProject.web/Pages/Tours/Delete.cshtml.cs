@@ -26,6 +26,7 @@ namespace TravelWebProject.web.Pages.Tours
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Tour = _tourService.GetTourById(id.Value);
             return Page();
         }
 

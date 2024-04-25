@@ -1,0 +1,35 @@
+﻿@page
+@model TravelWebProject.web.Pages.PlanTours.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@if (Model.TourPlans != null && Model.TourPlans.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tourPlan in Model.TourPlans)
+            {
+                <tr>
+                    <td>@tourPlan.Name</td>
+                    <td>@tourPlan.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No tour plans found for this tour.</p>
+}
+
+<a asp-page="./Index">Back to List</a>
