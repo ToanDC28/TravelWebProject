@@ -9,25 +9,21 @@ using BusinessObject.Models;
 
 namespace TravelWebProject.web.Pages.BookingPage
 {
-    public class IndexModel : PageModel
+    public class bookingDetailsModel : PageModel
     {
         private readonly BusinessObject.Models.TravelWebContext _context;
 
-        public IndexModel(BusinessObject.Models.TravelWebContext context)
+        public bookingDetailsModel(BusinessObject.Models.TravelWebContext context)
         {
             _context = context;
         }
 
-        public IList<Booking> Booking { get;set; } = default!;
+      public Booking Booking { get; set; } = default!; 
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? bookingIdid)
         {
-            if (_context.Bookings != null)
-            {
-                Booking = await _context.Bookings
-                .Include(b => b.Tour)
-                .Include(b => b.User).ToListAsync();
-            }
+           
+            return Page();
         }
     }
 }

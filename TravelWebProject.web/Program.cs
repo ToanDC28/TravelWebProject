@@ -6,6 +6,7 @@ using Serilog.Extensions.Logging;
 using TravelWebProject.repo.Users;
 using TravelWebProject.service.Authentication;
 using TravelWebProject.service.Bank;
+using TravelWebProject.service.BookingService;
 using TravelWebProject.service.DestinationServices;
 using TravelWebProject.service.ItineraryServices;
 using TravelWebProject.service.RegionService;
@@ -51,6 +52,7 @@ builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IDestinationService, DestinationService>();
 builder.Services.AddScoped<ICustomAuthenticationService, CustomAuthenticationService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ITourPlanService, TourPlanService>();
 builder.Services.AddScoped<ITransportService, TransportService>();
@@ -58,6 +60,7 @@ builder.Services.AddScoped<IItineraryService, ItineraryService>();
 builder.Services.AddScoped<IRegionService, RegionService>();
 builder.Services.AddHttpClient<BankService>();
 builder.Services.AddHostedService<PeriodicLoginBackgroundService>();
+builder.Services.AddTransient<BusinessObject.Models.Booking>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
