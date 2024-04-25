@@ -34,22 +34,9 @@ namespace DAO
         {
             try
             {
-                var local = _context.Set<TourPlan>()
-                                   .Local
-                                   .FirstOrDefault(entry => entry.PlanId.Equals(tourPlan.PlanId));
-
-                // Kiểm tra xem local có phải null không
-                if (local != null)
-                {
-                    // Tách
-                    _context.Entry(local).State = EntityState.Detached;
-                }
-
-                // Bây giờ bạn có thể đính kèm thực thể của mình
-                _context.Entry(tourPlan).State = EntityState.Modified;
-
-                // Lưu các thay đổi
-                _context.SaveChanges();
+                _context.TourPlans.Add(tourPlan);
+                _context.SaveChanges(); // Lưu thay đổi vào cơ sở dữ liệu
+            
             }
             catch (Exception ex)
             {

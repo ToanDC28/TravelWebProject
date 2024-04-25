@@ -14,9 +14,9 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="TourPlan.TourId" class="control-label"></label>
-                <input asp-for="TourPlan.TourId" class="form-control" />
-                <span asp-validation-for="TourPlan.TourId" class="text-danger"></span>
+
+                <input hidden asp-for="TourPlan.TourId" class="form-control" />
+
             </div>
             <div class="form-group">
                 <label asp-for="TourPlan.Name" class="control-label"></label>
