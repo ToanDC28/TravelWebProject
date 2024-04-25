@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace BusinessObject.Models
 {
@@ -32,9 +33,18 @@ namespace BusinessObject.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=TravelWeb;Trusted_Connection=True;TrustServerCertificate=True;User Id=sa;Password=12345");
+                optionsBuilder.UseSqlServer(GetConnectionString());
             }
+        }
+
+        public string GetConnectionString()
+        {
+            //Configuration builder
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+            return builder.GetConnectionString("DefaultConnection");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -296,16 +306,9 @@ namespace BusinessObject.Models
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
-                entity.Property(e => e.Address).IsRequired();
-
-                entity.Property(e => e.Avatar)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("avatar")
-                    .IsFixedLength();
+                entity.Property(e => e.Address);
 
                 entity.Property(e => e.Birthday)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .HasColumnName("birthday")
                     .IsFixedLength();
@@ -317,12 +320,6 @@ namespace BusinessObject.Models
                 entity.Property(e => e.FullName)
                     .IsRequired()
                     .HasMaxLength(50);
-
-                entity.Property(e => e.Gender)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("gender")
-                    .IsFixedLength();
 
                 entity.Property(e => e.Password)
                     .IsRequired()
