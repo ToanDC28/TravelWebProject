@@ -37,8 +37,6 @@ namespace TravelWebProject.web.Pages
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
-        [TempData]
-        public string Message { get; set; }
 
         public void OnGet(string token)
         {
@@ -60,7 +58,7 @@ namespace TravelWebProject.web.Pages
             {
                 if (Password != ConfirmPassword)
                 {
-                    Message = "Passwords do not match.";
+                    TempData["AlertMessage"] = "Passwords do not match.";
                     return;
                 }
                 // Update the password
@@ -68,7 +66,7 @@ namespace TravelWebProject.web.Pages
                 bool userExists = _userService.CheckUserExists(Email);
                 if (!userExists)
                 {
-                    Message = "User does not exist.";
+                    TempData["AlertMessage"] = "Email does not exist.";
                     return;
                 }
                 // Update the password
@@ -80,9 +78,8 @@ namespace TravelWebProject.web.Pages
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8));
                 bool updated = _userService.UpdateUser(Email, hashedPassword);
-                Message = "Password updated successfully.";
-                System.Threading.Thread.Sleep(2000);
-                Response.Redirect("/SignIn");
+                TempData["AlertMessage"] = updated ? "Password updated successfully." : "An error occurred while updating the password.";
+                return;
             }
         }
     }

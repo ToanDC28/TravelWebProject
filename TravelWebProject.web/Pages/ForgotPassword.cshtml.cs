@@ -6,6 +6,7 @@ using BusinessObject.Models;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Build.Logging;
 using Microsoft.Extensions.Logging;
 using TravelWebProject.service.Mail;
 using TravelWebProject.service.Users;
@@ -22,8 +23,6 @@ namespace TravelWebProject.web.Pages
         private readonly ILogger<ForgotPassword> _logger;
         [BindProperty]
         public string Email { get; set; }
-        [TempData]
-        public string Message { get; set; }
 
         public ForgotPassword(IDataProtectionProvider dataProtectionProvider, IMailService emailSender, IUserService userService, ILogger<ForgotPassword> logger)
         {
@@ -44,7 +43,7 @@ namespace TravelWebProject.web.Pages
                 bool userExists = _userService.CheckUserExists(Email);
                 if (!userExists)
                 {
-                    Message = "User does not exist.";
+                    TempData["AlertMessage"] = "Email does not exist.";
                     return Page();
                 }
                 var protector = _dataProtectionProvider.CreateProtector("ForgotPassword");
@@ -61,11 +60,13 @@ namespace TravelWebProject.web.Pages
 
                 if (_emailSender.SendMail(mailData))
                 {
-                    Message = "An email has been sent to your email address. Please check your email to reset your password.";
+                    TempData["AlertMessage"] = "An email has been sent to your email address. Please check your email to reset your password.";
+                    return Page();
                 }
                 else
                 {
-                    Message = "An error occurred while sending the email. Please try again later.";
+                    TempData["AlertMessage"] = "An error occurred while sending the email. Please try again.";
+                    return Page();
                 }
             }
             return Page();
