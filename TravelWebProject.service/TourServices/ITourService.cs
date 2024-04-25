@@ -14,5 +14,6 @@ namespace TravelWebProject.service.TourServices
         public void AddTour(Tour tour);
         public Tour GetTourById(int tourId);
         public List<Tour> GetAllTours();
+        public List<Tour> GetTourByDestinationId(int destinationId);
     }
 }

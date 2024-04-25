@@ -37,5 +37,9 @@ namespace TravelWebProject.service.TourServices
         {
             tourRepo.DeleteTour(tourId);
         }
+        public List<Tour> GetTourByDestinationId(int destinationId)
+        {
+            return tourRepo.GetTourByDestinationId(destinationId);
+        }
     }
 }
