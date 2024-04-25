@@ -1,6 +1,5 @@
 using BusinessObject.Models;
 using dotenv.net;
-using MailKit;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -11,6 +10,7 @@ using TravelWebProject.service.Bank;
 using TravelWebProject.service.BookingService;
 using TravelWebProject.service.DestinationServices;
 using TravelWebProject.service.ItineraryServices;
+using TravelWebProject.service.Mail;
 using TravelWebProject.service.RegionService;
 using TravelWebProject.service.RegionServices;
 using TravelWebProject.service.TourPlanServices;
