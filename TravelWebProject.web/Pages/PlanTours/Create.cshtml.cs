@@ -35,6 +35,9 @@ namespace TravelWebProject.web.Pages.PlanTours
                 TourId = id.Value,
                 // Khởi tạo các thuộc tính khác của TourPlan tại đây nếu cần thiết
             };
+            // viewdata Tour
+            ViewData["TourId"] = new SelectList(_Service.GetAllTourPlans(), "TourId", "TourId");
+
             return Page();      
 
         }
