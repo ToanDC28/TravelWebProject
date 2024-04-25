@@ -252,9 +252,7 @@ namespace BusinessObject.Models
             {
                 entity.HasKey(e => e.InforId);
 
-                entity.Property(e => e.InforId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("InforID");
+                entity.Property(e => e.InforId).HasColumnName("InforID");
 
                 entity.Property(e => e.Amount).HasColumnName("amount");
 

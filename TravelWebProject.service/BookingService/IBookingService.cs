@@ -13,5 +13,6 @@ namespace TravelWebProject.service.BookingService
         public void Create(Booking booking);
         public User getUserFrombooking(int UserId);
         public List<Booking> GetAllByUser(int userId);
+        public void Update(Booking booking);
     }
 }

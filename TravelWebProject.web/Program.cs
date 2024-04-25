@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using BusinessObject;
 using BusinessObject.Models;
 using dotenv.net;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Extensions.Logging;
+using TravelWebProject.repo.TransactionRepo;
 using TravelWebProject.repo.Users;
 using TravelWebProject.service.Authentication;
 using TravelWebProject.service.Bank;
@@ -16,6 +18,7 @@ using TravelWebProject.service.RegionService;
 using TravelWebProject.service.RegionServices;
 using TravelWebProject.service.TourPlanServices;
 using TravelWebProject.service.TourServices;
+using TravelWebProject.service.TransactionService;
 using TravelWebProject.service.TransportServices;
 using TravelWebProject.service.Users;
 using TravelWebProject.web;
@@ -60,6 +63,29 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             return Task.CompletedTask;
         };
     });
+
+// Create 2 policies for admin and user
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => 
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim(ClaimTypes.Role, "ADMIN");
+    });
+    options.AddPolicy("Customer", policy => 
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim(ClaimTypes.Role, "CUSTOMER");
+    });
+    options.AddPolicy("AdminAndCustomer", policy => 
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireAssertion(context => 
+        {
+            return context.User.HasClaim(ClaimTypes.Role, "ADMIN") || context.User.HasClaim(ClaimTypes.Role, "CUSTOMER");
+        });
+    });
+});
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSession();
@@ -72,6 +98,8 @@ builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ITourPlanService, TourPlanService>();
 builder.Services.AddScoped<ITransportService, TransportService>();
 builder.Services.AddScoped<IItineraryService, ItineraryService>();
+builder.Services.AddScoped<ITransactionRepo, TransactionRepo>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<IRegionService, RegionService>();
 builder.Services.AddHttpClient<BankService>();
 builder.Services.AddHostedService<PeriodicLoginBackgroundService>();

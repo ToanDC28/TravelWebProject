@@ -67,7 +67,12 @@
                                     </a>
                                 </h5>
                                 <span class="tour-price b3">@Model.Tour[i].TotalCost</span>
-                                <div class="tour-meta d-flex align-items-center justify-content-between">
+                                @if(User.Identity.IsAuthenticated)
+                                {
+                                    //Check policy
+                                    if (User.HasClaim("Role", "Admin"))
+                                    {
+                                        <div class="tour-meta d-flex align-items-center justify-content-between">
                                     <div class="time d-flex align-items-center gap--5">
                                         @* edit *@
                                         <a asp-page="./Edit" asp-route-id="@Model.Tour[i].TourId" class="bd-text-btn style-two">
@@ -102,6 +107,8 @@
                                         </a>
                                     </div>
                                 </div>
+                                    }
+                                }
                                 <div class="tour-divider"></div>
 
                                 <div class="tour-meta d-flex align-items-center justify-content-between">

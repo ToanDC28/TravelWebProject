@@ -11,9 +11,11 @@ using TravelWebProject.service.TourPlanServices;
 using TravelWebProject.service.TourServices;
 using TravelWebProject.service.DestinationServices;
 using TravelWebProject.service.TransportServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.Tours
 {
+    [Authorize(Policy = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly ITourService _tourService;

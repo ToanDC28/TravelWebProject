@@ -105,7 +105,7 @@
                                                         <label for="StartDate">Duration<span>*</span></label>
                                                     </div>
                                                     <div class="banner-form-input">
-                                                        <input asp-for="Tour.Duration" class="form-control"
+                                                        <input required asp-for="Tour.Duration" class="form-control"
                                                             id="selectingMultipleDates" type="text"
                                                             placeholder="Select Your date" readonly="readonly">
                                                         <span asp-validation-for="Tour.Duration"

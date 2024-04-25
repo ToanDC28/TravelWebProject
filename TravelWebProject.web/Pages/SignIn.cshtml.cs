@@ -36,7 +36,7 @@ namespace TravelWebProject.web.Pages
         {
             if (User.Identity.IsAuthenticated)
             { 
-                return RedirectToPage("/SignIn");
+                return RedirectToPage("/LandingPage");
             }
 
             return Page();
