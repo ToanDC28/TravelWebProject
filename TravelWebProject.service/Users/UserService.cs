@@ -36,5 +36,29 @@ namespace TravelWebProject.service.Users
                 throw new Exception("Error in UserService.RegisterUser", e);
             }
         }
+
+        public bool CheckUserExists(string email)
+        {
+            try
+            {
+                return userRepo.CheckUserExists(email);
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Error in UserService.CheckUserExists", e);
+            }
+        }
+
+        public bool UpdateUser(string email, string password)
+        {
+            try
+            {
+                return userRepo.UpdateUser(email, password);
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Error in UserService.UpdateUser", e);
+            }
+        }
     }
 }

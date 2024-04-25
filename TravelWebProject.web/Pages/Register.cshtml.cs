@@ -42,7 +42,8 @@ namespace TravelWebProject.web.Pages
         {
             if (!ModelState.IsValid)
             {
-                return new JsonResult(new { success = false, message = "Invalid form data." });
+                string errors = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+                return new JsonResult(new { success = false, message = errors });
             }
 
             try
