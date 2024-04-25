@@ -15,5 +15,8 @@ namespace TravelWebProject.service.BookingService
         public Booking GetById(int bookingId) => BookingDAO.Instance.GetById(bookingId);
         public User getUserFrombooking(int UserId) => BookingDAO.Instance.getUserFrombooking(UserId);
         public List<Booking> GetAllByUser(int userId) => BookingDAO.Instance.GetAllByUser(userId);
+        public Booking GetBookingFullInfor(int bookingId) => BookingDAO.Instance.GetBookingFullInfor(bookingId);
+        public  List<Booking> GetAll() => BookingDAO.Instance.GetAll();
+
     }
 }

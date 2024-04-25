@@ -1,4 +1,5 @@
 ﻿using BusinessObject.Models;
+using DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,9 @@ namespace TravelWebProject.service.BookingService
         public void Create(Booking booking);
         public User getUserFrombooking(int UserId);
         public List<Booking> GetAllByUser(int userId);
+        public Booking GetBookingFullInfor(int bookingId);
+        public  List<Booking> GetAll();
+
+
     }
 }
