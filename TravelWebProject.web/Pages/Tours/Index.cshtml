@@ -40,6 +40,7 @@
                             <div class="p-relative">
                                 <div class="tour-thumb image-overly">
                                     <a asp-page="./Tour" asp-route-id="@Model.Tour[i].TourId"></a>
+                                    <a asp-page="./Tour" asp-route-id="@Model.Tour[i].TourId">
                                         <img src="~/assets/images/tour/@Model.Tour[i].Destinate.Image"
                                              alt="image">
                                     
@@ -60,6 +61,17 @@
                                 </div>
                             </div>
                             <div class="tour-content">
+                                <div class="tour-rating d-flex align-items-center gap-10 mb-10">
+                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
+                                       @for(int j = 0; j < int.Parse(Model.Tour[i].TotalRating); j++)
+										{
+                                            <i class="fa-solid fa-star"></i>
+										}
+                                    </div>
+                                    <div class="tour-rating-text">
+                                        <span>@Model.Tour[i].TotalRating</span>
+                                    </div>
+                                </div
                                 <h5 class="tour-title fw-5 underline mb-5">
                                     <a>
                                         @Model.Tour[i].Description
