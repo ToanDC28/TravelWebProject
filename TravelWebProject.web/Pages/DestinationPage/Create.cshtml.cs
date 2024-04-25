@@ -30,7 +30,7 @@ namespace TravelWebProject.web.Pages.DestinationPage
 
         public IActionResult OnGet()
         {
-        ViewData["RegionId"] = new SelectList(_regionService.GetAll(), "Id", "Id");
+        ViewData["RegionId"] = new SelectList(_regionService.GetAll(), "Id", "Name");
             return Page();
         }
 
