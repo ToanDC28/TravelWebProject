@@ -1,12 +1,7 @@
 ﻿@page
-@model bookingIndexModel
-
+@model TravelWebProject.web.Pages.BookingPage.BookingAdminModel
 @{
-    ViewData["Title"] = "bookingIndex";
 }
-
-
-
 
 <main>
     <!-- breadcrumb area start -->
@@ -42,7 +37,8 @@
 
                             <thead>
                                 <tr>
-                                    <th colspan="2" class="bd-cart-header-product">Tour</th>
+                                    <th  class="bd-cart-header-product">Tour</th>
+                                    <th class="bd-cart-header-price">Name</th>
                                     <th class="bd-cart-header-price">Price</th>
                                     <th class="bd-cart-header-price">StartDate</th>
                                     <th class="bd-cart-header-price">EndDate</th>
@@ -54,60 +50,57 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.Booking) {
-                                <tr>
-                                    <!-- img -->
-                                    <td class="bd-cart-img image-hover-effect">
-                                        <a href="shop-details.html">
-                                                <img src="~/assets/images/tour/@Html.DisplayFor(modelItem => item.Tour.Destinate.Image)" alt="image">
-                                        </a>
-                                    </td>
-                                    <!-- title -->
-                                    <td class="bd-cart-title">
-                                        <a href="shop-details.html">
-                                         @Html.DisplayFor(modelItem => item.Tour.TourName)
-                                        </a>
-                                    </td>
-                                    <td class="bd-cart-price">
+                                @foreach (var item in Model.Booking)
+                                {
+                                    <tr>
+                                        <!-- img -->
+                                       
+                                        <!-- title -->
+                                        <td class="bd-cart-title">
+                                            <a href="shop-details.html">
+                                                @Html.DisplayFor(modelItem => item.Tour.TourName)
+                                            </a>
+                                        </td>
+                                        <td class="bd-cart-price">
+                                            <span>
+                                                @Html.DisplayFor(modelItem => item.User.FullName)
+                                            </span>
+
+                                        </td>
+                                        <td class="bd-cart-price">
                                             <span>
                                                 @Html.DisplayFor(modelItem => item.Tour.TotalCost)
                                             </span>
 
-                                    </td>
-                                    <td class="bd-cart-price">
+                                        </td>
+                                        <td class="bd-cart-price">
                                             <span>
                                                 @Html.DisplayFor(modelItem => item.Tour.StartDate)
                                             </span>
-                                    </td>
-                                    <td class="bd-cart-price">
+                                        </td>
+                                        <td class="bd-cart-price">
                                             <span>
                                                 @Html.DisplayFor(modelItem => item.Tour.EndDate)
                                             </span>
 
-                                    </td>
-                                    <!-- price -->
-                                    <!-- quantity -->
-                                    <td class="bd-cart-quantity">
+                                        </td>
+                                        <!-- price -->
+                                        <!-- quantity -->
+                                        <td class="bd-cart-quantity">
                                             <input readonly class="bd-cart-input" type="text" value="@Html.DisplayFor(modelItem => item.AmountOfPeople)">
-                                    </td>
-                                    <td class="bd-cart-price">
+                                        </td>
+                                        <td class="bd-cart-price">
                                             <span>
                                                 @Html.DisplayFor(modelItem => item.TotalAmount)
-                                            </span>
-                                    </td>
+                                            </span>`
+                                        </td>
                                         <td style="text-align: center;" class="bd-cart-price">
 
                                             @if (item.Status.Equals("ACTIVE"))
                                             {
 
-                                                <div style="text-align: center;" class="booking-form-btn">
-                                                    <a href="/BookingPage/Payment?id=@Html.DisplayFor(modelItem => item.BookingId)">
-                                                        <button class="bd-primary-btn btn-style is-bg radius-60">
-                                                            <span class="bd-primary-btn-text">Pay</span>
-                                                            <span class="bd-primary-btn-circle"></span>
-                                                        </button>
-                                                    </a>
-                                                </div>
+                                                <span>No</span>
+
                                             }
                                             else
                                             {
@@ -117,9 +110,9 @@
                                         </td>
 
 
-                                    <!-- action -->
+                                        <!-- action -->
 
-                                </tr>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -139,3 +132,4 @@
     <!-- wishlist-area area end -->
 
 </main>
+

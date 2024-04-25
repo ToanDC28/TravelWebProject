@@ -30,11 +30,11 @@ namespace DAO
             }
         }
 
-        public static List<Booking> GetAll()
+        public  List<Booking> GetAll()
         {
             try
             {
-                return context.Bookings.ToList();
+                return context.Bookings.Include(b=>b.User).Include(b => b.Tour).ToList();
             }
             catch
             {
@@ -59,6 +59,27 @@ namespace DAO
             catch
             {
                 throw;
+            }
+
+        }
+        public Booking GetBookingFullInfor(int bookingId)
+        {
+            try
+            {
+                // Truy vấn để tìm Booking với bookingId cụ thể, bao gồm Tour, Destinate, và User
+                var booking = context.Bookings
+                    .Where(b => b.BookingId == bookingId)
+                    .Include(b => b.Tour)
+                    .Include(b => b.Tour.Destinate)
+                    .Include(b => b.User)
+                    .FirstOrDefault(); // Lấy đối tượng Booking đầu tiên thỏa mãn điều kiện
+
+                return booking; // Trả về đối tượng Booking đã tìm thấy
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có
+                throw new Exception("An error occurred while retrieving the booking information.", ex);
             }
 
         }

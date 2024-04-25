@@ -35,31 +35,36 @@ namespace TravelWebProject.web.Pages.BookingPage
         public IActionResult OnGet(int ? id)
         {
             Tour = tourService.GetTourById(id.Value);
-            
-           
-            var user = HttpContext.User;
-            if (user.Identity.IsAuthenticated)
+            if (Tour != null)
             {
-                var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
-                if (userIdClaim != null)
+
+
+                var user = HttpContext.User;
+                if (user.Identity.IsAuthenticated)
                 {
-                    // Lấy giá trị UserId
-                    int userId;
-                    if (int.TryParse(userIdClaim.Value, out userId))
-                    {    
-                        User = bookingService.getUserFrombooking(userId);
-                        return Page();
-                    }
-                    else
+                    var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+                    if (userIdClaim != null)
                     {
-                        return Page();
+                        // Lấy giá trị UserId
+                        int userId;
+                        if (int.TryParse(userIdClaim.Value, out userId))
+                        {
+                            User = bookingService.getUserFrombooking(userId);
+                            return Page();
+                        }
+                        else
+                        {
+                            return Page();
+                        }
                     }
+                    else { return Page(); }
                 }
-                else { return Page(); }
+                else
+                {
+                    return RedirectToPage("/SignIn");
                 }
-            else
-            {
-                return RedirectToPage("/SignIn");
+            }else {
+                return RedirectToPage("/LandingPage");
             }
                    
         }
