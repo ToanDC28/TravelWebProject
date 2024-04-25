@@ -6,16 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.Models;
+using TravelWebProject.service.TourServices;
+using TravelWebProject.service.TourPlanServices;
 
 namespace TravelWebProject.web.Pages.PlanTours
 {
     public class DeleteModel : PageModel
     {
-        private readonly BusinessObject.Models.TravelWebContext _context;
+        private readonly ITourPlanService _tourService;
+        private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(BusinessObject.Models.TravelWebContext context)
+        public DeleteModel(ITourPlanService tourService, ILogger<DeleteModel> logger)
         {
-            _context = context;
+            _tourService = tourService;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -23,37 +27,25 @@ namespace TravelWebProject.web.Pages.PlanTours
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.TourPlans == null)
-            {
-                return NotFound();
-            }
-
-            var tourplan = await _context.TourPlans.FirstOrDefaultAsync(m => m.PlanId == id);
-
-            if (tourplan == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                TourPlan = tourplan;
-            }
+            TourPlan = _tourService.GetTourPlanById(id.Value);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.TourPlans == null)
+            if (id == null)
             {
+                _logger.LogError("Tourplan ID is null");
                 return NotFound();
             }
-            var tourplan = await _context.TourPlans.FindAsync(id);
 
-            if (tourplan != null)
+            TourPlan = _tourService.GetTourPlanById(id.Value);
+            _logger.LogInformation($"TourPlan ID: {TourPlan.PlanId}");
+
+            if (TourPlan != null)
             {
-                TourPlan = tourplan;
-                _context.TourPlans.Remove(TourPlan);
-                await _context.SaveChangesAsync();
+                _tourService.DeleteTourPlan(TourPlan.PlanId);
+                _logger.LogInformation($"Tour {TourPlan.Name} deleted");
             }
 
             return RedirectToPage("./Index");
