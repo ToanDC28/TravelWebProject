@@ -36,7 +36,7 @@ namespace TravelWebProject.web.Pages
         {
             if (User.Identity.IsAuthenticated)
             { 
-                return RedirectToPage("/SignIn");
+                return RedirectToPage("/LandingPage");
             }
 
             return Page();
@@ -75,7 +75,7 @@ namespace TravelWebProject.web.Pages
             authProperties);
                 //Ghi log đăng nhập thành công
                 _logger.LogInformation("User {Email} logged in at {Time}.", Email, DateTime.UtcNow);
-                return RedirectToPage("/Index");
+                return RedirectToPage("/LandingPage");
             } else {
                 //Ghi log lỗi
                 _logger.LogError("User {Email} failed to log in at {Time}.", Email, DateTime.UtcNow);
