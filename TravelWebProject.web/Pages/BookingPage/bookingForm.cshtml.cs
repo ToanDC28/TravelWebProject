@@ -29,14 +29,7 @@ namespace TravelWebProject.web.Pages.BookingPage
         public Tour Tour { get; set; }
         [BindProperty]
         public User User { get; set; }
-        public IActionResult OnGet(int ? id)
-        {
-            Tour = tourService.GetTourById(id.Value);
-            tourService = new TourService();
-        }
-        [BindProperty]
-        public Booking Booking { get; set; }
-        public Tour Tour { get; set; }
+        
         public IActionResult OnGet(int ? id)
         {
             Tour = tourService.GetTourById(id.Value);
@@ -77,7 +70,7 @@ namespace TravelWebProject.web.Pages.BookingPage
             booking.UserId = User.UserId;
             booking.TourId = tour.TourId;
             booking.Status = "";
-            booking.amountOfPeople = amountOfPeople;
+            booking.AmountOfPeople = amountOfPeople;
             booking.TotalAmount = Tour.TotalCost * amountOfPeople;
             booking.RemainingAmount = booking.TotalAmount;
             booking.BookingDate = DateTime.Now;
