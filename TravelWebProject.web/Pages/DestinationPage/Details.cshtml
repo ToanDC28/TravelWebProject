@@ -1,0 +1,207 @@
+﻿@page
+@model TravelWebProject.web.Pages.DestinationPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<main>
+    <!-- breadcrumb area start -->
+    <section class="bd-breadcrumb-area p-relative fix">
+        <!-- breadcrumb background image -->
+        <div class="bd-breadcrumb-bg" data-background="assets/images/bg/breadcrumb-bg.png"></div>
+        <div class="bd-breadcrumb-wrapper p-relative">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+                        <div class="bd-breadcrumb d-flex align-items-center justify-content-center">
+                            <div class="bd-breadcrumb-content text-center">
+                                <h1 class="bd-breadcrumb-title">Destinations Gird Right</h1>
+                                <div class="bd-breadcrumb-list">
+                                    <span><a href="index.html"><i class="icon-home"></i>Tourigo</a></span>
+                                    <span>Destinations Gird Right</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb area end -->
+    <!-- blog-grid area start -->
+    <div class="bd-blog-grid-area section-space">
+        <div class="container">
+            <div class="row gy-24">
+                <div class="col-xxl-8 col-xl-8 col-lg-7">
+                    <div class="row gy-24">
+                        @foreach (var item in Model.Tours)
+						{
+
+                        <!--Start to show tourListget bydestinationID-->
+                        <div class="col-xl-6 col-lg-6 col-md-6">
+                            <div class="trip-wrapper trip-style-one p-relative">
+                                <div class="trip-thumb image-overly">
+                                        <a asp-page="/Tours/Tour" asp-route-id="@item.TourId">
+                                        <img src="~/assets/images/tour/@item.Destinate.Image" alt="image">
+                                    </a>
+                                </div>
+                                <div class="trip-tag">
+@*                                    <div class="trip-number">
+                                        <span><a href="destinations-details-right.html">3 Tour</a></span>
+                                    </div>*@
+                                    <div class="trip-location">
+                                        <span><a asp-page="/Tours/Tour" asp-route-id="@item.TourId">@item.TourName</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    <div class="pagination-wrapper">
+                        <div class="basic-pagination">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a class="current">1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa-light fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-5">
+                    <aside class="sidebar-wrapper sidebar-sticky">
+                        <div class="sidebar-widget-wrapper mb-30">
+                            <div class="sidebar-widget widget">
+                                <h6 class="sidebar-widget-title small mb-15">Search Here</h6>
+                                <div class="sidebar-search">
+                                    <form class="sidebar-search-form" action="#" method="get">
+                                        <input type="text" value="" required="" name="s" placeholder="Search">
+                                        <button type="submit"> <i class="far fa-search"></i> </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="sidebar-widget-divider"></div>
+                            <div class="sidebar-widget widget">
+                                <h6 class="sidebar-widget-title small mb-15">Contact for Booking</h6>
+                                <div class="sidebar-booking">
+                                    <form class="sidebar-booking-form" action="#" method="get">
+                                        <div class="input-box">
+                                            <input type="text" placeholder="Name">
+                                        </div>
+                                        <div class="input-box">
+                                            <input type="email" placeholder="Email">
+                                        </div>
+                                        <div class="input-box">
+                                            <textarea cols="30" rows="10"
+                                                      placeholder="Type Comment here"></textarea>
+                                        </div>
+                                        <div class="booking-btn">
+                                            <a class="bd-btn btn-style radius-4 w-100" href="index.html">
+                                                Send
+                                                Now<span><i class="fa-regular fa-arrow-right"></i></span>
+                                            </a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="sidebar-widget-divider"></div>
+                            <div class="sidebar-widget widget">
+                                <h6 class="sidebar-widget-title small mb-15">Recent Tour List</h6>
+                                <div class="sidebar-widget-post">
+                                    <div class="recent-post">
+                                        <div class="recent-post-thumb mr-10">
+                                            <a href="blog-details.html">
+                                                <img src="assets/images/blog/blog-image-14.png" alt="image">
+                                            </a>
+                                        </div>
+                                        <div class="recent-post-content">
+                                            <h6 class="recent-post-title small underline">
+                                                <a href="blog-details.html">
+                                                    Trekker's Tales: Navigating the
+                                                    World's
+                                                    Wonders
+                                                </a>
+                                            </h6>
+                                            <span class="recent-post-price">$1999</span>
+                                        </div>
+                                    </div>
+                                    <div class="recent-post">
+                                        <div class="recent-post-thumb mr-10">
+                                            <a href="blog-details.html">
+                                                <img src="assets/images/blog/blog-image-15.png" alt="image">
+                                            </a>
+                                        </div>
+                                        <div class="recent-post-content">
+                                            <h6 class="recent-post-title small underline">
+                                                <a href="blog-details.html">
+                                                    Exploring the World, One Adventure
+                                                    at a
+                                                    Time
+                                                </a>
+                                            </h6>
+                                            <span class="recent-post-price">$1499</span>
+                                        </div>
+                                    </div>
+                                    <div class="recent-post">
+                                        <div class="recent-post-thumb mr-10">
+                                            <a href="blog-details.html">
+                                                <img src="assets/images/blog/blog-image-16.png" alt="image">
+                                            </a>
+                                        </div>
+                                        <div class="recent-post-content">
+                                            <h6 class="recent-post-title small underline">
+                                                <a href="blog-details.html">
+                                                    Fast-Track to Your Dream
+                                                    Destinations
+                                                </a>
+                                            </h6>
+                                            <span class="recent-post-price">$2599</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar-widget-banner p-relative">
+                            <div class="sidebar-widget-thumb p-relative">
+                                <img src="assets/images/bg/sidebar-img.png" alt="img">
+                            </div>
+                            <div class="sidebar-widget-content">
+                                <span class="bd-play-btn pulse-white mb-40"><i class="icon-call-ring"></i></span>
+                                <p class="b3 mb-0">Free Call</p>
+                                <h5 class="mb-25"><a href="tel:+0290848020">02 (908) 480-20</a></h5>
+                                <div class="sidebar-btn">
+                                    <a class="bd-text-btn style-two" href="blog-list-right.html">
+                                        Contact
+                                        <span class="icon__box">
+                                            <i class="fa-light fa-angle-right icon__first"></i>
+                                            <i class="fa-light fa-angle-right icon__second"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- blog-grid area end -->
+
+</main>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Destination?.DestinationId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

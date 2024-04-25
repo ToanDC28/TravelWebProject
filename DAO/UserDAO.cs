@@ -52,5 +52,30 @@ namespace DAO
                 throw new Exception("Error in UserDAO.Authenticate", e);
             }
         }
+
+        public bool CheckUserExists(string email)
+        {
+            try {
+                return context.Users.Any(u => u.Email == email);
+            } catch(Exception e) {
+                throw new Exception("Error in UserDAO.CheckUserExists", e);
+            }
+        }
+
+        public bool UpdateUser(string email, string password)
+        {
+            try {
+                User? user = context.Users.SingleOrDefault(u => u.Email == email);
+                if (user != null)
+                {
+                    user.Password = password;
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            } catch(Exception e) {
+                throw new Exception("Error in UserDAO.UpdateUser", e);
+            }
+        }
     }
 }

@@ -51,7 +51,8 @@
                                                 Gems <span class="yellow-shape">Worldwide <img src="~/assets/images/shapes/yellow-shape.png" alt="yellow-shape"></span></h1>
                                         </div>
                                         <div class="banner-search-wrapper mt-45 wow fadeIn" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
-                                            <div class="banner-search-box">
+                                            <form method="post">
+                                                <div class="banner-search-box">
                                             <div class="banner-search-form">
                                                 <div class="banner-search-field has-separator d-flex align-items-center gap-10">
                                                     <div class="search-icon-bg">
@@ -98,6 +99,7 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +143,7 @@
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4">
                         <div class="bd-activity-btn text-sm-end">
-                            <a href="destinations-grid-right.html" class="bd-primary-btn btn-style has-arrow radius-60">
+                            <a asp-page="/DestinationPage/Index" class="bd-primary-btn btn-style has-arrow radius-60">
                                 <span class="bd-primary-btn-arrow arrow-right"><i class="fa-regular fa-arrow-right"></i></span>
                                 <span class="bd-primary-btn-text">See All</span>
                                 <span class="bd-primary-btn-circle"></span>
@@ -157,7 +159,7 @@
                     <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
                         <div class="activity-wrapper activity-style">
                             <div class="activity-thumb image-overly">
-                                <a href="destinations-details-right.html"><img src="~/assets/images/tour/@item.Image" alt="image"></a>
+                                <a asp-page="/DestinationPage/Details" asp-route-id="@item.DestinationId"><img src="~/assets/images/tour/@item.Image" alt="image"></a>
                             </div>
                             @* <div class="activity-meta">
                                 <span><i class="icon-star"></i> 4.4</span>
@@ -166,12 +168,12 @@
                                 <div class="activity-content d-flex align-items-center justify-content-between">
                                     <div class="activity-title-wrap">
                                         <h5 class="underline">
-                                            <a href="destinations-details-right.html">@item.Name</a>
+                                            <a asp-page="/DestinationPage/Details" asp-route-id="@item.DestinationId">@item.Name</a>
                                         </h5>
                                         <p>@item.Tours.Count() Tours</p>
                                     </div>
                                     <div class="activity-btn">
-                                        <a class="bd-icon-btn" href="destinations-details-right.html"><i class="fa-light fa-angle-right"></i></a>
+                                        <a class="bd-icon-btn" asp-page="/DestinationPage/Details" asp-route-id="@item.DestinationId"><i class="fa-light fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +187,7 @@
         <!-- activity area end -->
 
         <!-- about area Start -->
-        <section class="bd-about-area section-space about-bg p-relative image-bg">
+        @* <section class="bd-about-area section-space about-bg p-relative image-bg">
             <div class="container">
                 <div class="about-shape">
                     <div class="about-shape-one">
@@ -274,7 +276,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> *@
         <!-- about area end -->
 
         <!-- tour area start -->
@@ -289,7 +291,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4">
                         <div class="bd-tour-btn text-md-end">
-                            <a href="tour-grid-right.html" class="bd-primary-btn btn-style has-arrow radius-60">
+                            <a asp-page="/Tours/Index" class="bd-primary-btn btn-style has-arrow radius-60">
                                 <span class="bd-primary-btn-arrow arrow-right"><i class="fa-regular fa-arrow-right"></i></span>
                                 <span class="bd-primary-btn-text">More Packages</span>
                                 <span class="bd-primary-btn-circle"></span>
@@ -310,7 +312,7 @@
                                         <div class="tour-wrapper style-one">
                                             <div class="p-relative">
                                                 <div class="tour-thumb image-overly">
-                                                    <a href="tour-details.html"><img src="~/assets/images/tour/@item.Destinate.Image" alt="image"></a>
+                                                    <a asp-page="/Tours/Tour" asp-route-id="@item.TourId"><img src="~/assets/images/tour/@item.Destinate.Image" alt="image"></a>
                                                 </div>
                                                 <div class="tour-meta d-flex align-items-center justify-content-between">
                                                     <button class="tour-favorite tour-like">
@@ -318,7 +320,7 @@
                                                     </button>
                                                     <div class="tour-location">
                                                         <span>
-                                                            <a href="tour-details.html">
+                                                            <a asp-page="/Tours/Tour" asp-route-id="@item.TourId">
                                                                 <i class="fa-regular fa-location-dot"></i> 
                                                                 @item.TourName
                                                             </a>
@@ -327,20 +329,9 @@
                                                 </div>
                                             </div>
                                             <div class="tour-content">
-                                                <div class="tour-rating d-flex flex-wrap align-items-center gap-10 mb-10">
-                                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                                        @for (int i = 0; i < int.Parse(item.TotalRating); i++)
-                                                        {
-                                                            <i class="fa-solid fa-star"></i>
-                                                        }
-
-                                                    </div>
-                                                    <div class="tour-rating-text">
-                                                        <span>@item.TotalRating</span>
-                                                    </div>
-                                                </div>
+                                                
                                                 <h5 class="tour-title fw-5 underline mb-5">
-                                                    <a href="tour-details.html">
+                                                    <a asp-page="/Tours/Tour" asp-route-id="@item.TourId">
                                                         @item.Description
                                                     </a>
                                                 </h5>
@@ -353,7 +344,7 @@
                                                         <span>@item.Duration days</span>
                                                     </div>
                                                     <div class="tour-btn">
-                                                        <a class="bd-text-btn style-two" href="booking.html">
+                                                        <a class="bd-text-btn style-two" asp-page="/BookingPage/BookingForm" asp-route-id="@item.TourId">
                                                             Book Now
                                                             <span class="icon__box">
                                                                 <i class="fa-regular fa-arrow-right-long icon__first"></i>
@@ -383,7 +374,7 @@
         <!-- tour area end -->
 
         <!-- offer area start -->
-        <section class="bd-offer-area section-space-bottom">
+        @* <section class="bd-offer-area section-space-bottom">
             <div class="container">
                 <div class="row gy-24">
                     <div class="col-xl-6 col-lg-6 col-md-12 aos-init aos-animate" data-aos="fade-right">
@@ -432,11 +423,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> *@
         <!-- offer area end -->
 
         <!-- trip area start -->
-        <section class="bd-trip-area section-space flash-white p-relative">
+         <section class="bd-trip-area section-space flash-white p-relative">
             <div class="container">
                 <div class="trip-shape">
                     <div class="trip-shape-one">
@@ -554,7 +545,7 @@
         <!-- trip area end -->
 
         <!-- counter area start -->
-        <section class="bd-counter-area section-space-top">
+        @* <section class="bd-counter-area section-space-top">
             <div class="container">
                 <div class="row gy-24 text-center justify-content-between">
                     <div class="col-lg-3 col-sm-6">
@@ -603,11 +594,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> *@
         <!-- counter area end -->
 
         <!-- why chose area start -->
-        <section class="bd-choose-area section-space">
+        @* <section class="bd-choose-area section-space">
             <div class="container">
                 <div class="row gy-24 align-items-center justify-content-between">
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-right">
@@ -671,11 +662,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> *@
         <!-- why chose area end -->
 
         <!-- testimonial area start  -->
-        <section class="bd-testimonial-area section-space-bottom p-relative">
+        @* <section class="bd-testimonial-area section-space-bottom p-relative">
             <div class="container">
                 <div class="row gy-24 justify-content-between">
                     <div class="col-xxl-5 col-xl-5 col-lg-5">
@@ -845,11 +836,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> *@
         <!-- testimonial area end  -->
 
         <!-- travel area start -->
-        <section class="bd-travel-area theme-bg-secondary section-space p-relative">
+      @*   <section class="bd-travel-area theme-bg-secondary section-space p-relative">
             <div class="container">
                 <div class="travel-shape">
                     <div class="travel-shape-one">
@@ -941,11 +932,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> *@
         <!-- travel area end -->
 
         <!-- blog area start -->
-        <section class="bd-blog-area section-space">
+@*         <section class="bd-blog-area section-space">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-lg-12">
@@ -1100,11 +1091,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> *@
         <!-- blog area end -->
 
         <!-- cta area start -->
-        <section class="bd-cta-area cta-bg fix">
+        @* <section class="bd-cta-area cta-bg fix">
             <div class="container">
                 <div class="cta-three-shape">
                     <div class="cta-three-shape-one p-absolute">
@@ -1162,7 +1153,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> *@
         <!-- cta area end -->
 
     </main>

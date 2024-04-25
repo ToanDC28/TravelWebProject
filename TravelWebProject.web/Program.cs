@@ -1,3 +1,4 @@
+using BusinessObject.Models;
 using dotenv.net;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using TravelWebProject.service.Bank;
 using TravelWebProject.service.BookingService;
 using TravelWebProject.service.DestinationServices;
 using TravelWebProject.service.ItineraryServices;
+using TravelWebProject.service.Mail;
 using TravelWebProject.service.RegionService;
 using TravelWebProject.service.RegionServices;
 using TravelWebProject.service.TourPlanServices;
@@ -36,7 +38,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.Cookie.Name = "MyCookieAuth";
         options.LoginPath = "/SignIn";
         options.AccessDeniedPath = "/AccessDenied";
-        options.LogoutPath = "/SignOut";
+        options.LogoutPath = "/Logout";
         options.SlidingExpiration = true;
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
         options.Events.OnRedirectToLogin = context =>
@@ -60,7 +62,9 @@ builder.Services.AddScoped<IItineraryService, ItineraryService>();
 builder.Services.AddScoped<IRegionService, RegionService>();
 builder.Services.AddHttpClient<BankService>();
 builder.Services.AddHostedService<PeriodicLoginBackgroundService>();
-builder.Services.AddTransient<BusinessObject.Models.Booking>();
+builder.Services.AddTransient<Booking>();
+builder.Services.AddTransient<IMailService, MailService>();
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

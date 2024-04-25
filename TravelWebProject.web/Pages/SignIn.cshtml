@@ -38,6 +38,12 @@
                                         <span class="bd-primary-btn-text">Log in</span>
                                         <span class="bd-primary-btn-circle"></span>
                                     </button>
+                                    @if(!string.IsNullOrEmpty(TempData["Error"] as string))
+                                    {
+                                        <div class="alert alert-danger mt-3" role="alert">
+                                            @TempData["Error"]
+                                        </div>
+                                    }
                                 </div>
                             </form>
                             <div class="sign-meta-divider-wrapper">

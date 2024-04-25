@@ -8,7 +8,7 @@
     <!-- breadcrumb area start -->
     <section class="bd-breadcrumb-area p-relative fix">
         <!-- breadcrumb background image -->
-        <div class="bd-breadcrumb-bg" data-background="assets/images/bg/breadcrumb-bg.png"></div>
+        <div class="bd-breadcrumb-bg" data-background="~/assets/images/bg/breadcrumb-bg.png"></div>
         <div class="bd-breadcrumb-wrapper p-relative">
             <div class="container">
                 <div class="row justify-content-center">
@@ -103,6 +103,10 @@
                                         </div>
                                         <div class="booking-form-input">
                                             <input hidden asp-for="User.UserId" type="number">
+                                            <label asp-for="Booking.amountOfPeople">PEOPLE<span>*</span></label>
+                                        </div>
+                                        <div class="booking-form-input">
+                                            <input asp-for="Booking.amountOfPeople" type="number" required placeholder="Number PEOPLE" min="1" max="100">
                                         </div>
                                     </div>
                                     <div class="booking-form-info mt-25">
@@ -166,6 +170,7 @@
                                     <div class="booking-sidebar-price-item d-flex flex-wrap justify-content-between">
                                       
                                         <div class="booking-sidebar-price-item-title">Price</div>
+                                        <div class="booking-sidebar-price-item-title">amount </div>
                                         <div class="booking-sidebar-price-item-amount">$@Model.Tour.TotalCost</div>
                                     </div>
 

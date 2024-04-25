@@ -11,6 +11,7 @@ namespace TravelWebProject.repo.Users
         public User? GetUser(string email);
         public bool RegisterUser(User user);
         User? Authenticate(string email, string password);
-
+        public bool CheckUserExists(string email);
+        public bool UpdateUser(string email, string password);
     }
 }

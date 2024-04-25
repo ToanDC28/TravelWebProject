@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model TravelWebProject.web.Pages.Tours.IndexModel
 
 @{
@@ -41,9 +41,8 @@
                                 <div class="tour-thumb image-overly">
                                     <a asp-page="./Tour" asp-route-id="@Model.Tour[i].TourId">
                                         <img src="~/assets/images/tour/@Model.Tour[i].Destinate.Image"
-                                             alt="image"></a>
-                                        
-                                    
+                                             alt="image">
+                                    </a>
 								</div>
                                 <div class="tour-meta d-flex align-items-center justify-content-between">
                                     <button class="tour-favorite tour-like">
@@ -61,23 +60,48 @@
                                 </div>
                             </div>
                             <div class="tour-content">
-                                <div class="tour-rating d-flex align-items-center gap-10 mb-10">
-                                    <div class="tour-rating-icon fs-14 d-flex rating-color">
-                                       @for(int j = 0; j < int.Parse(Model.Tour[i].TotalRating); j++)
-										{
-                                            <i class="fa-solid fa-star"></i>
-										}
-                                    </div>
-                                    <div class="tour-rating-text">
-                                        <span>@Model.Tour[i].TotalRating</span>
-                                    </div>
-                                </div
+                                
                                 <h5 class="tour-title fw-5 underline mb-5">
-                                    <a href="tour-details.html">
+                                    <a>
                                         @Model.Tour[i].Description
                                     </a>
                                 </h5>
                                 <span class="tour-price b3">@Model.Tour[i].TotalCost</span>
+                                <div class="tour-meta d-flex align-items-center justify-content-between">
+                                    <div class="time d-flex align-items-center gap--5">
+                                        @* edit *@
+                                        <a asp-page="./Edit" asp-route-id="@Model.Tour[i].TourId" class="bd-text-btn style-two">
+                                            Edit
+                                            <span class="icon__box">
+                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
+                                                <i class="fa-regular
+                                                fa-arrow-right-long icon__second"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="tour-btn">
+                                        @* Delete *@
+                                        <a asp-page="./Delete" asp-route-id="@Model.Tour[i].TourId" class="bd-text-btn style-two">
+                                            Delete
+                                            <span class="icon__box">
+                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
+                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                    <!--switch to /PlanTours/Details page-->
+                                    <div class="tour-btn">
+                                        @* Delete *@
+                                        <a asp-page="/PlanTours/Create" asp-route-id="@Model.Tour[i].TourId" class="bd-text-btn style-two">
+                                            TP
+                                            <span class="icon__box">
+                                                <i class="fa-regular fa-arrow-right-long icon__first"></i>
+                                                <i class="fa-regular fa-arrow-right-long icon__second"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
                                 <div class="tour-divider"></div>
 
                                 <div class="tour-meta d-flex align-items-center justify-content-between">

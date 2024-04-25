@@ -32,6 +32,16 @@ namespace TravelWebProject.web.Pages.BookingPage
         public IActionResult OnGet(int ? id)
         {
             Tour = tourService.GetTourById(id.Value);
+            tourService = new TourService();
+        }
+        [BindProperty]
+        public Booking Booking { get; set; }
+        public Tour Tour { get; set; }
+        public IActionResult OnGet(int ? id)
+        {
+            Tour = tourService.GetTourById(id.Value);
+            
+           
             var user = HttpContext.User;
             if (user.Identity.IsAuthenticated)
             {

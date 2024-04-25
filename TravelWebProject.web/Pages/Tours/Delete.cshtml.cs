@@ -6,54 +6,45 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.Models;
+using TravelWebProject.service.TourServices;
 
 namespace TravelWebProject.web.Pages.Tours
 {
     public class DeleteModel : PageModel
     {
-        private readonly BusinessObject.Models.TravelWebContext _context;
+        private readonly ITourService _tourService;
+        private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(BusinessObject.Models.TravelWebContext context)
+        public DeleteModel(ITourService tourService, ILogger<DeleteModel> logger)
         {
-            _context = context;
+            _tourService = tourService;
+            _logger = logger;
         }
 
         [BindProperty]
-      public Tour Tour { get; set; } = default!;
+        public Tour Tour { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Tours == null)
-            {
-                return NotFound();
-            }
-
-            var tour = await _context.Tours.FirstOrDefaultAsync(m => m.TourId == id);
-
-            if (tour == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                Tour = tour;
-            }
+            Tour = _tourService.GetTourById(id.Value);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Tours == null)
+            if (id == null)
             {
+                _logger.LogError("Tour ID is null");
                 return NotFound();
             }
-            var tour = await _context.Tours.FindAsync(id);
 
-            if (tour != null)
+            Tour = _tourService.GetTourById(id.Value);
+            _logger.LogInformation($"Tour ID: {Tour.TourId}");
+
+            if (Tour != null)
             {
-                Tour = tour;
-                _context.Tours.Remove(Tour);
-                await _context.SaveChangesAsync();
+                _tourService.DeleteTour(Tour.TourId);
+                _logger.LogInformation($"Tour {Tour.TourName} deleted");
             }
 
             return RedirectToPage("./Index");
