@@ -19,7 +19,8 @@ namespace TravelWebProject.web
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
+            int count = 0;
+            while (!stoppingToken.IsCancellationRequested || count < 2)
             {
                 try
                 {
@@ -32,10 +33,10 @@ namespace TravelWebProject.web
                         var fromDate = config["FROM_DATE"];
                         var toDate = config["TO_DATE"];
                         var bankService = scope.ServiceProvider.GetRequiredService<BankService>();
-                        // await bankService.LoginAsync("0356855236", "Anhvinh123!");
+
                         await bankService.LoginAsync(username, password);
                         await Task.Delay(2000, stoppingToken);
-                        // await bankService.GetListTransactionAsync("00001643062", "20240322", "20250324");
+
                         await bankService.GetListTransactionAsync(accountNo, fromDate, toDate);
                     }
                 }
