@@ -49,7 +49,8 @@
 
                                     <th style="text-align: center;" class="bd-cart-header-quantity">People</th>
                                     <th>Total Price</th>
-                                    <th></th>
+                                    <th style="text-align: center;">paid</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,6 +95,27 @@
                                                 @Html.DisplayFor(modelItem => item.TotalAmount)
                                             </span>
                                     </td>
+                                        <td style="text-align: center;" class="bd-cart-price">
+
+                                            @if (item.Status.Equals("ACTIVE"))
+                                            {
+
+                                                <div style="text-align: center;" class="booking-form-btn">
+                                                    <a href="/LandingPage">
+                                                        <button class="bd-primary-btn btn-style is-bg radius-60">
+                                                            <span class="bd-primary-btn-text">Pay</span>
+                                                            <span class="bd-primary-btn-circle"></span>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <span>Yes</span>
+                                            }
+
+                                        </td>
+
 
                                     <!-- action -->
 
