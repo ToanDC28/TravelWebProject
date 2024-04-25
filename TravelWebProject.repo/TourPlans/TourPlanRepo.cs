@@ -15,5 +15,6 @@ namespace TravelWebProject.repo.TourPlans
         public void DeleteTourPlan(int planId) => TourPlanDAO.Instance.DeleteTourPlan(planId);
         public void UpdateTourPlan(TourPlan tourPlan) => TourPlanDAO.Instance.UpdateTourPlan(tourPlan);
         public void CreateTourPlan(TourPlan tourPlan) => TourPlanDAO.Instance.CreateTourPlan(tourPlan);
+        public List<TourPlan> GetTourPlansByTourId(int tourId) => TourPlanDAO.Instance.GetTourPlansByTourId(tourId);
     }
 }

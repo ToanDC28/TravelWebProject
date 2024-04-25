@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelWebProject.repo.TourPlans;
 
 namespace TravelWebProject.service.TourPlanServices
 {
     public class TourPlanService : ITourPlanService
     {
-        private readonly TourPlanService _tourPlanService;
+        private readonly ITourPlanRepo _tourPlanService;
         public TourPlanService()
         {
-            this._tourPlanService = new TourPlanService();
+            this._tourPlanService = new TourPlanRepo();
         }
         public TourPlan GetTourPlanById(int planId)
         {
@@ -33,7 +34,11 @@ namespace TravelWebProject.service.TourPlanServices
         }
         public void CreateTourPlan(TourPlan tourPlan)
         {
-            _tourPlanService.CreateTourPlan(tourPlan);
+            this._tourPlanService.CreateTourPlan(tourPlan);
+        }
+        public List<TourPlan> GetTourPlansByTourId(int tourId)
+        {
+            return _tourPlanService.GetTourPlansByTourId(tourId);
         }
     }
 }
