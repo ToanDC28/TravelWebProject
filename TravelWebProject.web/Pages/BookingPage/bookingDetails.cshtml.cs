@@ -9,9 +9,11 @@ using BusinessObject.Models;
 using TravelWebProject.service.BookingService;
 using TravelWebProject.service.TourPlanServices;
 using TravelWebProject.service.TourServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.BookingPage
 {
+    [Authorize(Policy = "Customer")]
     public class bookingDetailsModel : PageModel
     {
         private readonly IBookingService _context;

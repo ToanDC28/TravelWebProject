@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using BusinessObject.Models;
 using TravelWebProject.service.DestinationServices;
 using TravelWebProject.service.TourPlanServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.PlanTours
 {
+    [Authorize(Policy = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly ITourPlanService _Service;

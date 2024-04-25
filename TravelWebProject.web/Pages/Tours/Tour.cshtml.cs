@@ -1,10 +1,12 @@
 using BusinessObject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TravelWebProject.service.TourServices;
 
 namespace TravelWebProject.web.Pages.Tours
 {
+    [Authorize(Policy = "AdminAndCustomer")]
     public class TourModel : PageModel
     {
         private readonly ITourService _itourservice;
@@ -26,7 +28,7 @@ namespace TravelWebProject.web.Pages.Tours
                 return NotFound();
             }*/
 
-            // G?i service ?? l?y thông tin tour theo TourId
+            // G?i service ?? l?y thï¿½ng tin tour theo TourId
            
             Tour = _itourservice.GetTourById(id.Value);
             Tours = _itourservice.GetTourByDestinationId(Tour.DestinateId);

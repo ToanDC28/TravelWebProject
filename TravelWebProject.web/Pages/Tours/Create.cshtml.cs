@@ -11,9 +11,11 @@ using TravelWebProject.service.TourPlanServices;
 using TravelWebProject.service.TourServices;
 using TravelWebProject.service.DestinationServices;
 using TravelWebProject.service.TransportServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.Tours
 {
+    [Authorize(Policy = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly ITourService _tourService;
@@ -29,17 +31,21 @@ namespace TravelWebProject.web.Pages.Tours
 
         public IActionResult OnGet()
         {
-/*            if (HttpContext.Session.GetString("role") == null)
+            Tour = new Tour
             {
-                return RedirectToPage("/CustomerPage/Login");
+                TotalRating = "0"
+            };
+            /*            if (HttpContext.Session.GetString("role") == null)
+                        {
+                            return RedirectToPage("/CustomerPage/Login");
 
-            }
-            string role = HttpContext.Session.GetString("role");
-            if (!role.Equals("admin"))
-            {
-                return RedirectToPage("/CustomerPage/Login");
-            }*/
-        ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
+                        }
+                        string role = HttpContext.Session.GetString("role");
+                        if (!role.Equals("admin"))
+                        {
+                            return RedirectToPage("/CustomerPage/Login");
+                        }*/
+            ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
         ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "TransportationModeId");
             return Page();
         }

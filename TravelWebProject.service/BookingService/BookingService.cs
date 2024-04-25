@@ -17,6 +17,6 @@ namespace TravelWebProject.service.BookingService
         public List<Booking> GetAllByUser(int userId) => BookingDAO.Instance.GetAllByUser(userId);
         public Booking GetBookingFullInfor(int bookingId) => BookingDAO.Instance.GetBookingFullInfor(bookingId);
         public  List<Booking> GetAll() => BookingDAO.Instance.GetAll();
-
+        public void Update(Booking booking) => BookingDAO.Instance.Update(booking);
     }
 }

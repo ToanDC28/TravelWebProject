@@ -16,7 +16,6 @@ namespace TravelWebProject.service.BookingService
         public List<Booking> GetAllByUser(int userId);
         public Booking GetBookingFullInfor(int bookingId);
         public  List<Booking> GetAll();
-
-
+        public void Update(Booking booking);
     }
 }
