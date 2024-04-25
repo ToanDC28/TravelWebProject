@@ -29,17 +29,21 @@ namespace TravelWebProject.web.Pages.Tours
 
         public IActionResult OnGet()
         {
-/*            if (HttpContext.Session.GetString("role") == null)
+            Tour = new Tour
             {
-                return RedirectToPage("/CustomerPage/Login");
+                TotalRating = "0"
+            };
+            /*            if (HttpContext.Session.GetString("role") == null)
+                        {
+                            return RedirectToPage("/CustomerPage/Login");
 
-            }
-            string role = HttpContext.Session.GetString("role");
-            if (!role.Equals("admin"))
-            {
-                return RedirectToPage("/CustomerPage/Login");
-            }*/
-        ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
+                        }
+                        string role = HttpContext.Session.GetString("role");
+                        if (!role.Equals("admin"))
+                        {
+                            return RedirectToPage("/CustomerPage/Login");
+                        }*/
+            ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
         ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "TransportationModeId");
             return Page();
         }
