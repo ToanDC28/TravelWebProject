@@ -101,8 +101,15 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css
                                 <div class="d-flex h-gap-55">
                                     <div class="">
                                         <a class="bd-btn btn-style text-btn" href="contact.html">Help</a>
-                                        <a class="bd-btn btn-style text-btn" asp-page="/register">Sign up</a>
-                                        <a class="bd-btn btn-style text-btn" asp-page="/SignIn">Sign in</a>
+                                        @if(User.Identity.IsAuthenticated)
+                                        {
+                                            <a class="bd-btn btn-style text-btn" asp-page="/Logout">Log Out</a>
+                                        } else
+                                        {
+                                            <a class="bd-btn btn-style text-btn" asp-page="/register">Sign up</a>
+                                            <a class="bd-btn btn-style text-btn" asp-page="/ForgotPassword">Forgot Password</a>
+                                            <a class="bd-btn btn-style text-btn" asp-page="/SignIn">Sign in</a>
+                                        }
                                     </div>
                                 </div>
                             </div>
