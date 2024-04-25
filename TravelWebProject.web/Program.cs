@@ -1,3 +1,4 @@
+using BusinessObject;
 using BusinessObject.Models;
 using dotenv.net;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -21,7 +22,19 @@ using TravelWebProject.web;
 DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] {".env"}));
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
-
+//Seed data
+using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+{
+    try 
+    {
+        SeedData.Initialize(scope.ServiceProvider);
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred seeding the DB.");
+    }
+}
 builder.Host.ConfigureLogging((context, logging) =>
 {
     logging.ClearProviders();

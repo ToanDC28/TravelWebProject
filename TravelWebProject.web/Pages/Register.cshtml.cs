@@ -74,6 +74,7 @@ namespace TravelWebProject.web.Pages
                         prf: KeyDerivationPrf.HMACSHA1,
                         iterationCount: 10000,
                         numBytesRequested: 256 / 8)),
+                    RoleId = 2
                 };
                 var result = _userService.RegisterUser(new_user);
                 if (result)
