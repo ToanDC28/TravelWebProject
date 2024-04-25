@@ -20,8 +20,9 @@ namespace TravelWebProject.web.Pages.BookingPage
         }
         [BindProperty]
         public Booking Booking { get; set; }
-        public IActionResult OnGet()
+        public IActionResult OnGet(int ? id)
         {
+            Booking.TourId = id;
             var user = HttpContext.User;
             if (user.Identity.IsAuthenticated)
             {
@@ -59,7 +60,7 @@ namespace TravelWebProject.web.Pages.BookingPage
 
                 bookingService.Create(Booking);
                 //return page LandingPage
-                return RedirectToPage("/LandingPage");
+                return RedirectToPage("./bookingDetails", new {bookingId = Booking.BookingId});
             }
             return Page();
         }

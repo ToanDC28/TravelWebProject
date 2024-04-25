@@ -104,9 +104,7 @@
                             </div>
                             <div class="booking-sidebar-widget-content">
                                 <h6 class="booking-item-title small underline mb-5">
-                                    Island Hopping in the Caribbean:
-                                    Sun &
-                                    Sea
+                                    @Model.Booking.Tour.TourName
                                 </h6>
                                 <span class="booking-item-date">
                                     <a href="blog-details.html">
@@ -119,23 +117,14 @@
                         </div>
                         <div class="booking-sidebar-widget-wrapper">
                             <div class="booking-sidebar-price-wrapper">
-                                <h6 class="booking-sidebar-price-title small mb-15">
-                                    4 𝗑 Island Hopping in the
-                                    Caribbean: Sun
-                                    & Sea
-                                </h6>
+
                                 <div class="booking-sidebar-price-content">
 
                                     <div class="booking-sidebar-price-item d-flex flex-wrap justify-content-between">
-                                        <div class="booking-sidebar-price-item-title">4 𝗑 PEOPLE </div>
-                                        <div class="booking-sidebar-price-item-amount">$1800.00</div>
+                                        <div class="booking-sidebar-price-item-title">amount </div>
+                                        <div class="booking-sidebar-price-item-amount">$@Model.Booking.Tour.TotalCost</div>
                                     </div>
 
-
-                                    <div class="booking-sidebar-price-total d-flex flex-wrap justify-content-between">
-                                        <div class="booking-sidebar-price-item-title b3 fw-7">Total price</div>
-                                        <div class="booking-sidebar-price-item-amount b3 fw-7">$2399.00</div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
