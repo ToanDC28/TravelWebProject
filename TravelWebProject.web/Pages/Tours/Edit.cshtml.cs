@@ -7,16 +7,24 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.Models;
+using TravelWebProject.service.TourServices;
+using TravelWebProject.service.DestinationServices;
+using TravelWebProject.service.TransportServices;
 
 namespace TravelWebProject.web.Pages.Tours
 {
     public class EditModel : PageModel
     {
-        private readonly BusinessObject.Models.TravelWebContext _context;
-
-        public EditModel(BusinessObject.Models.TravelWebContext context)
+        private readonly ITourService _tourService;
+        private readonly IDestinationService _destinationService;
+        private readonly ITransportService _transportService;
+        private readonly ILogger<EditModel> _logger;
+        public EditModel(ITourService tourService, IDestinationService destinationService, ITransportService transportService, ILogger<EditModel> logger)
         {
-            _context = context;
+            _tourService = tourService;
+            _destinationService = destinationService;
+            _transportService = transportService;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -24,19 +32,19 @@ namespace TravelWebProject.web.Pages.Tours
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Tours == null)
+            if (id == null || _tourService.GetAllTours() == null)
             {
                 return NotFound();
             }
 
-            var tour =  await _context.Tours.FirstOrDefaultAsync(m => m.TourId == id);
+            var tour = _tourService.GetAllTours().FirstOrDefault(m => m.TourId == id);
             if (tour == null)
             {
                 return NotFound();
             }
             Tour = tour;
-           ViewData["DestinateId"] = new SelectList(_context.Destinations, "DestinationId", "Country");
-           ViewData["TransportId"] = new SelectList(_context.TransportationModes, "TransportationModeId", "TransportationModeId");
+            ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
+            ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "TransportationModeId");
             return Page();
         }
 
@@ -44,21 +52,27 @@ namespace TravelWebProject.web.Pages.Tours
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            string[] dates = Tour.Duration.Split(" to ");
+            Tour.StartDate = DateTime.Parse(dates[0]);
+            Tour.EndDate = DateTime.Parse(dates[1]);
+            //Update Duration to be the difference between StartDate and EndDate
+            Tour.Duration = (Tour.EndDate - Tour.StartDate).Days.ToString();
+            // if (!ModelState.IsValid)
+            // {
+            //     return Page();
+            // }
 
-            _context.Attach(Tour).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                _tourService.UpdateTour(Tour);
+                _logger.LogInformation($"Tour {Tour.TourName} updated successfully");
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!TourExists(Tour.TourId))
                 {
+                    _logger.LogError($"Tour {Tour.TourName} not found");
                     return NotFound();
                 }
                 else
@@ -72,7 +86,8 @@ namespace TravelWebProject.web.Pages.Tours
 
         private bool TourExists(int id)
         {
-          return (_context.Tours?.Any(e => e.TourId == id)).GetValueOrDefault();
+            _logger.LogInformation($"Checking if tour with ID {id} exists");
+            return _tourService.GetAllTours().Any(e => e.TourId == id);
         }
     }
 }

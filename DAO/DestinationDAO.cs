@@ -40,7 +40,7 @@ namespace DAO
                     .FirstOrDefault(p => p.DestinationId == id);
             }catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception();  
             }
         }
 

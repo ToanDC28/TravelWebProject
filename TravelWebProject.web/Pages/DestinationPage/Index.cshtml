@@ -35,17 +35,17 @@
                     <div class="col-xl-4 col-lg-4 col-md-4">
                         <div class="trip-wrapper trip-style-one p-relative">
                             <div class="trip-thumb image-overly">
-                                <a href="-details-right.html">
+                                <a a asp-page="./Details" asp-route-id="@item.DestinationId">
                                     <img src="~/assets/images/tour/@item.Image"
                                          alt="image">
                                 </a>
                             </div>
                             <div class="trip-tag">
                                 <div class="trip-number">
-                                    <span><a href="destinations-details-right.html">@item.Tours.Count() Tour</a></span>
+                                    <span><a>@item.Tours.Count() Tour</a></span>
                                 </div>
                                 <div class="trip-location">
-                                    <span><a href="destinations-details-right.html">@item.Name</a></span>
+                                    <span><a>@item.Name</a></span>
                                 </div>
                             </div>
                         </div>
