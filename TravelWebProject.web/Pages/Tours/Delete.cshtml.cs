@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.Models;
 using TravelWebProject.service.TourServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.Tours
 {
+    [Authorize(Policy = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly ITourService _tourService;

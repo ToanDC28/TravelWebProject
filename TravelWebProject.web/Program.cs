@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using BusinessObject;
 using BusinessObject.Models;
 using dotenv.net;
@@ -62,6 +63,29 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             return Task.CompletedTask;
         };
     });
+
+// Create 2 policies for admin and user
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => 
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim(ClaimTypes.Role, "ADMIN");
+    });
+    options.AddPolicy("Customer", policy => 
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim(ClaimTypes.Role, "CUSTOMER");
+    });
+    options.AddPolicy("AdminAndCustomer", policy => 
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireAssertion(context => 
+        {
+            return context.User.HasClaim(ClaimTypes.Role, "ADMIN") || context.User.HasClaim(ClaimTypes.Role, "CUSTOMER");
+        });
+    });
+});
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSession();

@@ -10,9 +10,11 @@ using TravelWebProject.service.BookingService;
 using System.Security.Claims;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.BookingPage
 {
+    [Authorize(Policy = "Customer")]
     public class bookingIndexModel : PageModel
     {
         private readonly IBookingService _context;

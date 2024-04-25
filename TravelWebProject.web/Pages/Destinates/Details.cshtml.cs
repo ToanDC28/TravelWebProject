@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.Destinates
 {
+    [Authorize(Policy = "Admin, Customer")]
     public class DetailsModel : PageModel
     {
         private readonly BusinessObject.Models.TravelWebContext _context;

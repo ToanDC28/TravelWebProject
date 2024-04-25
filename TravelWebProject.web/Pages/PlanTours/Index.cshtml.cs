@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObject.Models;
 using TravelWebProject.service.TourServices;
 using TravelWebProject.service.TourPlanServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.PlanTours
 {
+    [Authorize(Policy = "AdminAndCustomer")]
     public class IndexModel : PageModel
     {
         private readonly ITourPlanService _itourservice;
