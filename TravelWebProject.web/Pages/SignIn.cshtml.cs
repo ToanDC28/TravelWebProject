@@ -57,7 +57,7 @@ namespace TravelWebProject.web.Pages
             {
                 var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username, user.UserId.ToString())
+                new Claim(ClaimTypes.Name, user.UserId.ToString())
             };
                 var claimsIdentity = new ClaimsIdentity(
             claims, CookieAuthenticationDefaults.AuthenticationScheme);
