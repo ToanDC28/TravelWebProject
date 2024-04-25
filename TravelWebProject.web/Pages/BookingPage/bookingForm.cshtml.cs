@@ -29,14 +29,7 @@ namespace TravelWebProject.web.Pages.BookingPage
         public Tour Tour { get; set; }
         [BindProperty]
         public User User { get; set; }
-        public IActionResult OnGet(int ? id)
-        {
-            Tour = tourService.GetTourById(id.Value);
-            tourService = new TourService();
-        }
-        [BindProperty]
-        public Booking Booking { get; set; }
-        public Tour Tour { get; set; }
+       
         public IActionResult OnGet(int ? id)
         {
             Tour = tourService.GetTourById(id.Value);
