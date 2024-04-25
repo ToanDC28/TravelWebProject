@@ -8,7 +8,7 @@
     <!-- breadcrumb area start -->
     <section class="bd-breadcrumb-area p-relative fix">
         <!-- breadcrumb background image -->
-        <div class="bd-breadcrumb-bg" data-background="assets/images/bg/breadcrumb-bg.png"></div>
+        <div class="bd-breadcrumb-bg" data-background="~/assets/images/bg/breadcrumb-bg.png"></div>
         <div class="bd-breadcrumb-wrapper p-relative">
             <div class="container">
                 <div class="row justify-content-center">
@@ -65,10 +65,10 @@
                                     </div>
                                     <div class="booking-form-input-box">
                                         <div class="booking-form-input-title">
-                                            <label asp-for="Booking.Tour.Duration">PEOPLE<span>*</span></label>
+                                            <label asp-for="Booking.amountOfPeople">PEOPLE<span>*</span></label>
                                         </div>
                                         <div class="booking-form-input">
-                                            <input asp-for="Booking.Tour.Duration" type="number" required placeholder="Number PEOPLE" min="1" max="100">
+                                            <input asp-for="Booking.amountOfPeople" type="number" required placeholder="Number PEOPLE" min="1" max="100">
                                         </div>
                                     </div>
                                     <div class="booking-form-info mt-25">
@@ -100,11 +100,11 @@
                     <aside class="booking-sidebar-wrapper sidebar-sticky">
                         <div class="booking-sidebar-widget-wrapper mb-30">
                             <div class="booking-sidebar-widget-thumb mb-15">
-                                <img src="assets/images/tour/tour-img-1.png" alt="images">
+                                <img src="~/assets/images/tour/@Model.Tour.Destinate.Image" alt="images">
                             </div>
                             <div class="booking-sidebar-widget-content">
                                 <h6 class="booking-item-title small underline mb-5">
-                                    @Model.Booking.Tour.TourName
+                                    @Model.Tour.TourName
                                 </h6>
                                 <span class="booking-item-date">
                                     <a href="blog-details.html">
@@ -122,7 +122,7 @@
 
                                     <div class="booking-sidebar-price-item d-flex flex-wrap justify-content-between">
                                         <div class="booking-sidebar-price-item-title">amount </div>
-                                        <div class="booking-sidebar-price-item-amount">$@Model.Booking.Tour.TotalCost</div>
+                                        <div class="booking-sidebar-price-item-amount">$@Model.Tour.TotalCost</div>
                                     </div>
 
                                 </div>
