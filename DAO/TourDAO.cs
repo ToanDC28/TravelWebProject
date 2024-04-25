@@ -78,8 +78,13 @@ namespace DAO
         {
             try
             {
-                _context.Tours.Update(tour);
-                _context.SaveChanges(true);
+                var existingTour = _context.Tours.Find(tour.TourId);
+                if (existingTour != null)
+                {
+                    // Copy the changes from "tour" to "existingTour"
+                    _context.Entry(existingTour).CurrentValues.SetValues(tour);
+                    _context.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
