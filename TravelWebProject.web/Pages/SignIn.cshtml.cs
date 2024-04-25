@@ -36,7 +36,6 @@ namespace TravelWebProject.web.Pages
         {
             if (User.Identity.IsAuthenticated)
             { 
-
                 return RedirectToPage("/LandingPage");
             }
 
@@ -52,6 +51,7 @@ namespace TravelWebProject.web.Pages
                 prf: KeyDerivationPrf.HMACSHA1,
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8));
+
             var user = _authenticationService.Authenticate(Email, hashedPassword);
             if (user != null)
             {
@@ -78,6 +78,8 @@ namespace TravelWebProject.web.Pages
             } else {
                 //Ghi log lỗi
                 _logger.LogError("Đăng nhập thất bại");
+                _logger.LogError("User {Email} failed to log in at {Time}.", Email, DateTime.UtcNow);
+                TempData["Error"] = "Email hoặc mật khẩu không đúng";
             }
 
             // Xử lý việc đăng nhập thất bại

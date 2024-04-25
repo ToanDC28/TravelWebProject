@@ -36,7 +36,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.Cookie.Name = "MyCookieAuth";
         options.LoginPath = "/SignIn";
         options.AccessDeniedPath = "/AccessDenied";
-        options.LogoutPath = "/SignOut";
+        options.LogoutPath = "/Logout";
         options.SlidingExpiration = true;
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
         options.Events.OnRedirectToLogin = context =>
