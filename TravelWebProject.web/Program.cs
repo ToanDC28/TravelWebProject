@@ -1,4 +1,6 @@
+using BusinessObject.Models;
 using dotenv.net;
+using MailKit;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -60,7 +62,9 @@ builder.Services.AddScoped<IItineraryService, ItineraryService>();
 builder.Services.AddScoped<IRegionService, RegionService>();
 builder.Services.AddHttpClient<BankService>();
 builder.Services.AddHostedService<PeriodicLoginBackgroundService>();
-builder.Services.AddTransient<BusinessObject.Models.Booking>();
+builder.Services.AddTransient<Booking>();
+builder.Services.AddTransient<IMailService, MailService>();
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -72,12 +72,10 @@ namespace TravelWebProject.web.Pages
             new ClaimsPrincipal(claimsIdentity), 
             authProperties);
                 //Ghi log đăng nhập thành công
-                _logger.LogInformation("Đăng nhập thành công");
                 _logger.LogInformation("User {Email} logged in at {Time}.", Email, DateTime.UtcNow);
                 return RedirectToPage("/Index");
             } else {
                 //Ghi log lỗi
-                _logger.LogError("Đăng nhập thất bại");
                 _logger.LogError("User {Email} failed to log in at {Time}.", Email, DateTime.UtcNow);
                 TempData["Error"] = "Email hoặc mật khẩu không đúng";
             }
