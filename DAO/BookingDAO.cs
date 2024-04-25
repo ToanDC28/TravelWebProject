@@ -35,7 +35,7 @@ namespace DAO
             {
                 return context.Bookings.ToList();
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -103,11 +103,10 @@ namespace DAO
                 context.SaveChanges();
             }
         }
-
-
-
-
-
-
+        public User getUserFrombooking(int UserId)
+        {
+            return context.Users.FirstOrDefault(u => u.UserId == UserId) ?? null;
+        }
+    
     }
 }
