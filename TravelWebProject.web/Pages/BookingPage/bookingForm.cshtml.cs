@@ -19,30 +19,24 @@ namespace TravelWebProject.web.Pages.BookingPage
             this.userService = userService;
         }
         [BindProperty]
-<<<<<<< Updated upstream
         public Booking Booking { get; set; }
-=======
-        public int amountOfPeople {  get; set; }
-        [BindProperty]
-        public Tour Tour { get; set; }
-        [BindProperty]
-        public User User { get; set; }
->>>>>>> Stashed changes
         public IActionResult OnGet(int ? id)
         {
             Booking.TourId = id;
             var user = HttpContext.User;
             if (user.Identity.IsAuthenticated)
             {
-                var userIdClaim = user.FindFirst(ClaimTypes.Name);
+                var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
                 if (userIdClaim != null)
                 {
                     // Lấy giá trị UserId
                     int userId;
                     if (int.TryParse(userIdClaim.Value, out userId))
-                    {    
-                        User = bookingService.getUserFrombooking(userId);
+                    {
+                       User currentUser = bookingService.getUserFrombooking(userId);
+                        Booking.User = currentUser;
                         return Page();
+
                     }
                     else
                     {
@@ -61,21 +55,14 @@ namespace TravelWebProject.web.Pages.BookingPage
        
         public IActionResult OnPost()
         {
-            Booking booking = new Booking();
-            var tour = tourService.GetTourById(Tour.TourId);
-            booking.UserId = User.UserId;
-            booking.TourId = tour.TourId;
-            booking.Status = "";
-            booking.amountOfPeople = amountOfPeople;
-            booking.TotalAmount = Tour.TotalCost * amountOfPeople;
-            booking.RemainingAmount = booking.TotalAmount;
-            booking.BookingDate = DateTime.Now;
-            booking.PaidAmount = 0;
-            booking.PaymentDeadline = tour.StartDate;
-             bookingService.Create(booking);
-                //return page LandingPage
-                return RedirectToPage("/BookingPage/bookingDetails", new { bookingId = booking.BookingId });
+            if (Booking != null)
+            {
 
+                bookingService.Create(Booking);
+                //return page LandingPage
+                return RedirectToPage("./bookingDetails", new {bookingId = Booking.BookingId});
+            }
+            return Page();
         }
 
     }

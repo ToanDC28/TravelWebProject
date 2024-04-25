@@ -41,73 +41,34 @@
                                 <div class="booking-form-input-wrapper">
                                     <div class="booking-form-input-box">
                                         <div class="booking-form-input-title">
-                                            <label asp-for="User.Username">Name<span>*</span></label>
+                                            <label asp-for="Booking.User.Username">Name<span>*</span></label>
                                         </div>
                                         <div class="booking-form-input">
-                                            <input asp-for="User.Username" readonly required placeholder="Name">
+                                            <input asp-for="Booking.User.Username" required placeholder="Name">
                                         </div>
                                     </div>
                                     <div class="booking-form-input-box">
                                         <div class="booking-form-input-title">
-                                            <label asp-for="User.Email">Email address<span>*</span></label>
+                                            <label asp-for="Booking.User.Email">Email address<span>*</span></label>
                                         </div>
                                         <div class="booking-form-input">
-                                            <input asp-for="User.Email" readonly type="email" required placeholder="Email address">
+                                            <input asp-for="Booking.User.Email" type="email" required placeholder="Email address">
                                         </div>
                                     </div>
                                     <div class="booking-form-input-box">
                                         <div class="booking-form-input-title">
-                                            <label asp-for="User.Phone">Mobile Number<span>*</span></label>
+                                            <label asp-for="Booking.User.Phone">Mobile Number<span>*</span></label>
                                         </div>
                                         <div class="booking-form-input">
-                                            <input asp-for="User.Phone" required readonly placeholder="Mobile Number">
+                                            <input asp-for="Booking.User.Phone" required placeholder="Mobile Number">
                                         </div>
                                     </div>
                                     <div class="booking-form-input-box">
                                         <div class="booking-form-input-title">
-<<<<<<< Updated upstream
                                             <label asp-for="Booking.Tour.Duration">PEOPLE<span>*</span></label>
                                         </div>
                                         <div class="booking-form-input">
                                             <input asp-for="Booking.Tour.Duration" type="number" required placeholder="Number PEOPLE" min="1" max="100">
-=======
-                                            <label asp-for="amountOfPeople">PEOPLE<span>*</span></label>
-                                            <td class="bd-cart-quantity">
-                                                <div class="bd-product-quantity mt-10 mb-10">
-                                                    <span class="bd-cart-minus">
-                                                        <svg width="10" height="2" viewBox="0 0 10 2" fill="none"
-                                                             xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H9" stroke="currentColor" stroke-width="1.5"
-                                                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        </svg>
-                                                    </span>
-                                                    <input asp-for="amountOfPeople" class="bd-cart-input" required type="text" value="1">
-                                                    <span class="bd-cart-plus">
-                                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                                             xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M5 1V9" stroke="currentColor" stroke-width="1.5"
-                                                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            <path d="M1 5H9" stroke="currentColor" stroke-width="1.5"
-                                                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </div>
-                                        
-                                           
-                                        <div class="booking-form-input">
-                                            <input hidden asp-for="Tour.TotalCost" type="number" >
-                                        </div>
-                                        <div class="booking-form-input">
-                                            <input hidden asp-for="Tour.StartDate" type="datetime">
-                                        </div>
-                                        <div class="booking-form-input">
-                                            <input hidden asp-for="Tour.TourId" type="number">
-                                        </div>
-                                        <div class="booking-form-input">
-                                            <input hidden asp-for="User.UserId" type="number">
->>>>>>> Stashed changes
                                         </div>
                                     </div>
                                     <div class="booking-form-info mt-25">
@@ -117,10 +78,10 @@
                                     <h5 class="booking-form-title mb-15">Cancellation policy</h5>
                                     <p class="mb-10">
                                         "By clicking 'Payment details' and finalizing your booking, you
-                                        are agreeing to the <a class="theme-text" href="#">Terms and Conditions</a> set forth by tourigo.com and the privacy policy of Viator."
+                                        are agreeing to the <a class="theme-text" href="terms-conditions.html">Terms and Conditions</a> set forth by tourigo.com and the privacy policy of Viator."
                                     </p>
                                     <span>
-                                        <a class="theme-text" href="#">Privacy Statement</a>
+                                        <a class="theme-text" href="privacy-policy.html">Privacy Statement</a>
                                     </span>
 
                                 </div>
@@ -145,22 +106,13 @@
                                 <h6 class="booking-item-title small underline mb-5">
                                     @Model.Booking.Tour.TourName
                                 </h6>
-                                <p>@Model.Tour.Description</p>
-                               <div> <span class="booking-item-date">
-                                    <label>StartDate</label>
-                                    <a href="#">
-                                        <span><i class="icon-cleander-check"></i></span>@Model.Tour.StartDate
-                                    </a>
-                                </span>
-                                </div>
-                                <div>
                                 <span class="booking-item-date">
-                                    <label>EndDate</label>
-                                    <a href="#">
-                                        <span><i class="icon-cleander-check"></i></span>@Model.Tour.EndDate
+                                    <a href="blog-details.html">
+                                        <span><i class="icon-cleander-check"></i></span> Mar
+                                        18,
+                                        2024
                                     </a>
                                 </span>
-                                </div>
                             </div>
                         </div>
                         <div class="booking-sidebar-widget-wrapper">
@@ -169,13 +121,8 @@
                                 <div class="booking-sidebar-price-content">
 
                                     <div class="booking-sidebar-price-item d-flex flex-wrap justify-content-between">
-<<<<<<< Updated upstream
                                         <div class="booking-sidebar-price-item-title">amount </div>
                                         <div class="booking-sidebar-price-item-amount">$@Model.Booking.Tour.TotalCost</div>
-=======
-                                        <div class="booking-sidebar-price-item-title">Price</div>
-                                        <div class="booking-sidebar-price-item-amount">$@Model.Tour.TotalCost</div>
->>>>>>> Stashed changes
                                     </div>
 
                                 </div>
