@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using TravelWebProject.repo.Users;
 using TravelWebProject.service.BookingService;
 using TravelWebProject.service.Users;
+using System.Security.Claims;
 
 namespace TravelWebProject.web.Pages.BookingPage
 {
@@ -17,24 +18,48 @@ namespace TravelWebProject.web.Pages.BookingPage
             this.bookingService = bookingService;
             this.userService = userService;
         }
-        public User User { get; set; }
-        public void OnGet( )
+        [BindProperty]
+        public Booking Booking { get; set; }
+        public IActionResult OnGet()
         {
-            // đưa cookie vào để lấy mail
-            
-             string mail = "";
+            var user = HttpContext.User;
+            if (user.Identity.IsAuthenticated)
+            {
+                var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim != null)
+                {
+                    // Lấy giá trị UserId
+                    int userId;
+                    if (int.TryParse(userIdClaim.Value, out userId))
+                    {
+                       User currentUser = bookingService.getUserFrombooking(userId);
+                        Booking.User = currentUser;
+                        return Page();
 
-            User = userService.GetUser(mail);          
+                    }
+                    else
+                    {
+                        return Page();
+                    }
+                }
+                else { return Page(); }
+                }
+            else
+            {
+              return  RedirectToPage("/SignIn");
+            }
+                   
         }
 
-        public Booking Booking { get; set; }
-        public async Task<IActionResult> OnPostAsync()
+       
+        public IActionResult OnPost()
         {
             if (Booking != null)
             {
 
                 bookingService.Create(Booking);
-                return RedirectToPage("/booking");
+                //return page LandingPage
+                return RedirectToPage("/LandingPage");
             }
             return Page();
         }

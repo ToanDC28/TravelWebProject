@@ -13,5 +13,6 @@ namespace TravelWebProject.service.BookingService
     {
         public void Create(Booking booking) => BookingDAO.Instance.Create(booking);
         public Booking GetById(int bookingId) => BookingDAO.Instance.GetById(bookingId);
+        public User getUserFrombooking(int UserId) => BookingDAO.Instance.getUserFrombooking(UserId);
     }
 }

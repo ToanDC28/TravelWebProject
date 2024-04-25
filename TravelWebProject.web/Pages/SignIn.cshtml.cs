@@ -35,7 +35,8 @@ namespace TravelWebProject.web.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             if (User.Identity.IsAuthenticated)
-            {
+            { 
+
                 return RedirectToPage("/Index");
             }
 
@@ -56,13 +57,14 @@ namespace TravelWebProject.web.Pages
             {
                 var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username)
+                new Claim(ClaimTypes.Name, user.Username, user.UserId.ToString())
             };
                 var claimsIdentity = new ClaimsIdentity(
             claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var authProperties = new AuthenticationProperties
                 {
                     IsPersistent = true,
+
                     ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30)
                 };
                 await HttpContext.SignInAsync(
