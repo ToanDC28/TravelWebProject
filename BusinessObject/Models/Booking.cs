@@ -15,6 +15,7 @@ namespace BusinessObject.Models
         public int? TourId { get; set; }
         public DateTime? BookingDate { get; set; }
         public string? Status { get; set; }
+        public int amountOfPeople { get; set; }
         public decimal? PaidAmount { get; set; }
         public decimal? TotalAmount { get; set; }
         public decimal? RemainingAmount { get; set; }

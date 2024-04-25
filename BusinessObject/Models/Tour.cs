@@ -9,7 +9,6 @@ namespace BusinessObject.Models
         {
             Bookings = new HashSet<Booking>();
             Itineraries = new HashSet<Itinerary>();
-            ItineraryDetails = new HashSet<ItineraryDetail>();
             Reviews = new HashSet<Review>();
             TourPlans = new HashSet<TourPlan>();
         }
@@ -30,7 +29,6 @@ namespace BusinessObject.Models
         public virtual TransportationMode? Transport { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<Itinerary> Itineraries { get; set; }
-        public virtual ICollection<ItineraryDetail> ItineraryDetails { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<TourPlan> TourPlans { get; set; }
     }
