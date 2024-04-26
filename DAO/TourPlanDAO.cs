@@ -34,9 +34,14 @@ namespace DAO
         {
             try
             {
-                _context.TourPlans.Add(tourPlan);
-                _context.SaveChanges(); // Lưu thay đổi vào cơ sở dữ liệu
-            
+                var newTourPlan = new TourPlan
+                {
+                    Name = tourPlan.Name,
+                    Description = tourPlan.Description,
+                };
+                _context.TourPlans.Add(newTourPlan);
+                _context.SaveChanges();
+
             }
             catch (Exception ex)
             {
