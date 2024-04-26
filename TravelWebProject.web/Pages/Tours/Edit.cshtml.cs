@@ -45,8 +45,8 @@ namespace TravelWebProject.web.Pages.Tours
                 return NotFound();
             }
             Tour = tour;
-            ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
-            ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "TransportationModeId");
+            ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Region.Name");
+            ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "Mode");
             return Page();
         }
 

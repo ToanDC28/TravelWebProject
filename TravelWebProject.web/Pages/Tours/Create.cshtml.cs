@@ -37,7 +37,7 @@ namespace TravelWebProject.web.Pages.Tours
                 TotalRating = "0"
             };
            
-            ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
+            ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Region.Name");
         ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "Mode");
             return Page();
         }
