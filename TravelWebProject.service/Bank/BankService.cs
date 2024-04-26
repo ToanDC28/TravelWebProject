@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Transactions;
+using BusinessObject;
+using BusinessObject.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Math.EC.Rfc7748;
+using TravelWebProject.service.BookingService;
+using TravelWebProject.service.TransactionService;
+using TravelWebProject.service.Users;
 
 namespace TravelWebProject.service.Bank
 {
@@ -14,13 +21,15 @@ namespace TravelWebProject.service.Bank
         private string _accessToken;
         private int _accessTokenExpirationTime;
         private ILogger<BankService> _logger;
-        // private readonly TransactionInfosRepository _transactionInfosRepository; , TransactionInfosRepository transactionInfosRepository
+        private readonly IBookingService _bookingService;
+        private readonly ITransactionService _transactionService;
 
-        public BankService(HttpClient httpClient, ILogger<BankService> logger)
+        public BankService(HttpClient httpClient, ILogger<BankService> logger, IBookingService bookingService, ITransactionService transactionService)
         {
             _httpClient = httpClient;
-            // _transactionInfosRepository = transactionInfosRepository;
             _logger = logger;
+            _bookingService = bookingService;
+            _transactionService = transactionService;
         }
 
         public async Task LoginAsync(string username, string password)
@@ -80,10 +89,97 @@ namespace TravelWebProject.service.Bank
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
             var responseContent = await response.Content.ReadAsStringAsync();
-            // var transactionResponse = JsonConvert.DeserializeObject<ListTransactionResponse>(responseContent);
-            //ghi log responseContent ra file để xem dữ liệu trả về
-            _logger.LogInformation(responseContent);
-            // Process the response data
+            var transactionResponse = JsonConvert.DeserializeObject<TransactionResponse>(responseContent);
+            var transactions = _transactionService.GetListTransaction();
+            //Transaction nao chua duoc luu thi luu vao db
+            foreach (var transaction in transactionResponse.transactionInfos)
+            {
+                if (!transaction.ArrangementId.Contains(transactions.Select(x => x.ArrangementId).ToString()))
+                {
+                    //Check Description if it contains "#Travel " + "Booking ID" #Travel 123456
+                    if (transaction.Description.Contains("Travel"))
+                    {
+                        var bookingId = transaction.Description.Split("Travel ")[1];
+                        var booking = _bookingService.GetById(int.Parse(bookingId));
+                        if (booking != null)
+                        {
+                            var transactionInfo = new TransactionInfo
+                            {
+                                ArrangementId = transaction.ArrangementId,
+                                Reference = transaction.Reference,
+                                Description = transaction.Description,
+                                Category = transaction.Category,
+                                BookingDate = transaction.BookingDate,
+                                ValueDate = transaction.ValueDate,
+                                Amount = transaction.Amount,
+                                Currency = transaction.Currency,
+                                CreditDebitIndicator = transaction.CreditDebitIndicator,
+                                RunningBalance = transaction.RunningBalance,
+                                OfsAcctNo = transaction.OfsAcctNo,
+                                OfsAcctName = transaction.OfsAcctName,
+                                CreditorBankNameVn = transaction.CreditorBankNameVn,
+                                CreditorBankNameEn = transaction.CreditorBankNameEn,
+                                BookingId = int.Parse(bookingId)
+                            };
+                            _transactionService.AddTransaction(transactionInfo);
+                            //check if Amount is equal to Booking Amount
+                            if (decimal.Parse(transaction.Amount) == booking.TotalAmount)
+                            {
+                                booking.Status = "UnActive";
+                                _bookingService.Update(booking);
+                            }
+                            else
+                            {
+                                booking.Status = "Partially Paid";
+                                _bookingService.Update(booking);
+                            }
+                        }
+                        else
+                        {
+                            var transactionInfo = new TransactionInfo
+                            {
+                                ArrangementId = transaction.ArrangementId,
+                                Reference = transaction.Reference,
+                                Description = transaction.Description,
+                                Category = transaction.Category,
+                                BookingDate = transaction.BookingDate,
+                                ValueDate = transaction.ValueDate,
+                                Amount = transaction.Amount,
+                                Currency = transaction.Currency,
+                                CreditDebitIndicator = transaction.CreditDebitIndicator,
+                                RunningBalance = transaction.RunningBalance,
+                                OfsAcctNo = transaction.OfsAcctNo,
+                                OfsAcctName = transaction.OfsAcctName,
+                                CreditorBankNameVn = transaction.CreditorBankNameVn,
+                                CreditorBankNameEn = transaction.CreditorBankNameEn,
+                                BookingId = null
+                            };
+                            _transactionService.AddTransaction(transactionInfo);
+                        }
+                    }
+                    else
+                    {
+                        var transactionInfo = new TransactionInfo
+                        {
+                            ArrangementId = transaction.ArrangementId,
+                            Reference = transaction.Reference,
+                            Description = transaction.Description,
+                            Category = transaction.Category,
+                            BookingDate = transaction.BookingDate,
+                            ValueDate = transaction.ValueDate,
+                            Amount = transaction.Amount,
+                            Currency = transaction.Currency,
+                            CreditDebitIndicator = transaction.CreditDebitIndicator,
+                            RunningBalance = transaction.RunningBalance,
+                            OfsAcctNo = transaction.OfsAcctNo,
+                            OfsAcctName = transaction.OfsAcctName,
+                            CreditorBankNameVn = transaction.CreditorBankNameVn,
+                            CreditorBankNameEn = transaction.CreditorBankNameEn,
+                        };
+                        _transactionService.AddTransaction(transactionInfo);
+                    }
+                }
+            }
         }
     }
 

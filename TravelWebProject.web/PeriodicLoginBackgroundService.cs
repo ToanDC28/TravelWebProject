@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,8 +19,7 @@ namespace TravelWebProject.web
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            int count = 0;
-            while (!stoppingToken.IsCancellationRequested || count < 2)
+            while (!stoppingToken.IsCancellationRequested)
             {
                 try
                 {
@@ -45,7 +44,7 @@ namespace TravelWebProject.web
                     _logger.LogError(ex, "Error occurred executing periodic login");
                 }
 
-                await Task.Delay(5000, stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(15), stoppingToken);
             }
         }
     }

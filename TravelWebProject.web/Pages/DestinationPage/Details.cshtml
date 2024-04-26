@@ -5,8 +5,6 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <main>
     <!-- breadcrumb area start -->
     <section class="bd-breadcrumb-area p-relative fix">
@@ -44,7 +42,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-6">
                             <div class="trip-wrapper trip-style-one p-relative">
                                 <div class="trip-thumb image-overly">
-                                    <a href="destinations-details-right.html">
+                                        <a asp-page="/Tours/Tour" asp-route-id="@item.TourId">
                                         <img src="~/assets/images/tour/@item.Destinate.Image" alt="image">
                                     </a>
                                 </div>
@@ -53,7 +51,7 @@
                                         <span><a href="destinations-details-right.html">3 Tour</a></span>
                                     </div>*@
                                     <div class="trip-location">
-                                        <span><a href="destinations-details-right.html">@item.TourName</a></span>
+                                        <span><a asp-page="/Tours/Tour" asp-route-id="@item.TourId">@item.TourName</a></span>
                                     </div>
                                 </div>
                             </div>

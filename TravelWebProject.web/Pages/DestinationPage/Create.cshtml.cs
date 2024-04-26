@@ -11,9 +11,11 @@ using TravelWebProject.service.TourServices;
 using TravelWebProject.service.TransportServices;
 using TravelWebProject.service.RegionService;
 using TravelWebProject.service.RegionServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.DestinationPage
 {
+    [Authorize(Policy = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly IRegionService _regionService;
@@ -28,7 +30,7 @@ namespace TravelWebProject.web.Pages.DestinationPage
 
         public IActionResult OnGet()
         {
-        ViewData["RegionId"] = new SelectList(_regionService.GetAll(), "Id", "Id");
+        ViewData["RegionId"] = new SelectList(_regionService.GetAll(), "Id", "Name");
             return Page();
         }
 

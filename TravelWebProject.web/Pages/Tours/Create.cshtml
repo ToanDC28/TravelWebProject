@@ -105,7 +105,7 @@
                                                         <label for="StartDate">Duration<span>*</span></label>
                                                     </div>
                                                     <div class="banner-form-input">
-                                                        <input asp-for="Tour.Duration" class="form-control"
+                                                        <input required asp-for="Tour.Duration" class="form-control"
                                                             id="selectingMultipleDates" type="text"
                                                             placeholder="Select Your date" readonly="readonly">
                                                         <span asp-validation-for="Tour.Duration"
@@ -126,23 +126,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="col-lg-12">
-                                                <div class="form-input">
-                                                    <div class="form-input-title">
-                                                        <label for="TotalRating">Total Rating<span>*</span></label>
-                                                    </div>
-                                                    <div class="form-input">
-                                                        <input asp-for="Tour.TotalRating"
-                                                               placeholder="Enter total Rating"
-                                                               readonly
-                                                               class="form-control-plaintext"
-                                                               value="@Model.Tour.TotalRating" />
-                                                        <span asp-validation-for="Tour.TotalRating" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
 
                                             <div class="col-lg-12">
                                                 <div class="form-input">

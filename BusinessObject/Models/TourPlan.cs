@@ -9,9 +9,9 @@ namespace BusinessObject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PlanId { get; set; }
         public int? TourId { get; set; }
-        public string? Name { get; set; }
-        public string? Description { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
-        public virtual Tour? Tour { get; set; }
+        public virtual Tour Tour { get; set; }
     }
 }

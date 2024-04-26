@@ -1,0 +1,86 @@
+﻿@page
+@model TravelWebProject.web.Pages.BookingPage.PaymentModel
+@{
+    string content = "Travel " + Model.Booking.UserId;
+}
+<main>
+    <!-- breadcrumb area start -->
+    <section class="bd-breadcrumb-area p-relative fix">
+        <!-- breadcrumb background image -->
+        <div class="bd-breadcrumb-bg" data-background="assets/images/bg/breadcrumb-bg.png"></div>
+        <div class="bd-breadcrumb-wrapper p-relative">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+                        <div class="bd-breadcrumb d-flex align-items-center justify-content-center">
+                            <div class="bd-breadcrumb-content text-center">
+                                <h1 class="bd-breadcrumb-title">Checkout</h1>
+                                <div class="bd-breadcrumb-list">
+                                    <span><a href="index.html"><i class="icon-home"></i>Tourigo</a></span>
+                                    <span>Checkout</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb area end -->
+    <!-- checkout area start -->
+    <section class="checkout-area section-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="checkout-verify mb-24">
+                        <div class="checkout-verify-item">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- checkout place order -->
+                    <div class="checkout-place sidebar-sticky">
+                        <h3 class="checkout-place-title">Your Order</h3>
+                        <div class="order-info-list">
+                            <ul>
+                                <!-- header -->
+                                <li class="order-info-list-header">
+                                    <h4>Product</h4>
+                                    <h4>Total</h4>
+                                </li>
+                                <!-- item list -->
+                                <li class="order-info-list-desc">
+                                    <p>@Model.Booking.Tour.TourName<span> x @Model.Booking.AmountOfPeople</span></p>
+                                    <span>$ @Model.Booking.Tour.TotalCost</span>
+                                </li>
+
+                                <!-- shipping -->
+                                <!-- total -->
+                                <li class="order-info-list-total">
+                                    <span>Total</span>
+                                    <span>$ @Model.Booking.TotalAmount</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="checkout-payment">
+                            <image source src="https://apiqr.web2m.com/api/generate/TPB/0976464259/NGUYEN%20HIEP%20NGUYEN?amount=@((double)Model.Booking.TotalAmount)&&memo=@content&is_mask =1&bg=10" type=""></image>
+                        </div>
+
+                        <div class="checkout-btn-wrapper">
+                            <a href="/BookingPage/bookingIndex">
+                            <button class="bd-primary-btn btn-style is-bg radius-60 w-100">
+                                <span class="bd-primary-btn-text">Cancel Payment</span>
+                                <span class="bd-primary-btn-circle"></span>
+                            </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- checkout area end -->
+
+</main>

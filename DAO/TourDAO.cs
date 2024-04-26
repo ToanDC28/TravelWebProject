@@ -35,7 +35,7 @@ namespace DAO
         {
             try
             {
-                return _context.Tours.Include("Destinate").Include("Transport").Include("Itineraries").Include("TourPlans").ToList();
+                return _context.Tours.Include("Destinate").Include("Transport").Include("TourPlans").ToList();
             }
             catch (Exception ex)
             {

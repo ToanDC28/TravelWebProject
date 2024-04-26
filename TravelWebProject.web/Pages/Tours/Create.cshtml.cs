@@ -11,9 +11,12 @@ using TravelWebProject.service.TourPlanServices;
 using TravelWebProject.service.TourServices;
 using TravelWebProject.service.DestinationServices;
 using TravelWebProject.service.TransportServices;
+using Microsoft.AspNetCore.Authorization;
+using System.Globalization;
 
 namespace TravelWebProject.web.Pages.Tours
 {
+    [Authorize(Policy = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly ITourService _tourService;
@@ -33,18 +36,9 @@ namespace TravelWebProject.web.Pages.Tours
             {
                 TotalRating = "0"
             };
-            /*            if (HttpContext.Session.GetString("role") == null)
-                        {
-                            return RedirectToPage("/CustomerPage/Login");
-
-                        }
-                        string role = HttpContext.Session.GetString("role");
-                        if (!role.Equals("admin"))
-                        {
-                            return RedirectToPage("/CustomerPage/Login");
-                        }*/
+           
             ViewData["DestinateId"] = new SelectList(_destinationService.GetDestinations(), "DestinationId", "Country");
-        ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "TransportationModeId");
+        ViewData["TransportId"] = new SelectList(_transportService.GetAllTransportationModes(), "TransportationModeId", "Mode");
             return Page();
         }
 
@@ -55,22 +49,26 @@ namespace TravelWebProject.web.Pages.Tours
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-           // Duration: 04-16 to 04-26 split by "to" and convert to DateTime
             string[] dates = Tour.Duration.Split(" to ");
-            Tour.StartDate = DateTime.Parse(dates[0]);
-            Tour.EndDate = DateTime.Parse(dates[1]);
-            //Update Duration to be the difference between StartDate and EndDate
-            Tour.Duration = (Tour.EndDate - Tour.StartDate).Days.ToString();
-        //    if (!ModelState.IsValid || Tour == null)
-        //     {
-        //         return Page();
-        //     }
-            
-            /*if (!ModelState.IsValid || Tour == null)
-            {
-                return Page();
-            }*/
+            DateTime startDate;
+            DateTime endDate;
 
+            if (dates.Length == 2 && DateTime.TryParseExact(dates[0], "MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate) &&
+                DateTime.TryParseExact(dates[1], "MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out endDate))
+            {
+                Tour.StartDate = startDate;
+                Tour.EndDate = endDate;
+
+                Tour.Duration = (Tour.EndDate - Tour.StartDate).TotalDays.ToString();
+            }
+            else
+            {
+                Tour.StartDate = DateTime.Now; 
+                Tour.EndDate = DateTime.Now;
+                Tour.Duration = "0"; 
+            }
+
+            Tour.TotalRating = "0";
             _tourService.AddTour(Tour);
 
             return RedirectToPage("./Index");

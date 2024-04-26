@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@using System.Security.Claims
+<!doctype html>
 <html class="no-js" lang="zxx">
 
 
@@ -70,7 +71,23 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css
                                 </li>
                                 <!-- page menu -->
                                 <li class="has-mega-menu">
-                                    <a asp-page="/Booking/Index">Booking</a>
+                                    @if(User.Identity.IsAuthenticated)
+                                    {
+                                        //get user ClaimTypes.Role
+                                        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                                        Console.WriteLine(role);
+                                        if (role == "ADMIN")
+                                        {
+                                            <a asp-page="/BookingPage/bookingAdmin" >Booking</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-page="/BookingPage/bookingIndex" >Booking</a>
+                                        }
+                                    } else
+                                    {
+                                        <a asp-page="/SignIn">Booking</a>
+                                    }
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a asp-page="/BlogPage/Index">Blog</a>
@@ -101,8 +118,15 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css
                                 <div class="d-flex h-gap-55">
                                     <div class="">
                                         <a class="bd-btn btn-style text-btn" href="contact.html">Help</a>
-                                        <a class="bd-btn btn-style text-btn" asp-page="/register">Sign up</a>
-                                        <a class="bd-btn btn-style text-btn" asp-page="/SignIn">Sign in</a>
+                                        @if(User.Identity.IsAuthenticated)
+                                        {
+                                            <a class="bd-btn btn-style text-btn" asp-page="/Logout">Log Out</a>
+                                        } else
+                                        {
+                                            <a class="bd-btn btn-style text-btn" asp-page="/register">Sign up</a>
+                                            <a class="bd-btn btn-style text-btn" asp-page="/ForgotPassword">Forgot Password</a>
+                                            <a class="bd-btn btn-style text-btn" asp-page="/SignIn">Sign in</a>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -253,13 +277,13 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css
                     <div class="col-xxl-5 col-xl-5 col-lg-6">
                         <div class="footer-inner text-center">
                             <div class="demo-footer-text">
-                                <h2 class="mb-15 white-text">Start Build Your Website With Tourigo</h2>
+                                <h2 class="mb-15 white-text">Welcome With Tourigo</h2>
                             </div>
-                            <p class="footer-demo-description">Purchase Tourigo today and start to creating your
+                            <p class="footer-demo-description">Come to Tourigo today and start to creating your
                                 beautiful tour
                                 and travel
                                 website.</p>
-                            <div class="">
+                           @*  <div class="">
                                 <a href="https://themeforest.net/item/tourigo-tour-travel-html5-template/51357906?s_rank=1"
                                     class="bd-primary-btn btn-style has-arrow is-bg radius-60">
                                     <span class="bd-primary-btn-arrow arrow-right"><i
@@ -270,7 +294,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css
                                             class="fa-regular fa-arrow-right"></i></span>
                                 </a>
 
-                            </div>
+                            </div> *@
                         </div>
                     </div>
                 </div>

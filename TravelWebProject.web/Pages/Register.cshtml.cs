@@ -30,7 +30,7 @@ namespace TravelWebProject.web.Pages
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToPage("/Index");
+                return RedirectToPage("/LandingPage");
             }
 
             return Page();
@@ -42,7 +42,8 @@ namespace TravelWebProject.web.Pages
         {
             if (!ModelState.IsValid)
             {
-                return new JsonResult(new { success = false, message = "Invalid form data." });
+                string errors = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+                return new JsonResult(new { success = false, message = errors });
             }
 
             try
@@ -73,6 +74,7 @@ namespace TravelWebProject.web.Pages
                         prf: KeyDerivationPrf.HMACSHA1,
                         iterationCount: 10000,
                         numBytesRequested: 256 / 8)),
+                    RoleId = 2
                 };
                 var result = _userService.RegisterUser(new_user);
                 if (result)

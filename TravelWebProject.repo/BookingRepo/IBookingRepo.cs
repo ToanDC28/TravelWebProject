@@ -12,5 +12,10 @@ namespace TravelWebProject.repo.BookingRepo
         public Booking GetById(int bookingId);
         public void Create(Booking booking);
         public User getUserFrombooking(int UserId);
+        public List<Booking> GetAllByUser(int userId);
+        public Booking GetBookingFullInfor(int bookingId);
+        public  List<Booking> GetAll();
+
+
     }
 }

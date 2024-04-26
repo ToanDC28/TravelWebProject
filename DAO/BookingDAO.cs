@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,11 +30,11 @@ namespace DAO
             }
         }
 
-        public static List<Booking> GetAll()
+        public  List<Booking> GetAll()
         {
             try
             {
-                return context.Bookings.ToList();
+                return context.Bookings.Include(b=>b.User).Include(b => b.Tour).ToList();
             }
             catch
             {
@@ -42,27 +43,63 @@ namespace DAO
         }
         public Booking GetById(int bookingId)
         {
-            return context.Bookings.Include("Payment").FirstOrDefault(b => b.BookingId == bookingId);
+            return context.Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+        }
+
+
+
+        public List<Booking> GetAllByUser(int userId)
+        {
+            try
+            {
+
+                var bookings = context.Bookings.Where(b => b.UserId == userId).Include(b => b.Tour).Include(b => b.Tour.Destinate).ToList();
+                return bookings;
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+        public Booking GetBookingFullInfor(int bookingId)
+        {
+            try
+            {
+                // Truy vấn để tìm Booking với bookingId cụ thể, bao gồm Tour, Destinate, và User
+                var booking = context.Bookings
+                    .Where(b => b.BookingId == bookingId)
+                    .Include(b => b.Tour)
+                    .Include(b => b.Tour.Destinate)
+                    .Include(b => b.User)
+                    .FirstOrDefault(); // Lấy đối tượng Booking đầu tiên thỏa mãn điều kiện
+
+                return booking; // Trả về đối tượng Booking đã tìm thấy
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có
+                throw new Exception("An error occurred while retrieving the booking information.", ex);
+            }
+
         }
 
         public void Create(Booking booking)
         {
-            if (booking == null)
-            {
-                throw new ArgumentNullException(nameof(booking), "Booking không được null");
-            }
-
             try
             {
+                // Thêm đối tượng Booking vào cơ sở dữ liệu
                 context.Bookings.Add(booking);
-                context.SaveChanges();
+                context.SaveChanges(true);
             }
-            catch (Exception ex)
+            catch
             {
-                // Xử lý lỗi
-                Console.WriteLine($"Lỗi khi thêm booking: {ex.Message}");
+                throw;
             }
+            
         }
+
+
 
         public void Update(Booking booking)
         {
