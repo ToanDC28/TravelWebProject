@@ -1,6 +1,6 @@
 @page
 @model TravelWebProject.web.Pages.Tours.IndexModel
-
+@using System.Security.Claims
 @{
     ViewData["Title"] = "Index";
 }
@@ -69,8 +69,9 @@
                                 <span class="tour-price b3">@Model.Tour[i].TotalCost</span>
                                 @if(User.Identity.IsAuthenticated)
                                 {
+                                    var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                                     //Check policy
-                                    if (User.HasClaim("Role", "Admin"))
+                                    if (role == "ADMIN")
                                     {
                                         <div class="tour-meta d-flex align-items-center justify-content-between">
                                     <div class="time d-flex align-items-center gap--5">
