@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TravelWebProject.web.Pages.BookingPage
 {
-    [Authorize(Policy = "Customer")]
     public class bookingFormModel : PageModel
     {
         private readonly IBookingService bookingService;
