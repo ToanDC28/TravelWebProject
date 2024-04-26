@@ -1,4 +1,5 @@
 using BusinessObject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using TravelWebProject.service.BookingService;
 
 namespace TravelWebProject.web.Pages.BookingPage
 {
+    [Authorize(Policy = "Admin")]
     public class BookingAdminModel : PageModel
     {
         private readonly IBookingService _context;

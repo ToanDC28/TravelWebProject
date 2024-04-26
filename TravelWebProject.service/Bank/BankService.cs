@@ -97,9 +97,9 @@ namespace TravelWebProject.service.Bank
                 if (!transaction.ArrangementId.Contains(transactions.Select(x => x.ArrangementId).ToString()))
                 {
                     //Check Description if it contains "#Travel " + "Booking ID" #Travel 123456
-                    if (transaction.Description.Contains("#Travel"))
+                    if (transaction.Description.Contains("Travel"))
                     {
-                        var bookingId = transaction.Description.Split("#Travel ")[1];
+                        var bookingId = transaction.Description.Split("Travel ")[1];
                         var booking = _bookingService.GetById(int.Parse(bookingId));
                         if (booking != null)
                         {
@@ -123,9 +123,9 @@ namespace TravelWebProject.service.Bank
                             };
                             _transactionService.AddTransaction(transactionInfo);
                             //check if Amount is equal to Booking Amount
-                            if (int.Parse(transaction.Amount) == booking.TotalAmount)
+                            if (decimal.Parse(transaction.Amount) == booking.TotalAmount)
                             {
-                                booking.Status = "Paid";
+                                booking.Status = "UnActive";
                                 _bookingService.Update(booking);
                             }
                             else

@@ -1,6 +1,7 @@
 ﻿@page
 @model TravelWebProject.web.Pages.BookingPage.PaymentModel
 @{
+    string content = "Travel " + Model.Booking.UserId;
 }
 <main>
     <!-- breadcrumb area start -->
@@ -64,7 +65,7 @@
                             </ul>
                         </div>
                         <div class="checkout-payment">
-                            <image source src="https://apiqr.web2m.com/api/generate/TPB/0356855236/DANG%20XUAN%20MAY?amount=@((double)Model.Booking.TotalAmount)&&memo=@Model.Booking.UserId&is_mask =1&bg=10" type=""></image>
+                            <image source src="https://apiqr.web2m.com/api/generate/TPB/0976464259/NGUYEN%20HIEP%20NGUYEN?amount=@((double)Model.Booking.TotalAmount)&&memo=@content&is_mask =1&bg=10" type=""></image>
                         </div>
 
                         <div class="checkout-btn-wrapper">
